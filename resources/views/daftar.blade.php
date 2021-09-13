@@ -197,21 +197,21 @@
                     <div class="form-group row">
                       <label for="inputEmail3" class="col-sm-3 col-form-label">NIK</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" id="nik" name="nik" placeholder="NIK" maxlength="16" >
+                        <input type="text" class="form-control" id="nik" name="nik" placeholder="NIK" maxlength="16" required>
                       </div>
                     </div>
 
                     <div class="form-group row">
                       <label for="inputEmail3" class="col-sm-3 col-form-label">Nama</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" id="inputEmail3" name="nama" placeholder="nama lengkap">
+                        <input type="text" class="form-control" id="inputEmail3" name="nama" placeholder="nama lengkap" required>
                       </div>
                     </div>
 
                     <div class="form-group row">
                       <label for="inputEmail3" class="col-sm-3 col-form-label">Telp</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" id="telp" name="telp"  maxlength="15" placeholder="telp">
+                        <input type="text" class="form-control" id="telp" name="telp"  maxlength="15" placeholder="telp" required>
                       </div>
                     </div>
                     
