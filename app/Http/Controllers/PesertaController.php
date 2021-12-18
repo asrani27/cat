@@ -13,14 +13,14 @@ class PesertaController extends Controller
     public function index()
     {
         $data = Peserta::paginate(10);
-        return view('superadmin.peserta.index',compact('data'));
+        return view('superadmin.peserta.index', compact('data'));
     }
-    
+
     public function create()
     {
         return view('superadmin.peserta.create');
     }
-    
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -34,28 +34,27 @@ class PesertaController extends Controller
         }
 
         Peserta::create($request->all());
-        
+
         toastr()->success('Sukses Di Simpan');
         return redirect('/superadmin/peserta');
-        
     }
-    
+
     public function show($id)
     {
         //
     }
-    
+
     public function edit($id)
     {
         $data = Peserta::find($id);
-        
-        return view('superadmin.peserta.edit',compact('data'));
+
+        return view('superadmin.peserta.edit', compact('data'));
     }
-    
+
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'nik' =>  'unique:peserta,nik,'.$id,
+            'nik' =>  'unique:peserta,nik,' . $id,
         ]);
 
         if ($validator->fails()) {
@@ -87,14 +86,14 @@ class PesertaController extends Controller
         $n = new User;
         $n->name = $peserta->nama;
         $n->username = $peserta->nik;
-        $n->password = bcrypt($peserta->telp);
+        $n->password = bcrypt($peserta->tgl);
         $n->save();
 
         $n->roles()->attach($role);
 
         $peserta->update(['user_id' => $n->id]);
 
-        toastr()->success('Akun sukses di buat, Password : '. $peserta->telp);
+        toastr()->success('Akun sukses di buat, Password : ' . $peserta->telp);
         return back();
     }
 
@@ -103,8 +102,8 @@ class PesertaController extends Controller
         $u = Peserta::find($id)->user;
         $u->password = bcrypt(Peserta::find($id)->telp);
         $u->save();
-        
-        toastr()->success('Password Baru : '. Peserta::find($id)->telp);
+
+        toastr()->success('Password Baru : ' . Peserta::find($id)->telp);
         return back();
     }
 }

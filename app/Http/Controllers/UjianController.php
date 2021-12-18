@@ -22,23 +22,18 @@ class UjianController extends Controller
         $peserta->update(['selesai_ujian' => 1]);
         return redirect('/home/peserta');
     }
+
     public function mulai()
     {
-        if ($this->peserta()->mulai !=  null) {
-            toastr()->error('Ujian Sudah Selesai');
+        $now = Carbon::now();
+        $tgl_mulai = Waktu::first()->tanggal_mulai;
+        $tgl_selesai = Waktu::first()->tanggal_selesai;
+
+        if ($now < $tgl_mulai) {
+            toastr()->error('Ujian Belum dimulai');
             return back();
         } else {
-            $durasi = Waktu::first()->durasi + 1;
-            $user = $this->peserta();
 
-            $now = Carbon::now();
-            $mulai = $now->format('Y-m-d H:i');
-            $selesai = $now->addMinute($durasi)->format('Y-m-d H:i');
-
-            $user->update([
-                'mulai' => $mulai,
-                'selesai' => $selesai
-            ]);
             $soalPertama = Soal::first()->id;
             return redirect('/peserta/ujian/soal/' . $soalPertama);
         }
