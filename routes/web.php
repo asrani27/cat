@@ -10,24 +10,24 @@ use App\Http\Controllers\WaktuController;
 use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\KategoriController;
 
-Route::get('/', function(){
-    if(Auth::check()){
-        if(Auth::user()->hasRole('superadmin')){
+Route::get('/', function () {
+    if (Auth::check()) {
+        if (Auth::user()->hasRole('superadmin')) {
             return redirect('/home/admin');
-        }elseif(Auth::user()->hasRole('peserta')){
+        } elseif (Auth::user()->hasRole('peserta')) {
             return redirect('/home/peserta');
         }
     }
     return view('welcome');
 });
 
-Route::get('/logout', function(){
+Route::get('/logout', function () {
     Auth::logout();
     return redirect('/');
 });
 
-Route::get('/login', function(){
-    if(Auth::check()){
+Route::get('/login', function () {
+    if (Auth::check()) {
         return redirect('/');
     }
     return view('welcome');
@@ -55,7 +55,6 @@ Route::group(['middleware' => ['auth', 'role:peserta']], function () {
     Route::get('peserta/ujian/soal/{id}', [UjianController::class, 'soal']);
     Route::post('simpanjawaban', [UjianController::class, 'simpan']);
     Route::get('selesaiujian', [UjianController::class, 'selesai']);
-    
 });
 
 

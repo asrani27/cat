@@ -14,9 +14,9 @@ class LoginController extends Controller
     public function login(Request $req)
     {
         if (Auth::attempt(['username' => $req->username, 'password' => $req->password], true)) {
-            if(Auth::user()->hasRole('superadmin')){
+            if (Auth::user()->hasRole('superadmin')) {
                 return redirect('/home/superadmin');
-            }else{
+            } else {
                 return redirect('/home/peserta');
             }
         } else {
@@ -33,29 +33,29 @@ class LoginController extends Controller
 
     public function simpanDaftar(Request $req)
     {
-        $role = Role::where('name','peserta')->first();
+        $role = Role::where('name', 'peserta')->first();
 
-        if(User::where('username', $req->nik)->first() == null){
+        if (User::where('username', $req->nik)->first() == null) {
             $user = new User;
             $user->name = $req->nama;
             $user->username = $req->nik;
             $user->password = bcrypt($req->telp);
             $user->save();
-    
+
             $user->roles()->attach($role);
-    
+
             $peserta = new Peserta;
             $peserta->nik = $req->nik;
             $peserta->nama = $req->nama;
             $peserta->telp = $req->telp;
             $peserta->user_id = $user->id;
             $peserta->save();
-            
+
             toastr()->success('Berhasil Di Simpan');
-    
+
             return redirect('/');
-        }else{
-            toastr()->errro('NIK sudah digunakan');
+        } else {
+            toastr()->error('NIK sudah digunakan');
             return back();
         }
     }
