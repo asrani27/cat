@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Soal;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -24,6 +25,26 @@ Route::get('/', function () {
 Route::get('/logout', function () {
     Auth::logout();
     return redirect('/');
+});
+
+Route::get('/generate', function () {
+
+    // $hasil = array();
+    // $total = 100;
+    // $x = 0;
+    // do {
+    //     $angka_random = rand(1, 100);
+    //     if (!in_array($angka_random, $hasil)) {
+    //         array_push($hasil, $angka_random);
+    //         $x++;
+    //     };
+    // } while ($x < $total);
+
+    // $soal =  Soal::get();
+    // foreach ($soal as $key => $item) {
+    //     $item->update(['random0' => $hasil[$key]]);
+    // }
+    return 'sukses';
 });
 
 Route::get('/login', function () {
@@ -53,6 +74,7 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
 Route::group(['middleware' => ['auth', 'role:peserta']], function () {
     Route::get('peserta/mulai', [UjianController::class, 'mulai']);
     Route::get('peserta/ujian/soal/{id}', [UjianController::class, 'soal']);
+    Route::get('peserta/ujian/random/{id}', [UjianController::class, 'random']);
     Route::post('simpanjawaban', [UjianController::class, 'simpan']);
     Route::get('selesaiujian', [UjianController::class, 'selesai']);
 });

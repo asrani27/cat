@@ -52,6 +52,8 @@ class UjianController extends Controller
     public function soal($id)
     {
         $peserta    = $this->peserta();
+        $random     = 'random' . substr($peserta->telp, -1);
+
         if ($peserta->selesai_ujian == 1) {
             return redirect('home/peserta');
         } else {
@@ -69,7 +71,9 @@ class UjianController extends Controller
                 $waktu      = Waktu::first()->durasi;
                 $soal       = Soal::find($id);
                 $next       = $this->next($id);
-                $listSoal   = $this->soalUjian()->map(function ($item) use ($peserta) {
+
+
+                $listSoal   = Soal::get()->map(function ($item) use ($peserta) {
                     $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();
                     if ($check == null) {
                         $item->dijawab = false;
@@ -77,7 +81,8 @@ class UjianController extends Controller
                         $item->dijawab = $check->jawaban;
                     }
                     return $item;
-                });
+                })->values();
+
                 $jmlbelumjawab = $listSoal->where('dijawab', false)->count();
 
                 $dijawab    = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $id)->first();
@@ -104,6 +109,7 @@ class UjianController extends Controller
                 $new->save();
                 return redirect('/peserta/ujian/soal/' . $this->next($req->soal_id));
             } else {
+
                 $check->update(['jawaban' => $req->jawaban]);
                 return redirect('/peserta/ujian/soal/' . $this->next($req->soal_id));
             }

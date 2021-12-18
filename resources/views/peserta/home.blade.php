@@ -84,7 +84,7 @@
 </div>
 
 <div class="row">
-  <div class="col-md-9">
+  <div class="col-md-8">
     <div class="card card-primary">
       <div class="card-header">
         <h3 class="card-title">Selamat Menjawab</h3>
@@ -123,7 +123,7 @@
       </div>
     </div>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-4">
     <div class="card card-primary">
       <div class="card-header">
         <h3 class="card-title">List Soal</h3>
@@ -131,10 +131,15 @@
       <div class="card-body">
         @php
         $no = 1;
+        $peserta = Auth::user()->peserta;
+        $random = 'random' . substr($peserta->telp, -1);
+
         @endphp
-        @foreach ($listSoal as $item)
-        <strong><a href="/peserta/ujian/soal/{{$item->id}}"
+        @foreach ($listSoal as $key => $item)
+        <strong style="padding-bottom: 5px;">
+          <a href="/peserta/ujian/soal/{{$item->id}}"
             class="btn btn-sm btn-{{$item->dijawab == true ? 'success':'danger'}}">{{$no++}}</a></strong>
+
         @endforeach
       </div>
     </div>
@@ -149,7 +154,7 @@
       </div>
     </div>
     <a href="/selesaiujian" class="btn btn-success btn-block"
-      onclick="return confirm('Yakin Ingin Mengakhiri Ujian?');"><i class="fas fa-save"></i> selesai ujian</a>
+      onclick="return confirm('Yakin Ingin Mengakhiri Ujian?');"><i class="fas fa-save"></i> selesai ujian</a><br />
   </div>
 </div>
 @endsection
