@@ -100,10 +100,10 @@ class PesertaController extends Controller
     public function pass($id)
     {
         $u = Peserta::find($id)->user;
-        $u->password = bcrypt(Peserta::find($id)->telp);
+        $u->password = bcrypt(Peserta::find($id)->tgl);
         $u->save();
 
-        toastr()->success('Password Baru : ' . Peserta::find($id)->telp);
+        toastr()->success('Password Baru : ' . Peserta::find($id)->tgl);
         return back();
     }
 }
