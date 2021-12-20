@@ -79,7 +79,6 @@
       <div class="card-body text-center">
         <h1>UJIAN TELAH SELESAI</h1></br>
         <h1>SKOR ANDA : {{$skor}}</h1></br>
-        <h3>INFO PERANGKINGAN BISA ANDA LIHAT DI LINK DI BAWAH INI PADA TANGGAL </h3>
       </div>
     </div>
   </div>
