@@ -5,7 +5,7 @@
 @endpush
 
 @section('content')
-<br />
+{{-- <br />
 <div class="row">
   <div class="col-md-2 col-sm-6 col-12">
     <div class="info-box">
@@ -71,7 +71,7 @@
     <!-- /.info-box -->
   </div>
   <!-- /.col -->
-</div>
+</div> --}}
 
 <div class="row">
   <div class="col-md-12">

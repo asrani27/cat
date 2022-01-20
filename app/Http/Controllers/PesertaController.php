@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Role;
+use App\Models\Soal;
 use App\Models\User;
+use App\Models\Waktu;
+use App\Models\Jawaban;
 use App\Models\Peserta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class PesertaController extends Controller
@@ -105,5 +110,108 @@ class PesertaController extends Controller
 
         toastr()->success('Password Baru : 112233');
         return back();
+    }
+
+    public function upload(Request $req)
+    {
+
+        $validator = Validator::make($req->all(), [
+            'file' => 'mimes:zip,rar|max:10000'
+        ]);
+
+        if ($validator->fails()) {
+            toastr()->error('File Harus Berupa zip/rar dan Maks 10MB');
+            return back();
+        }
+
+        if ($req->hasFile('file')) {
+            $filename = $req->file->getClientOriginalName();
+            $filename = date('d-m-Y-') . rand(1, 9999) . $filename;
+            $req->file->storeAs('/public/peserta', $filename);
+            $attr['file'] = $filename;
+        } else {
+            $attr['file'] = null;
+        }
+
+        Auth::user()->peserta->update([
+            'kampus' => $req->kampus,
+            'jurusan' => $req->jurusan,
+            'tgl' => $req->tgl,
+            'file' => $filename
+        ]);
+
+        toastr()->success('Berhasil DiSimpan');
+        return back();
+    }
+
+    public function soal()
+    {
+        return Soal::get();
+    }
+
+    public function lihatdata()
+    {
+        $peserta = Auth::user()->peserta;
+
+
+        $jmlsoal    = $this->soal()->count();
+        $jam        = Carbon::now()->format('H:i');
+        $waktu      = Waktu::first()->durasi;
+
+        $listSoal   = $this->soal()->map(function ($item) use ($peserta) {
+            $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();
+            if ($check == null) {
+                $item->dijawab = false;
+            } else {
+                $item->dijawab = $check->jawaban;
+            }
+            return $item;
+        });
+        $jmlbelumjawab = $listSoal->where('dijawab', false)->count();
+        return view('peserta.lihatdata', compact('peserta', 'waktu', 'jam', 'jmlsoal', 'listSoal', 'jmlbelumjawab'));
+    }
+
+    public function uploadlagi(Request $req)
+    {
+        if ($req->file == null) {
+            //simpan tanpa file
+            Auth::user()->peserta->update([
+                'nik' => $req->nik,
+                'nama' => $req->nama,
+                'telp' => $req->telp,
+                'tgl' => $req->tgl,
+                'kampus' => $req->kampus,
+                'jurusan' => $req->jurusan,
+            ]);
+            toastr()->success('Data Berhasil Diupdate');
+            return redirect('/home/peserta');
+        } else {
+            $validator = Validator::make($req->all(), [
+                'file' => 'mimes:zip,rar|max:10000'
+            ]);
+
+            if ($validator->fails()) {
+                toastr()->error('File Harus Berupa zip/rar dan Maks 10MB');
+                return back();
+            }
+
+            if ($req->hasFile('file')) {
+                $filename = $req->file->getClientOriginalName();
+                $filename = date('d-m-Y-') . rand(1, 9999) . $filename;
+                $req->file->storeAs('/public/peserta', $filename);
+            }
+
+            Auth::user()->peserta->update([
+                'nik' => $req->nik,
+                'nama' => $req->nama,
+                'telp' => $req->telp,
+                'tgl' => $req->tgl,
+                'kampus' => $req->kampus,
+                'jurusan' => $req->jurusan,
+                'file' => $filename,
+            ]);
+            toastr()->success('Data Berhasil Diupdate');
+            return redirect('/home/peserta');
+        }
     }
 }
