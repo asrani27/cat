@@ -56,7 +56,7 @@ Route::get('/login', function () {
 
 Route::post('/login', [LoginController::class, 'login']);
 
-Route::get('/daftar', function () {\
+Route::get('/daftar', function () {
     return redirect('/');
 });
 //Route::get('/daftar', [LoginController::class, 'daftar']);
