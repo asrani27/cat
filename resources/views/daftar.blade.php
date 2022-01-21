@@ -192,7 +192,7 @@
                   <!-- Add the bg color to the header using any of the bg-* classes -->
                   <div class="widget-user-header text-white"
                     style="background: url('/theme/bglogin.jpg') center center;">
-                    <h3 class="widget-user-username text-center"><strong>Computer Assisted Test (CAT)</strong></h3>
+                    <h3 class="widget-user-username text-center"><strong>Rekrutmen Tenaga Ahli Programmer</strong></h3>
                     <h5 class="widget-user-desc text-center">DAFTAR</h5>
                   </div>
                   <div class="widget-user-image">
