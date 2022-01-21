@@ -189,7 +189,7 @@
             <div class="col-md-2 col-sm-6 col-12">
               <div class="info-box">
                 <div class="info-box-content text-center">
-                  <span class="info-box-text">NOMOR PESERTA</span>
+                  <span class="info-box-text">NIK</span>
                   <span class="info-box-number">{{$peserta->nik}}</span>
                 </div>
                 <!-- /.info-box-content -->
