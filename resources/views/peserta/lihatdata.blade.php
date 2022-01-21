@@ -62,6 +62,13 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Tahun Lulus</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="tahun_lulus"
+                                                value="{{$peserta->tahun_lulus}}" placeholder="tahun lulus" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-4 col-form-label">Berkas File
                                             (Zip/Rar)</label>
                                         <div class="col-sm-8">
