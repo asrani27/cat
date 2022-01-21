@@ -48,6 +48,7 @@ class LoginController extends Controller
                 $peserta = new Peserta;
                 $peserta->nik = $req->nik;
                 $peserta->nama = $req->nama;
+                $peserta->email = $req->email;
                 $peserta->telp = $req->telp;
                 $peserta->user_id = $user->id;
                 $peserta->save();
