@@ -218,13 +218,20 @@
                         </div>
 
                         <div class="form-group row">
-                          <label for="inputEmail4" class="col-sm-4 col-form-label">Telp</label>
+                          <label for="inputEmail4" class="col-sm-4 col-form-label">Telp / WA</label>
                           <div class="col-sm-8">
                             <input type="text" class="form-control" id="telp" name="telp" maxlength="15"
                               placeholder="telp" value="{{old('telp')}}" required>
                           </div>
                         </div>
 
+                        <div class="form-group row">
+                          <label for="inputEmail4" class="col-sm-4 col-form-label">Email</label>
+                          <div class="col-sm-8">
+                            <input type="email" class="form-control" name="email" placeholder="email"
+                              value="{{old('email')}}" required>
+                          </div>
+                        </div>
                         <div class="form-group row">
                           <label for="inputEmail4" class="col-sm-4 col-form-label">Password</label>
                           <div class="col-sm-8">
