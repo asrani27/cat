@@ -55,7 +55,11 @@ Route::get('/login', function () {
 })->name('login');
 
 Route::post('/login', [LoginController::class, 'login']);
-Route::get('/daftar', [LoginController::class, 'daftar']);
+
+Route::get('/daftar', function () {\
+    return redirect('/');
+});
+//Route::get('/daftar', [LoginController::class, 'daftar']);
 Route::post('/daftar', [LoginController::class, 'simpanDaftar']);
 
 Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
