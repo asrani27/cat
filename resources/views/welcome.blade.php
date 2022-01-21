@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>CAT</title>
+  <title>Rekrutmen</title>
 
   <link rel="stylesheet" href="/theme/plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="/theme/dist/css/adminlte.min.css">
