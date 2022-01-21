@@ -48,6 +48,13 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Email</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="email"
+                                                value="{{$peserta->email}}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-4 col-form-label">Nama PTS/PTN</label>
                                         <div class="col-sm-8">
                                             <input type="text" class="form-control" name="kampus"
