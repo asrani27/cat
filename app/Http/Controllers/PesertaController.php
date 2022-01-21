@@ -181,6 +181,7 @@ class PesertaController extends Controller
                 'telp' => $req->telp,
                 'tgl' => $req->tgl,
                 'kampus' => $req->kampus,
+                'email' => $req->email,
                 'tahun_lulus' => $req->tahun_lulus,
                 'jurusan' => $req->jurusan,
             ]);
