@@ -21,7 +21,8 @@
         <a href="#" class="navbar-brand">
           {{-- <img src="/theme/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
             style="opacity: .8"> --}}
-          <span class="brand-text font-weight-light"><strong>Computer Assisted Test (CAT)</strong></span>
+          <span class="brand-text font-weight-light"><strong>Rekrutmen Tenaga Ahli Programmer 2022
+              Diskominfotik</strong></span>
         </a>
 
         <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse"

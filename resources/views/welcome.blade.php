@@ -20,7 +20,8 @@
       <div class="container">
         <a href="#" class="navbar-brand">
           <img src="/theme/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-          <span class="brand-text font-weight-light"><strong>Computer Assisted Test (CAT)</strong></span>
+          <span class="brand-text font-weight-light"><strong>Rekrutmen Tenaga Ahli Programmer 2022
+              Diskominfotik</strong></span>
         </a>
 
         <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse"
@@ -191,7 +192,7 @@
                   <!-- Add the bg color to the header using any of the bg-* classes -->
                   <div class="widget-user-header text-white"
                     style="background: url('/theme/bglogin.jpg') center center;">
-                    <h3 class="widget-user-username text-center"><strong>Computer Assisted Test (CAT)</strong></h3>
+                    <h3 class="widget-user-username text-center"><strong>Rekrutmen Tenaga Ahli Programmer</strong></h3>
                     <h5 class="widget-user-desc text-center">Login</h5>
                   </div>
                   <div class="widget-user-image">
@@ -242,7 +243,8 @@
       {{-- <div class="float-right d-none d-sm-inline">
         CAT
       </div> --}}
-      <strong>Copyright &copy; 2021 <a href="https://asrandev.com">Diskominfotik Kota Banjarmasin</a>.</strong>
+      <strong>Copyright &copy; 2021 <a href="https://asrandev.com">Rekrutmen Tenaga Ahli Programmer 2022
+          Diskominfotik</a>.</strong>
     </footer>
   </div>
   <!-- ./wrapper -->

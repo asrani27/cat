@@ -20,7 +20,8 @@
       <div class="container">
         <a href="#" class="navbar-brand">
           <img src="/theme/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-          <span class="brand-text font-weight-light"><strong>Computer Assisted Test (CAT)</strong></span>
+          <span class="brand-text font-weight-light"><strong>Rekrutmen Tenaga Ahli Programmer 2022
+              Diskominfotik</strong></span>
         </a>
 
         <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse"
@@ -204,7 +205,7 @@
                           <label for="inputEmail3" class="col-sm-4 col-form-label">NIK</label>
                           <div class="col-sm-8">
                             <input type="text" class="form-control" id="nik" name="nik" value="{{old('nik')}}"
-                              placeholder="NIK" maxlength="16" required>
+                              placeholder="NIK" maxlength="16" minlength="16" required>
                           </div>
                         </div>
 
@@ -271,7 +272,8 @@
       {{-- <div class="float-right d-none d-sm-inline">
         CAT
       </div> --}}
-      <strong>Copyright &copy; 2021 <a href="https://asrandev.com">Diskominfotik Kota Banjarmasin</a>.</strong>
+      <strong>Copyright &copy; 2021 <a href="https://asrandev.com">Rekrutmen Tenaga Ahli Programmer 2022
+          Diskominfotik</a>.</strong>
     </footer>
   </div>
   <!-- ./wrapper -->
