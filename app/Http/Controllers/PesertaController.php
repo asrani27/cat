@@ -136,6 +136,7 @@ class PesertaController extends Controller
         Auth::user()->peserta->update([
             'kampus' => $req->kampus,
             'jurusan' => $req->jurusan,
+            'tahun_lulus' => $req->tahun_lulus,
             'tgl' => $req->tgl,
             'file' => $filename
         ]);
