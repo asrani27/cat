@@ -299,7 +299,7 @@
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="inputEmail3" class="col-sm-4 col-form-label">Berkas File (Zip/Rar)</label>
+                      <label for="inputEmail3" class="col-sm-4 col-form-label">Berkas File (Zip/Rar) maks 8MB</label>
                       <div class="col-sm-8">
                         <input type="file" class="form-control" name="file" required>
                       </div>
