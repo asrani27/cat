@@ -218,9 +218,9 @@
                         <div class="form-group row">
                           <label for="inputPassword3" class="col-sm-3 col-form-label"></label>
                           <div class="col-sm-9">
-                            {{-- <button type="submit" class="btn btn-primary">Login</button>
-                            <a href="/daftar" class="btn btn-primary">Daftar</a> --}}
-                            <a href="#" class="btn btn-primary">Jadwal Pendaftaran Belum Dimulai</a>
+                            <button type="submit" class="btn btn-primary">Login</button>
+                            <a href="/daftar" class="btn btn-primary">Daftar</a>
+                            {{-- <a href="#" class="btn btn-primary">Jadwal Pendaftaran Belum Dimulai</a> --}}
                           </div>
                         </div>
 
