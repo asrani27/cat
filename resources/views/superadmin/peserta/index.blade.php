@@ -38,6 +38,9 @@ ADMIN
                             <th>NIK (username login)</th>
                             <th>Nama</th>
                             <th>Telp</th>
+                            <th>Kampus/Jurusan</th>
+                            <th>Tahun Lulus</th>
+                            <th>Email</th>
                             <th>File</th>
                             <th>Aksi</th>
                         </tr>
@@ -52,7 +55,16 @@ ADMIN
                             <td>{{$item->nik}}</td>
                             <td>{{$item->nama}}</td>
                             <td>{{$item->telp}}</td>
-                            <td><a href="/storage/peserta/{{$item->file}}">Download</a></td>
+                            <td>{{$item->kampus}}</br>{{$item->jurusan}}</td>
+                            <td>{{$item->tahun_lulus}}</td>
+                            <td>{{$item->email}}</td>
+                            <td>
+                                @if ($item->file == null)
+
+                                @else
+                                <a href="/storage/peserta/{{$item->file}}">Download</a>
+                                @endif
+                            </td>
                             <td>
 
                                 <form action="/superadmin/peserta/{{$item->id}}" method="post">
