@@ -40,7 +40,7 @@ class LoginController extends Controller
                 $user = new User;
                 $user->name = $req->nama;
                 $user->username = $req->nik;
-                $user->password = bcrypt($req->telp);
+                $user->password = bcrypt($req->password);
                 $user->save();
 
                 $user->roles()->attach($role);
