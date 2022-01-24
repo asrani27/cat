@@ -259,7 +259,8 @@
               <div class="card">
                 <div class="card-header">
                   Data Berkas telah di upload,
-                  <a href="/home/peserta/lihatdata" class="btn btn-sm btn-primary">Lihat Disini</a>
+                  <a href="/home/peserta/gantipass" class="btn btn-sm btn-info">Ganti Password</a>
+                  <a href="/home/peserta/lihatdata" class="btn btn-sm btn-primary">Lihat Data Peserta</a>
                 </div>
               </div>
             </div>
@@ -272,6 +273,7 @@
                 <div class="card">
                   <div class="card-header">
                     Harap Isi Dan Upload Berkas Anda
+                    <a href="/home/peserta/gantipass" class="btn btn-sm btn-info">Ganti Password</a>
                   </div>
                   <div class="card-body">
                     <div class="form-group row">

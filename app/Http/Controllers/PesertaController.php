@@ -219,4 +219,39 @@ class PesertaController extends Controller
             return redirect('/home/peserta');
         }
     }
+
+    public function gantipass()
+    {
+        $peserta = Auth::user()->peserta;
+
+        $jmlsoal    = $this->soal()->count();
+        $jam        = Carbon::now()->format('H:i');
+        $waktu      = Waktu::first()->durasi;
+
+        $listSoal   = $this->soal()->map(function ($item) use ($peserta) {
+            $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();
+            if ($check == null) {
+                $item->dijawab = false;
+            } else {
+                $item->dijawab = $check->jawaban;
+            }
+            return $item;
+        });
+        $jmlbelumjawab = $listSoal->where('dijawab', false)->count();
+        return view('peserta.gantipass', compact('peserta', 'waktu', 'jam', 'jmlsoal', 'listSoal', 'jmlbelumjawab'));
+    }
+
+    public function updatepass(Request $req)
+    {
+        if ($req->password != $req->password2) {
+            toastr()->error('Password Tidak Sama');
+            return back();
+        } else {
+            Auth::user()->update([
+                'password' => bcrypt($req->password)
+            ]);
+            toastr()->success('Password Diupdate');
+            return redirect('/home/peserta');
+        }
+    }
 }

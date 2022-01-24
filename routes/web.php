@@ -78,6 +78,8 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
 Route::group(['middleware' => ['auth', 'role:peserta']], function () {
     Route::post('home/peserta/upload', [PesertaController::class, 'upload']);
     Route::post('home/peserta/uploadlagi', [PesertaController::class, 'uploadlagi']);
+    Route::get('home/peserta/gantipass', [PesertaController::class, 'gantipass']);
+    Route::post('home/peserta/gantipass', [PesertaController::class, 'updatepass']);
     Route::get('home/peserta/lihatdata', [PesertaController::class, 'lihatdata']);
     Route::get('peserta/mulai', [UjianController::class, 'mulai']);
     Route::get('peserta/ujian/soal/{id}', [UjianController::class, 'soal']);
