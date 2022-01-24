@@ -204,8 +204,8 @@
                         <div class="form-group row">
                           <label for="inputEmail3" class="col-sm-4 col-form-label">NIK</label>
                           <div class="col-sm-8">
-                            <input type="text" class="form-control" id="nik" name="nik" value="{{old('nik')}}"
-                              placeholder="NIK" maxlength="16" minlength="16" required>
+                            <input type="text" class="form-control" name="nik" value="{{old('nik')}}" placeholder="NIK"
+                              minlength="16" maxlength="16" required>
                           </div>
                         </div>
 
