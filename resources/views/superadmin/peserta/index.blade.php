@@ -38,6 +38,7 @@ ADMIN
                             <th>NIK (username login)</th>
                             <th>Nama</th>
                             <th>Telp</th>
+                            <th>Tgl lahir</th>
                             <th>Kampus/Jurusan</th>
                             <th>Tahun Lulus</th>
                             <th>Email</th>
@@ -55,6 +56,7 @@ ADMIN
                             <td>{{$item->nik}}</td>
                             <td>{{$item->nama}}</td>
                             <td>{{$item->telp}}</td>
+                            <td>{{$item->tgl}}</td>
                             <td>{{$item->kampus}}</br>{{$item->jurusan}}</td>
                             <td>{{$item->tahun_lulus}}</td>
                             <td>{{$item->email}}</td>
