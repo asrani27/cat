@@ -202,7 +202,7 @@
                     <div class="row">
                       <div class="card-body">
                         <div class="form-group row">
-                          <label for="inputEmail3" class="col-sm-3 col-form-label">Username</label>
+                          <label for="inputEmail3" class="col-sm-3 col-form-label">Username (NIK)</label>
                           <div class="col-sm-9">
                             <input type="text" class="form-control" id="inputEmail3" name="username"
                               placeholder="username" value="{{old('username')}}">
