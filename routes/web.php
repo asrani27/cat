@@ -14,7 +14,7 @@ use App\Http\Controllers\KategoriController;
 Route::get('/', function () {
     if (Auth::check()) {
         if (Auth::user()->hasRole('superadmin')) {
-            return redirect('/home/admin');
+            return redirect('/home/superadmin');
         } elseif (Auth::user()->hasRole('peserta')) {
             return redirect('/home/peserta');
         }
