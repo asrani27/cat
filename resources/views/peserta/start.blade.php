@@ -15,6 +15,10 @@
         <div style="text-align: justify">
           <ul>
             <li>
+              <strong style="color:red">Bagi peserta yang belum mengupload berkas dengan lengkap belum bisa mengikuti
+                ujian. silahkan lengkapi dulu</strong>
+            </li>
+            <li>
               Ujian dilaksanakan tanggal 6 februari 2022 pada pukul 09.00 WITA secara online dengan 2 sesi yaitu :
             </li>
             <li>
