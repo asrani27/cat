@@ -26,6 +26,7 @@ class HomeController extends Controller
         $kategori   = Kategori::get()->count();
         $durasi     = Waktu::first()->durasi;
 
+        $yangupload = Peserta::where('file', '!=', null)->get()->count();
         $datasoal = $this->soal();
 
         $data = $this->datapeserta()->map(function ($item) use ($datasoal) {
@@ -44,7 +45,7 @@ class HomeController extends Controller
             return $item;
         })->sortByDesc('benar');
 
-        return view('superadmin.home', compact('peserta', 'soal', 'kategori', 'durasi', 'data'));
+        return view('superadmin.home', compact('peserta', 'soal', 'kategori', 'durasi', 'data', 'yangupload'));
     }
 
     public function gantipass()
