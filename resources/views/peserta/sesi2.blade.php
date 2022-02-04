@@ -12,8 +12,15 @@
         <div class="col-md-12">
             <div class="card card-primary">
                 <div class="card-body text-center">
-                    Silahkan Download Soal Sesi 2 <a href="/soal/essay.pdf" target="_blank"
-                        class="btn btn-sm btn-info">Disini</a>
+
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-4 col-form-label">
+                        </label>
+                        <div class="col-sm-8">
+                            Silahkan Download Soal Sesi 2 <a href="/soal/essay.pdf" target="_blank"
+                                class="btn btn-sm btn-info">Disini</a>
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-4 col-form-label">Link Repo Github (Jawaban sesi 2)
                         </label>
@@ -24,7 +31,7 @@
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-4 col-form-label"></label>
                         <div class="col-sm-8">
-                            <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
+                            <button type="submit" class="btn btn-block btn-sm btn-primary">Simpan</button>
                         </div>
                     </div>
                 </div>
