@@ -136,9 +136,16 @@
 
         @endphp
         @foreach ($listSoal as $key => $item)
+        @if ($item->id == $soal->id)
+
+        <strong style="padding-bottom: 5px;">
+          <a href="/peserta/ujian/soal/{{$item->id}}" class="btn btn-sm btn-warning">{{$no++}}</a></strong>
+        @else
+
         <strong style="padding-bottom: 5px;">
           <a href="/peserta/ujian/soal/{{$item->id}}"
             class="btn btn-sm btn-{{$item->dijawab == true ? 'success':'danger'}}">{{$no++}}</a></strong>
+        @endif
 
         @endforeach
       </div>
