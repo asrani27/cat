@@ -213,6 +213,7 @@ class UjianController extends Controller
     public function simpansesi2(Request $req)
     {
         Auth::user()->peserta->update(['github' => $req->github]);
+        toastr()->success('Berhasil Di Simpan');
         return back();
     }
 }

@@ -25,7 +25,9 @@
                         <label for="inputEmail3" class="col-sm-4 col-form-label">Link Repo Github (Jawaban sesi 2)
                         </label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" name="github" placeholder="https:://github.com/budisudarsono/ujian_sesi2_tahap1_budi" required>
+                            <input type="text" class="form-control" name="github"
+                                value="{{Auth::user()->peserta->github}}"
+                                placeholder="github.com/budisudarsono/ujian_sesi2_tahap1_budi" required>
                         </div>
                     </div>
                     <div class="form-group row">
