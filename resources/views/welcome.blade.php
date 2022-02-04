@@ -219,7 +219,7 @@
                           <label for="inputPassword3" class="col-sm-4 col-form-label"></label>
                           <div class="col-sm-8">
                             <button type="submit" class="btn btn-primary">Login</button>
-                            <a href="/daftar" class="btn btn-primary">Daftar</a>
+                            {{-- <a href="/daftar" class="btn btn-primary">Daftar</a> --}}
                             {{-- <a href="#" class="btn btn-primary">Jadwal Pendaftaran Belum Dimulai</a> --}}
                           </div>
                         </div>
