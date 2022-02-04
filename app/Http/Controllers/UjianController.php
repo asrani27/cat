@@ -159,6 +159,7 @@ class UjianController extends Controller
 
     public function sesi2()
     {
+        dd('s');
         $peserta    = Auth::user()->peserta;
 
         $jmlsoal    = $this->soal2()->count();
