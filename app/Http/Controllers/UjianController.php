@@ -28,14 +28,19 @@ class UjianController extends Controller
         $now = Carbon::now();
         $tgl_mulai = Waktu::first()->tanggal_mulai;
         $tgl_selesai = Waktu::first()->tanggal_selesai;
-
-        if ($now < $tgl_mulai) {
-            toastr()->error('Ujian Belum dimulai');
-            return back();
-        } else {
-
+        $peserta    = $this->peserta();
+        if ($peserta->test == 1) {
             $soalPertama = Soal::first()->id;
             return redirect('/peserta/ujian/soal/' . $soalPertama);
+        } else {
+            if ($now < $tgl_mulai) {
+                toastr()->error('Ujian Belum dimulai');
+                return back();
+            } else {
+
+                $soalPertama = Soal::first()->id;
+                return redirect('/peserta/ujian/soal/' . $soalPertama);
+            }
         }
     }
 
