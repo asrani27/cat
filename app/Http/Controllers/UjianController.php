@@ -58,6 +58,12 @@ class UjianController extends Controller
     {
         $peserta    = $this->peserta();
 
+        $now = Carbon::now();
+        $tgl_mulai = Waktu::first()->tanggal_mulai;
+        $tgl_selesai = Waktu::first()->tanggal_selesai;
+
+        $mulai     = $tgl_mulai;
+        $selesai   = $tgl_selesai;
         if ($peserta->test == 1) {
             $jmlsoal    = $this->soalUjian()->count();
             $jam        = Carbon::now()->format('H:i');
