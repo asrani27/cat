@@ -139,7 +139,7 @@
         @if ($item->id == $soal->id)
 
         <strong style="padding-bottom: 5px;">
-          <a href="/peserta/ujian/soal/{{$item->id}}" class="btn btn-sm btn-warning">{{$no++}}</a></strong>
+          <a href="/peserta/ujian/soal/{{$item->id}}" class="btn btn-sm btn-warning text-bold">{{$no++}}</a></strong>
         @else
 
         <strong style="padding-bottom: 5px;">
