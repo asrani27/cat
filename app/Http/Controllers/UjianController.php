@@ -209,4 +209,10 @@ class UjianController extends Controller
         // }
         return view('peserta.sesi2', compact('jmlsoal', 'jam', 'waktu', 'peserta', 'jmlbelumjawab', 'skor'));
     }
+
+    public function simpansesi2(Request $req)
+    {
+        Auth::user()->peserta->update(['github' => $req->github]);
+        return back();
+    }
 }
