@@ -154,6 +154,54 @@ class UjianController extends Controller
 
     public function sesi2()
     {
+        $peserta    = Auth::user()->peserta;
+
+        $jmlsoal    = $this->soal()->count();
+        $jam        = Carbon::now()->format('H:i');
+        $waktu      = Waktu::first()->durasi;
+
+        $listSoal   = $this->soal()->map(function ($item) use ($peserta) {
+            $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();
+            if ($check == null) {
+                $item->dijawab = false;
+            } else {
+                $item->dijawab = $check->jawaban;
+            }
+            return $item;
+        });
+
+        $jmlbelumjawab = $listSoal->where('dijawab', false)->count();
+
+        //hitung skor Benar
+        $skor = Jawaban::where('peserta_id', $peserta->id)
+            ->get()->map(function ($item2) {
+                if ($item2->jawaban == $item2->soal->kunci) {
+                    $item2->benar = 'Y';
+                } else {
+                    $item2->benar = 'T';
+                }
+                return $item2;
+            })->where('benar', 'Y')->count();
+
+        // //check selesai ujian
+        // if ($peserta->selesai_ujian == 1) {
+        //     return view('peserta.selesai', compact('jmlsoal', 'jam', 'waktu', 'peserta', 'jmlbelumjawab', 'skor'));
+        // } else {
+
+        //     $mulai     = Waktu::first()->tanggal_mulai;
+        //     $selesai   = Waktu::first()->tanggal_selesai;
+        //     $check     = Carbon::now()->between($mulai, $selesai);
+        //     $now       = Carbon::now();
+
+        //     if ($now < Carbon::parse(Waktu::first()->tanggal_mulai)) {
+        //         return view('peserta.start', compact('jmlsoal', 'jam', 'waktu', 'peserta', 'jmlbelumjawab', 'mulai', 'selesai'));
+        //     } elseif ($now > Waktu::first()->tanggal_selesai) {
+        //         return view('peserta.selesai', compact('jmlsoal', 'jam', 'waktu', 'peserta', 'jmlbelumjawab', 'skor'));
+        //     } else {
+        //         $soalPertama = Soal::first()->id;
+        //         return redirect('/peserta/ujian/soal/' . $soalPertama);
+        //     }
+        // }
         return view('peserta.sesi2');
     }
 }

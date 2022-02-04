@@ -91,6 +91,7 @@ class HomeController extends Controller
             }
             return $item;
         });
+
         $jmlbelumjawab = $listSoal->where('dijawab', false)->count();
 
         //hitung skor Benar
