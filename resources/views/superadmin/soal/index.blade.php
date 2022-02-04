@@ -47,7 +47,7 @@ ADMIN
                     <tbody>
                         @foreach ($data as $key => $item)
                         <tr style="font-size:11px; font-family:Arial, Helvetica, sans-serif">
-                            <td>{{$data->firstItem() + 1}}</td>
+                            <td>{{$data->firstItem() + $key}}</td>
                             <td>{{$item->kategori == null ? '-': $item->kategori->nama}}</td>
                             <td>{!!$item->pertanyaan!!}</td>
                             <td>
