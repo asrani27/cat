@@ -18,7 +18,7 @@
   <div class="wrapper">
     <nav class="main-header navbar navbar-expand-md navbar-light navbar-white bg-gradient-teal">
       <div class="container">
-        <a href="#" class="navbar-brand">
+        <a href="/home/peserta" class="navbar-brand">
           {{-- <img src="/theme/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
             style="opacity: .8"> --}}
           <span class="brand-text font-weight-light"><strong>Rekrutmen Tenaga Ahli Programmer 2022
