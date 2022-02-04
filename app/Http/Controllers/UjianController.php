@@ -151,4 +151,9 @@ class UjianController extends Controller
             }
         }
     }
+
+    public function sesi2()
+    {
+        return view('peserta.sesi2');
+    }
 }
