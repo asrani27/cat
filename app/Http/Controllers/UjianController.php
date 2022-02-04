@@ -159,14 +159,13 @@ class UjianController extends Controller
 
     public function sesi2()
     {
-        dd('s');
         $peserta    = Auth::user()->peserta;
 
         $jmlsoal    = $this->soal2()->count();
         $jam        = Carbon::now()->format('H:i');
         $waktu      = Waktu::first()->durasi;
 
-        $listSoal   = $this->soal()->map(function ($item) use ($peserta) {
+        $listSoal   = $this->soal2()->map(function ($item) use ($peserta) {
             $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();
             if ($check == null) {
                 $item->dijawab = false;
