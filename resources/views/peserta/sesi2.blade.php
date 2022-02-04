@@ -18,7 +18,7 @@
                         </label>
                         <div class="col-sm-8">
                             Silahkan Download Soal Sesi 2 <a href="/soal/essay.pdf" target="_blank"
-                                class="btn btn-sm btn-info">Disini</a>
+                                class="btn btn-xs btn-info">Disini</a>, Paling lambat tanggal 7 Feb 2022 Jam 09:00 WITA
                         </div>
                     </div>
                     <div class="form-group row">
