@@ -99,22 +99,22 @@
             <div class="custom-control custom-radio">
               <input class="custom-control-input" type="radio" value="A" id="customRadio1" name="jawaban"
                 {{($dijawab==null ? '' : $dijawab->jawaban) == "A" ? 'checked' : null}}>
-              <label for="customRadio1" class="custom-control-label">{{$soal->pil_a}}</label>
+              <label for="customRadio1" class="custom-control-label">{!!$soal->pil_a!!}</label>
             </div>
             <div class="custom-control custom-radio">
               <input class="custom-control-input" type="radio" value="B" id="customRadio2" name="jawaban"
                 {{($dijawab==null ? '' : $dijawab->jawaban) == "B" ? 'checked' : null}}>
-              <label for="customRadio2" class="custom-control-label">{{$soal->pil_b}}</label>
+              <label for="customRadio2" class="custom-control-label">{!!$soal->pil_b!!}</label>
             </div>
             <div class="custom-control custom-radio">
               <input class="custom-control-input" type="radio" value="C" id="customRadio3" name="jawaban"
                 {{($dijawab==null ? '' : $dijawab->jawaban) == "C" ? 'checked' : null}}>
-              <label for="customRadio3" class="custom-control-label">{{$soal->pil_c}}</label>
+              <label for="customRadio3" class="custom-control-label">{!!$soal->pil_c!!}</label>
             </div>
             <div class="custom-control custom-radio">
               <input class="custom-control-input" type="radio" value="D" id="customRadio4" name="jawaban"
                 {{($dijawab==null ? '' : $dijawab->jawaban) == "D" ? 'checked' : null}}>
-              <label for="customRadio4" class="custom-control-label">{{$soal->pil_d}}</label>
+              <label for="customRadio4" class="custom-control-label">{!!$soal->pil_d!!}</label>
             </div>
           </div>
           <button type="submit" class="btn btn-sm btn-info">Simpan Dan Lanjutkan</button>
