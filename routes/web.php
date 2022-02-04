@@ -83,7 +83,7 @@ Route::group(['middleware' => ['auth', 'role:peserta']], function () {
     Route::get('home/peserta/lihatdata', [PesertaController::class, 'lihatdata']);
     Route::get('peserta/mulai', [UjianController::class, 'mulai']);
     Route::get('peserta/ujian/soal/{id}', [UjianController::class, 'soal']);
-    Route::get('peserta/ujian/sesi2', [UjianController::class, 'sesi2']);
+    Route::get('home/peserta/ujian/sesi2', [UjianController::class, 'sesi2']);
     Route::get('peserta/ujian/random/{id}', [UjianController::class, 'random']);
     Route::post('simpanjawaban', [UjianController::class, 'simpan']);
     Route::get('selesaiujian', [UjianController::class, 'selesai']);
