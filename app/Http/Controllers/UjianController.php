@@ -152,11 +152,16 @@ class UjianController extends Controller
         }
     }
 
+    public function soal2()
+    {
+        return Soal::get();
+    }
+
     public function sesi2()
     {
         $peserta    = Auth::user()->peserta;
 
-        $jmlsoal    = $this->soal()->count();
+        $jmlsoal    = $this->soal2()->count();
         $jam        = Carbon::now()->format('H:i');
         $waktu      = Waktu::first()->durasi;
 
@@ -202,6 +207,6 @@ class UjianController extends Controller
         //         return redirect('/peserta/ujian/soal/' . $soalPertama);
         //     }
         // }
-        return view('peserta.sesi2');
+        return view('peserta.sesi2', compact('jmlsoal', 'jam', 'waktu', 'peserta', 'jmlbelumjawab', 'skor'));
     }
 }
