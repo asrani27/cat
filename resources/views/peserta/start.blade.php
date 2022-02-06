@@ -29,14 +29,14 @@
               Sesi kedua akan dilaksanakan langsung setelah anda melakukan submit pada sesi ujian pertama
             </li>
             <li>
-              Sesi kedua berbentuk tes koding secara offline dirumah masing-masing untuk memecahkan 1 masalah logika
-              yang diupload paling lambat pada tanggal 7 Februari 2022 pukul 09.00 WITA pada kolom yang disediakan dalam
-              bentuk file zip/rar
+              Sesi kedua berbentuk tes koding dikerjakan dirumah masing-masing, soal silahkan di download pada halaman
+              sesi2 dan di kumpul paling lambat pada tanggal 7 Februari 2022 pukul 09.00 WITA pada kolom yang
+              disediakan.
             </li>
-            <li>
+            {{-- <li>
               Bagi peserta yang tidak melakukan submit pada ujian sesi I (pilihan ganda), maka tidak akan dapat
               melakukan proses ujian sesi 2 (essay) pada tahap I ini
-            </li>
+            </li> --}}
             <li>
               Bahasa pemrograman yang disarankan pada ujian sesi 2 (essay) adalah PHP/Javascript. Boleh menggunakan
               framework ataupun native
