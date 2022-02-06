@@ -115,7 +115,7 @@ class HomeController extends Controller
             $check     = Carbon::now()->between($mulai, $selesai);
             $now       = Carbon::now();
 
-            if ($now < Carbon::parse(Waktu::first()->tanggal_mulai)) {
+            if ($now <= Carbon::parse(Waktu::first()->tanggal_mulai)) {
                 return view('peserta.start', compact('jmlsoal', 'jam', 'waktu', 'peserta', 'jmlbelumjawab', 'mulai', 'selesai'));
             } elseif ($now > Waktu::first()->tanggal_selesai) {
                 return view('peserta.selesai', compact('jmlsoal', 'jam', 'waktu', 'peserta', 'jmlbelumjawab', 'skor'));

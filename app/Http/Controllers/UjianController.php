@@ -33,7 +33,7 @@ class UjianController extends Controller
             $soalPertama = Soal::first()->id;
             return redirect('/peserta/ujian/soal/' . $soalPertama);
         } else {
-            if ($now < $tgl_mulai) {
+            if ($now <= $tgl_mulai) {
                 toastr()->error('Ujian Belum dimulai');
                 return back();
             } else {
