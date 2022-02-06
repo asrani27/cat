@@ -211,7 +211,7 @@ class UjianController extends Controller
         //         return redirect('/peserta/ujian/soal/' . $soalPertama);
         //     }
         // }
-        if ($jmlbelumjawab == 0) {
+        if ($jmlbelumjawab == 50) {
             toastr()->info('Tidak bisa melanjutkan kesesi ke 2 karena tidak mengikuti / menjawab soal sesi pertama');
             return redirect('/home/peserta');
         } else {
