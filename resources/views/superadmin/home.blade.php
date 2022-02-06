@@ -128,7 +128,7 @@
                 <td>{{$no++}}</td>
                 <td>{{$item->nik}}</td>
                 <td>{{$item->nama}}</td>
-                <td>{{$item->kampus}}</td>
+                <td style="width: 20%">{{$item->kampus}}</td>
                 <td>{{$item->telp}}</td>
                 <td class="text-center">{{$soal}}</td>
                 <td class="text-center">{{$item->dijawab}}</td>
