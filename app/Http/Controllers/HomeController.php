@@ -119,6 +119,9 @@ class HomeController extends Controller
                 return view('peserta.start', compact('jmlsoal', 'jam', 'waktu', 'peserta', 'jmlbelumjawab', 'mulai', 'selesai'));
             } elseif ($now > Waktu::first()->tanggal_selesai) {
                 return view('peserta.selesai', compact('jmlsoal', 'jam', 'waktu', 'peserta', 'jmlbelumjawab', 'skor'));
+            } elseif ($peserta->file == null) {
+                toastr()->error('Berkas Belum Di upload');
+                return view('peserta.start', compact('jmlsoal', 'jam', 'waktu', 'peserta', 'jmlbelumjawab', 'mulai', 'selesai'));
             } else {
                 $soalPertama = Soal::first()->id;
                 return redirect('/peserta/ujian/soal/' . $soalPertama);
