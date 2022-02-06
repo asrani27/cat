@@ -211,7 +211,12 @@ class UjianController extends Controller
         //         return redirect('/peserta/ujian/soal/' . $soalPertama);
         //     }
         // }
-        return view('peserta.sesi2', compact('jmlsoal', 'jam', 'waktu', 'peserta', 'jmlbelumjawab', 'skor'));
+        if ($jmlbelumjawab == 0) {
+            toastr()->info('Tidak bisa melanjutkan kesesi ke 2 karena tidak mengikuti / menjawab soal sesi pertama');
+            return redirect('/home/peserta');
+        } else {
+            return view('peserta.sesi2', compact('jmlsoal', 'jam', 'waktu', 'peserta', 'jmlbelumjawab', 'skor'));
+        }
     }
 
     public function simpansesi2(Request $req)
