@@ -108,6 +108,8 @@
                 <th class="text-center">#</th>
                 <th>NIK</th>
                 <th class="text-center">Nama</th>
+                <th class="text-center">Kampus</th>
+                <th class="text-center">Telp</th>
                 <th class="text-center">Jumlah Soal</th>
                 <th class="text-center">Di Jawab</th>
                 <th class="text-center">Belum Jawab</th>
@@ -126,6 +128,8 @@
                 <td>{{$no++}}</td>
                 <td>{{$item->nik}}</td>
                 <td>{{$item->nama}}</td>
+                <td>{{$item->kampus}}</td>
+                <td>{{$item->telp}}</td>
                 <td class="text-center">{{$soal}}</td>
                 <td class="text-center">{{$item->dijawab}}</td>
                 <td class="text-center">{{$soal - $item->dijawab}}</td>
