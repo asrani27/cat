@@ -37,9 +37,13 @@ class UjianController extends Controller
                 toastr()->error('Ujian Belum dimulai');
                 return back();
             } else {
-
-                $soalPertama = Soal::first()->id;
-                return redirect('/peserta/ujian/soal/' . $soalPertama);
+                if ($peserta->file == null) {
+                    toastr()->error('Harap Upload Berkas Anda');
+                    return back();
+                } else {
+                    $soalPertama = Soal::first()->id;
+                    return redirect('/peserta/ujian/soal/' . $soalPertama);
+                }
             }
         }
     }
