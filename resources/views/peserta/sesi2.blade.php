@@ -33,7 +33,8 @@
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-4 col-form-label"></label>
                         <div class="col-sm-8">
-                            <button type="submit" class="btn btn-block btn-sm btn-primary">Simpan</button>
+                            Batas waktu telah berakhir, kami akan mendownload projek github anda.
+                            {{-- <button type="submit" class="btn btn-block btn-sm btn-primary">Simpan</button> --}}
                         </div>
                     </div>
                 </div>
