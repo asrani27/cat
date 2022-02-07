@@ -27,7 +27,7 @@
                         <div class="col-sm-8">
                             <input type="text" class="form-control" name="github"
                                 value="{{Auth::user()->peserta->github}}"
-                                placeholder="github.com/budisudarsono/ujian_sesi2_tahap1_budi" required>
+                                placeholder="github.com/budisudarsono/ujian_sesi2_tahap1_budi" readonly>
                         </div>
                     </div>
                     <div class="form-group row">
