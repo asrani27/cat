@@ -110,6 +110,7 @@
                 <th class="text-center">Nama</th>
                 <th class="text-center">Kampus</th>
                 <th class="text-center">Telp</th>
+                <th class="text-center">Git</th>
                 <th class="text-center">Jumlah Soal</th>
                 <th class="text-center">Di Jawab</th>
                 <th class="text-center">Belum Jawab</th>
@@ -130,6 +131,7 @@
                 <td>{{$item->nama}}</td>
                 <td style="width: 20%">{{$item->kampus}}</td>
                 <td>{{$item->telp}}</td>
+                <td>{{$item->github}}</td>
                 <td class="text-center">{{$soal}}</td>
                 <td class="text-center">{{$item->dijawab}}</td>
                 <td class="text-center">{{$soal - $item->dijawab}}</td>
