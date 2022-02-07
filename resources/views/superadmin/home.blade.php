@@ -131,7 +131,7 @@
                 <td>{{$item->nama}}</td>
                 <td style="width: 20%">{{$item->kampus}}</td>
                 <td>{{$item->telp}}</td>
-                <td>{{$item->github}}</td>
+                <td><a href="{{$item->github}}" target="_blank">{{$item->github}}</a></td>
                 <td class="text-center">{{$soal}}</td>
                 <td class="text-center">{{$item->dijawab}}</td>
                 <td class="text-center">{{$soal - $item->dijawab}}</td>
