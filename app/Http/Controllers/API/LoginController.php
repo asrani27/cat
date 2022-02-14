@@ -12,10 +12,10 @@ class LoginController extends Controller
 
     public function soal_kunci()
     {
-        $soal = Soal::get();
+        $soal = Soal::get(['id', 'kunci']);
         $data['message_error'] = 200;
         $data['message']       = 'Data Ditemukan';
-        $data['data']          = $soal->only(['id', 'kunci']);
+        $data['data']          = $soal;
 
         return response()->json($data);
     }
