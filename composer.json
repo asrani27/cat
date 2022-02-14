@@ -11,7 +11,7 @@
         "guzzlehttp/guzzle": "^7.3",
         "jenssegers/agent": "^2.6",
         "laravel/framework": "^8.40",
-        "laravel/sanctum": "^2.11",
+        "laravel/sanctum": "^2.14",
         "laravel/tinker": "^2.5",
         "realrashid/sweet-alert": "^4.0",
         "silviolleite/laravelpwa": "^2.0",

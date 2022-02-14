@@ -11,10 +11,8 @@ use App\Http\Controllers\API\PresensiController;
 // });
 
 
-Route::group(['middleware' => 'auth:sanctum'], function(){
+Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/user', [LoginController::class, 'user']);
-    Route::post('/pegawai/radius', [PresensiController::class, 'storeRadius']);
-    Route::get('/pegawai/radius', [PresensiController::class, 'radius']);
 });
 
 Route::post('/login', [LoginController::class, 'login']);
