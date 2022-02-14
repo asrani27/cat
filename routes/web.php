@@ -11,6 +11,7 @@ use App\Http\Controllers\WaktuController;
 use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\KategoriController;
 
+Route::get('/testapi', [HomeController::class, 'testapi']);
 Route::get('/', function () {
     if (Auth::check()) {
         if (Auth::user()->hasRole('superadmin')) {

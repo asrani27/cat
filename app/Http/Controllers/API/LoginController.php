@@ -22,10 +22,10 @@ class LoginController extends Controller
 
     public function jawabanku()
     {
-        $soal = Soal::get();
+        $jawaban = Auth::user()->peserta->jawaban;
         $data['message_error'] = 200;
         $data['message']       = 'Data Ditemukan';
-        $data['data']          = $soal;
+        $data['data']          = $jawaban;
 
         return response()->json($data);
     }

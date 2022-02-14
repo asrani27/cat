@@ -128,4 +128,9 @@ class HomeController extends Controller
             }
         }
     }
+
+    public function testapi()
+    {
+        return view('testapi');
+    }
 }

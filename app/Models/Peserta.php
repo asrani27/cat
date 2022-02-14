@@ -10,9 +10,14 @@ class Peserta extends Model
     use HasFactory;
     protected $table = 'peserta';
     protected $guarded = ['id'];
-    
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function jawaban()
+    {
+        return $this->hasMany(Jawaban::class, 'peserta_id');
     }
 }
