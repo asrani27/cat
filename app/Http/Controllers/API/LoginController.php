@@ -15,7 +15,7 @@ class LoginController extends Controller
         $soal = Soal::get();
         $data['message_error'] = 200;
         $data['message']       = 'Data Ditemukan';
-        $data['data']          = $soal;
+        $data['data']          = $soal->only(['id', 'kunci']);
 
         return response()->json($data);
     }
