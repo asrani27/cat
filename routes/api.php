@@ -11,7 +11,8 @@ use App\Http\Controllers\API\PresensiController;
 // });
 
 //API route for login user
-Route::post('/login', [App\Http\Controllers\API\LoginController::class, 'login2']);
+Route::post('/login', [App\Http\Controllers\API\LoginController::class, 'postlogin']);
+Route::get('/login', [App\Http\Controllers\API\LoginController::class, 'getlogin']);
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/user', [LoginController::class, 'user']);

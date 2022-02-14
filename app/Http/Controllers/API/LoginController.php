@@ -9,10 +9,16 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
 
-    public function login2(Request $req)
+    public function postlogin(Request $req)
     {
-        return response()->json('ok');
+        return response()->json('ini post');
     }
+
+    public function getlogin()
+    {
+        return response()->json('ini get');
+    }
+
     public function login(Request $req)
     {
         //return response()->json('test');
