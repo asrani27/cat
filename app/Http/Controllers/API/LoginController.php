@@ -40,4 +40,8 @@ class LoginController extends Controller
         //     }
         // }
     }
+    public function ceklogin(Request $req)
+    {
+        return response()->json('test');
+    }
 }

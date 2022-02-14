@@ -16,3 +16,4 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 });
 
 Route::post('/login', [LoginController::class, 'login']);
+Route::post('/ceklogin', [LoginController::class, 'ceklogin']);
