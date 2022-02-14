@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+
+    public function login2(Request $req)
+    {
+        return response()->json('ok');
+    }
     public function login(Request $req)
     {
         //return response()->json('test');
