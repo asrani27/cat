@@ -39,9 +39,4 @@ class LoginController extends Controller
             }
         }
     }
-
-    public function getlogin()
-    {
-        return response()->json('asu');
-    }
 }
