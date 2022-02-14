@@ -44,7 +44,7 @@ class LoginController extends Controller
         if ($req->username == null || $req->password == null) {
             $data['message_error'] = 101;
             $data['message']       = 'username atau password kosong';
-            $data['data']          = null;
+            $data['api_token']     = null;
             return response()->json($data);
         } else {
             if (Auth::attempt(['username' => $req->username, 'password' => $req->password])) {
@@ -64,7 +64,7 @@ class LoginController extends Controller
             } else {
                 $data['message_error'] = 201;
                 $data['message']       = 'username atau password anda tidak ditemukan';
-                $data['data']          = null;
+                $data['api_token']          = null;
                 return response()->json($data);
             }
         }

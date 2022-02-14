@@ -146,11 +146,8 @@ class HomeController extends Controller
             ]
         ]);
         $resp = json_decode($response->getBody()->getContents());
-        if ($resp->data == null) {
-            $token = null;
-        } else {
-            $token = $resp->api_token;
-        }
+        dd($resp);
+        $token = $resp->api_token;
         return view('testapi', compact('token'));
     }
 }
