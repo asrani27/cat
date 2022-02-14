@@ -20,6 +20,14 @@ class LoginController extends Controller
         return response()->json($data);
     }
 
+    public function profile()
+    {
+        $data['message_error'] = 200;
+        $data['message']       = 'Data Ditemukan';
+        $data['data']          = Auth::user()->peserta;
+        return response()->json($data);
+    }
+
     public function jawabanku()
     {
         $jawaban = Auth::user()->peserta->jawaban;
@@ -50,8 +58,7 @@ class LoginController extends Controller
                 }
 
                 $data['message_error'] = 200;
-                $data['message']       = 'Data Ditemukan';
-                $data['data']          = Auth::user()->peserta;
+                $data['message']       = 'Auth Berhasil';
                 $data['api_token']     = $token;
                 return response()->json($data);
             } else {

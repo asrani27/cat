@@ -18,7 +18,34 @@
         <input type="text" name="password" placeholder="password"><br /><br />
         <button type="submit">Get Token</button><br />
     </form>
-    Token Saya :
+    Token Saya : {{$token}}
+
+    <h2>Nilai Saya</h2>
+    Masukkan Token<br />
+    <input type="text" name="username" placeholder="Masukkan Token Disini"><br />
+    <button type="submit">Get Nilai Saya</button><br /><br />
+    <table border='1'>
+        <thead>
+            <tr>
+                <th>NIK</th>
+                <th>NAMA</th>
+                <th>JUMLAH SOAL</th>
+                <th>BENAR</th>
+                <th>SALAH</th>
+                <th>TIDAK DI JAWAB</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 
 </html>

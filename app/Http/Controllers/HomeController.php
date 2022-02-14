@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Soal;
 use App\Models\Waktu;
+use GuzzleHttp\Client;
 use App\Models\Jawaban;
 use App\Models\Peserta;
 use App\Models\Kategori;
@@ -131,6 +132,25 @@ class HomeController extends Controller
 
     public function testapi()
     {
-        return view('testapi');
+        $token = null;
+        return view('testapi', compact('token'));
+    }
+
+    public function gettoken(Request $req)
+    {
+        $client = new Client(['base_uri' => 'http://cat.asrandev.com/api/']);
+        $response = $client->request('POST', 'login', [
+            'form_params' => [
+                'username' => $req->username,
+                'password' => $req->password,
+            ]
+        ]);
+        $resp = json_decode($response->getBody()->getContents());
+        if ($resp->data == null) {
+            $token = null;
+        } else {
+            $token = $resp->api_token;
+        }
+        return view('testapi', compact('token'));
     }
 }

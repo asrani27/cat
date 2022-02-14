@@ -12,6 +12,8 @@ use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\KategoriController;
 
 Route::get('/testapi', [HomeController::class, 'testapi']);
+Route::post('/testapi', [HomeController::class, 'gettoken']);
+
 Route::get('/', function () {
     if (Auth::check()) {
         if (Auth::user()->hasRole('superadmin')) {
