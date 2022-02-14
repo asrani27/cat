@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Models\Soal;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -9,14 +10,24 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
 
-    public function postlogin(Request $req)
+    public function soal_kunci()
     {
-        return response()->json('ini post');
+        $soal = Soal::get();
+        $data['message_error'] = 200;
+        $data['message']       = 'Data Ditemukan';
+        $data['data']          = $soal;
+
+        return response()->json($data);
     }
 
-    public function getlogin()
+    public function jawabanku()
     {
-        return response()->json('ini get');
+        $soal = Soal::get();
+        $data['message_error'] = 200;
+        $data['message']       = 'Data Ditemukan';
+        $data['data']          = $soal;
+
+        return response()->json($data);
     }
 
     public function login(Request $req)
