@@ -14,16 +14,40 @@
     <h4>Masukkan Username Dan Password</h4>
     <form method="POST" action="/testapi">
         @csrf
-        <input type="text" name="username" placeholder="username"><br /><br />
-        <input type="text" name="password" placeholder="password"><br /><br />
+        <input type="text" name="username" value="{{old('username')}}" placeholder="username"><br /><br />
+        <input type="text" name="password" value="{{old('password')}}" placeholder="password"><br /><br />
         <button type="submit">Get Token</button><br />
     </form>
     Token Saya : {{$token}}
 
     <h2>Nilai Saya</h2>
     Masukkan Token<br />
-    <input type="text" name="username" placeholder="Masukkan Token Disini"><br />
-    <button type="submit">Get Nilai Saya</button><br /><br />
+    <form method="POST" action="/testapi/nilai">
+        @csrf
+        <input type="text" name="token" placeholder="Masukkan Token Disini"><br />
+        <button type="submit">Get Nilai Saya</button><br /><br />
+    </form>
+
+    <table border='1'>
+        <tr>
+            <th>No</th>
+            <th>Jawaban</th>
+            <th>Kunci</th>
+            <th>Hasil</th>
+        </tr>
+        @php
+        $no = 1;
+        @endphp
+        @foreach ($data as $item)
+        <tr>
+            <td align="center">{{$no++}}</td>
+            <td align="center">{{$item->kunci}}</td>
+            <td align="center">{{$item->jawabanku}}</td>
+            <td align="center">{{$item->kunci == $item->jawabanku ? 'Benar': 'Salah'}}</td>
+        </tr>
+        @endforeach
+    </table>
+    <br />
     <table border='1'>
         <thead>
             <tr>
@@ -37,12 +61,12 @@
         </thead>
         <tbody>
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>1111111111111111</td>
+                <td>Asrani</td>
+                <td>50</td>
+                <td>38</td>
+                <td>12</td>
+                <td>0</td>
             </tr>
         </tbody>
     </table>

@@ -133,7 +133,8 @@ class HomeController extends Controller
     public function testapi()
     {
         $token = null;
-        return view('testapi', compact('token'));
+        $data = [];
+        return view('testapi', compact('token', 'data'));
     }
 
     public function gettoken(Request $req)
@@ -146,8 +147,48 @@ class HomeController extends Controller
             ]
         ]);
         $resp = json_decode($response->getBody()->getContents());
-        dd($resp);
+
         $token = $resp->api_token;
-        return view('testapi', compact('token'));
+        $req->flash();
+        $data = [];
+        return view('testapi', compact('token', 'data'));
+    }
+
+    public function getnilai(Request $req)
+    {
+        $token = $req->token;
+        $client = new Client(['base_uri' => 'http://cat.asrandev.com/api/']);
+        $headers = [
+            'Authorization' => 'Bearer ' . $token,
+            'Accept'        => 'application/json',
+        ];
+        //get Profile
+        $profile = $client->request('GET', 'profile', [
+            'headers' => $headers
+        ]);
+        $resp_profile = json_decode($profile->getBody()->getContents())->data;
+
+        //get kunci
+        $kunci = $client->request('GET', 'kunci', [
+            'headers' => $headers
+        ]);
+        $resp_kunci = json_decode($kunci->getBody()->getContents())->data;
+
+        //get jawabanku
+        $jawaban = $client->request('GET', 'jawabanku', [
+            'headers' => $headers
+        ]);
+        $resp_jawaban = json_decode($jawaban->getBody()->getContents())->data;
+
+        $data = collect($resp_kunci)->map(function ($item) use ($resp_jawaban) {
+            if (collect($resp_jawaban)->where('soal_id', $item->id)->first() == null) {
+                $item->jawabanku = null;
+            } else {
+                $item->jawabanku = collect($resp_jawaban)->where('soal_id', $item->id)->first()->jawaban;
+            }
+            return $item;
+        });
+
+        return view('testapi', compact('token', 'data'));
     }
 }

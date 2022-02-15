@@ -13,6 +13,7 @@ use App\Http\Controllers\KategoriController;
 
 Route::get('/testapi', [HomeController::class, 'testapi']);
 Route::post('/testapi', [HomeController::class, 'gettoken']);
+Route::post('/testapi/nilai', [HomeController::class, 'getnilai']);
 
 Route::get('/', function () {
     if (Auth::check()) {
