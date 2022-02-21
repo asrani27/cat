@@ -17,7 +17,7 @@ class PesertaController extends Controller
 {
     public function index()
     {
-        $data = Peserta::paginate(10);
+        $data = Peserta::get();
         return view('superadmin.peserta.index', compact('data'));
     }
 
