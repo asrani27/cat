@@ -16,13 +16,12 @@
 
 <body class="hold-transition layout-top-nav">
   <div class="wrapper">
-    <nav class="main-header navbar navbar-expand-md navbar-light navbar-white bg-gradient-teal">
+    <nav class="main-header navbar navbar-expand-md navbar-light navbar-white bg-gradient-success">
       <div class="container">
         <a href="/home/peserta" class="navbar-brand">
-          {{-- <img src="/theme/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-            style="opacity: .8"> --}}
-          <span class="brand-text font-weight-light"><strong>Rekrutmen Tenaga Ahli Programmer 2022
-              Diskominfotik</strong></span>
+
+          <img src="/theme/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+          <span class="brand-text font-weight-light"><strong>Rekrutmen Tenaga RSUD Sultan Suriansyah</strong></span>
         </a>
 
         <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse"

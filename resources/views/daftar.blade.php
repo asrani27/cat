@@ -16,12 +16,11 @@
 
 <body class="hold-transition layout-top-nav">
   <div class="wrapper">
-    <nav class="main-header navbar navbar-expand-md navbar-light navbar-white bg-gradient-teal">
+    <nav class="main-header navbar navbar-expand-md navbar-light navbar-white bg-gradient-success">
       <div class="container">
         <a href="#" class="navbar-brand">
           <img src="/theme/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-          <span class="brand-text font-weight-light"><strong>Rekrutmen Tenaga Ahli Programmer 2022
-              Diskominfotik</strong></span>
+          <span class="brand-text font-weight-light"><strong>Rekrutmen Tenaga RSUD Sultan Suriansyah</strong></span>
         </a>
 
         <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse"
@@ -191,12 +190,12 @@
                 <div class="card card-widget widget-user">
                   <!-- Add the bg color to the header using any of the bg-* classes -->
                   <div class="widget-user-header text-white"
-                    style="background: url('/theme/bglogin.jpg') center center;">
-                    <h3 class="widget-user-username text-center"><strong>Rekrutmen Tenaga Ahli Programmer</strong></h3>
+                    style="background: url('/theme/bghijau.jpg'); background-size:cover">
+                    <h3 class="widget-user-username text-center"><strong>Rekrutmen</strong></h3>
                     <h5 class="widget-user-desc text-center">DAFTAR</h5>
                   </div>
                   <div class="widget-user-image">
-                    <img class="img-circle" src="/theme/logo.png" alt="User Avatar">
+                    <img class="img-circle" style="background-color:#1a8b41" src="/theme/logo.png" alt="User Avatar">
                   </div>
                   <div class="card-footer">
                     <div class="row">
@@ -279,7 +278,7 @@
       {{-- <div class="float-right d-none d-sm-inline">
         CAT
       </div> --}}
-      <strong>Copyright &copy; 2021 <a href="https://asrandev.com">Rekrutmen Tenaga Ahli Programmer 2022
+      <strong>Copyright &copy; 2021 <a href="https://asrandev.com">Rekrutmen 2022
           Diskominfotik</a>.</strong>
     </footer>
   </div>
