@@ -20,8 +20,7 @@
       <div class="container">
         <a href="#" class="navbar-brand">
           <img src="/theme/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-          <span class="brand-text font-weight-light"><strong>Rekrutmen Tenaga Ahli Programmer 2022
-              Diskominfotik</strong></span>
+          <span class="brand-text font-weight-light"><strong>Rekrutmen Tenaga RSUD Sultan Suriansyah</strong></span>
         </a>
 
         <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse"
@@ -219,18 +218,18 @@
                           <label for="inputPassword3" class="col-sm-4 col-form-label"></label>
                           <div class="col-sm-8">
                             <button type="submit" class="btn btn-primary">Login</button>
-                            {{-- <a href="/daftar" class="btn btn-primary">Daftar</a> --}}
+                            <a href="/daftar" class="btn btn-primary">Daftar</a>
                             {{-- <a href="#" class="btn btn-primary">Jadwal Pendaftaran Belum Dimulai</a> --}}
                           </div>
                         </div>
 
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                           <label for="inputPassword3" class="col-sm-4 col-form-label">Catatan :</label>
                           <div class="col-sm-8">
                             Jika Ada yang kesulitan login atau terkendala teknis lain, silahkan hub admin (0812 9425
                             2730)
                           </div>
-                        </div>
+                        </div> --}}
                       </div>
                     </div>
                     <!-- /.row -->
