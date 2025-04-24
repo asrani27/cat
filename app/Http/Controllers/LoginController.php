@@ -28,7 +28,8 @@ class LoginController extends Controller
 
     public function daftar()
     {
-        return view('daftar');
+        $formasi = Kategori::get();
+        return view('daftar', compact('formasi'));
     }
 
     public function simpanDaftar(Request $req)

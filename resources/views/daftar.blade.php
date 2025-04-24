@@ -200,6 +200,18 @@
                   <div class="card-footer">
                     <div class="row">
                       <div class="card-body">
+
+                        <div class="form-group row">
+                          <label for="inputEmail3" class="col-sm-4 col-form-label">Formasi Yang Dilamar</label>
+                          <div class="col-sm-8">
+                            <select class="form-control">
+                              <option value="">-</option>
+                              @foreach ($formasi as $item)
+                              <option value="{{$item->id}}">{{$item->nama}}</option>
+                              @endforeach
+                            </select>
+                          </div>
+                        </div>
                         <div class="form-group row">
                           <label for="inputEmail3" class="col-sm-4 col-form-label">NIK</label>
                           <div class="col-sm-8">
