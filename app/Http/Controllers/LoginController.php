@@ -55,6 +55,7 @@ class LoginController extends Controller
                 $peserta->tahun_lulus = $req->tahun_lulus;
                 $peserta->jurusan = $req->jurusan;
                 $peserta->user_id = $user->id;
+                $peserta->telp = $req->telp;
                 $peserta->save();
 
                 toastr()->success('Berhasil Di Simpan');
