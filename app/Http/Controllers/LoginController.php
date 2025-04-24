@@ -51,7 +51,9 @@ class LoginController extends Controller
                 $peserta->nik = $req->nik;
                 $peserta->nama = $req->nama;
                 $peserta->email = $req->email;
-                $peserta->telp = $req->telp;
+                $peserta->kampus = $req->kampus;
+                $peserta->tahun_lulus = $req->tahun_lulus;
+                $peserta->jurusan = $req->jurusan;
                 $peserta->user_id = $user->id;
                 $peserta->save();
 
