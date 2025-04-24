@@ -6,6 +6,7 @@ use App\Models\Role;
 use App\Models\User;
 use GuzzleHttp\Client;
 use App\Models\Peserta;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
