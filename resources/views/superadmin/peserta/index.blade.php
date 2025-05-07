@@ -44,6 +44,8 @@ ADMIN
                             <th>Tahun Lulus</th>
                             <th>Email</th>
                             <th>File</th>
+                            <th>Status</th>
+                            <th>Keterangan</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -69,6 +71,8 @@ ADMIN
                                 <a href="/storage/peserta/{{$item->file}}">Download</a>
                                 @endif
                             </td>
+                            <td>{{$item->status}}</td>
+                            <td>{{$item->keterangan}}</td>
                             <td>
 
                                 <form action="/superadmin/peserta/{{$item->id}}" method="post">
