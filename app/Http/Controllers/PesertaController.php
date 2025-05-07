@@ -55,6 +55,12 @@ class PesertaController extends Controller
 
         return view('superadmin.peserta.edit', compact('data'));
     }
+    public function verify($id)
+    {
+        $data = Peserta::find($id);
+
+        return view('superadmin.peserta.verify', compact('data'));
+    }
 
     public function update(Request $request, $id)
     {
