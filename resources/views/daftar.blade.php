@@ -183,10 +183,8 @@
           <form action="/daftar" method="post">
             @csrf
             <div class="row">
-              <div class="col-lg-3">
-              </div>
 
-              <div class="col-lg-6">
+              <div class="col-lg-12">
                 <div class="card card-widget widget-user">
                   <!-- Add the bg color to the header using any of the bg-* classes -->
                   <div class="widget-user-header text-white"
@@ -202,69 +200,70 @@
                       <div class="card-body">
 
                         <div class="form-group row">
-                          <label for="inputEmail3" class="col-sm-4 col-form-label">Formasi Yang Dilamar</label>
-                          <div class="col-sm-8">
+                          <label for="inputEmail3" class="col-sm-3 col-form-label">Formasi Yang Dilamar</label>
+                          <div class="col-sm-9">
                             <select class="form-control">
                               <option value="">-</option>
                               @foreach ($formasi as $item)
-                              <option value="{{$item->id}}">{{$item->nama}}</option>
+                              <option value="{{$item->id}}">{{$item->nama}} - {{$item->penempatan}}
+                                ({{$item->jkel == null ? 'P/L' : $item->jkel}})</option>
                               @endforeach
                             </select>
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="inputEmail3" class="col-sm-4 col-form-label">NIK</label>
-                          <div class="col-sm-8">
+                          <label for="inputEmail3" class="col-sm-3 col-form-label">NIK</label>
+                          <div class="col-sm-9">
                             <input type="text" class="form-control" name="nik" value="{{old('nik')}}" placeholder="NIK"
                               minlength="16" maxlength="16" required>
                           </div>
                         </div>
 
                         <div class="form-group row">
-                          <label for="inputEmail3" class="col-sm-4 col-form-label">Nama</label>
-                          <div class="col-sm-8">
+                          <label for="inputEmail3" class="col-sm-3 col-form-label">Nama</label>
+                          <div class="col-sm-9">
                             <input type="text" class="form-control" id="inputEmail4" name="nama"
                               placeholder="nama lengkap" value="{{old('nama')}}" required>
                           </div>
                         </div>
 
                         <div class="form-group row">
-                          <label for="inputEmail4" class="col-sm-4 col-form-label">Telp / WA</label>
-                          <div class="col-sm-8">
+                          <label for="inputEmail4" class="col-sm-3 col-form-label">Telp / WA</label>
+                          <div class="col-sm-9">
                             <input type="text" class="form-control" id="telp" name="telp" maxlength="15"
                               placeholder="telp" value="{{old('telp')}}" required>
                           </div>
                         </div>
 
                         <div class="form-group row">
-                          <label for="inputEmail4" class="col-sm-4 col-form-label">Email</label>
-                          <div class="col-sm-8">
+                          <label for="inputEmail4" class="col-sm-3 col-form-label">Email</label>
+                          <div class="col-sm-9">
                             <input type="email" class="form-control" name="email" placeholder="email"
                               value="{{old('email')}}" required>
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="inputEmail4" class="col-sm-4 col-form-label">Password</label>
-                          <div class="col-sm-8">
+                          <label for="inputEmail4" class="col-sm-3 col-form-label">Password</label>
+                          <div class="col-sm-9">
                             <input type="text" class="form-control" name="password" placeholder="password" required>
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="inputEmail4" class="col-sm-4 col-form-label">Masukkan Password Lagi</label>
-                          <div class="col-sm-8">
+                          <label for="inputEmail4" class="col-sm-3 col-form-label">Masukkan Password Lagi</label>
+                          <div class="col-sm-9">
                             <input type="text" class="form-control" name="confimation_password"
                               placeholder="konfirmasi password" required>
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="inputEmail3" class="col-sm-4 col-form-label">Catatan :</label>
-                          <div class="col-sm-8">
+                          <label for="inputEmail3" class="col-sm-3 col-form-label">Catatan :</label>
+                          <div class="col-sm-9">
                             NIK menjadi username untuk Login
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="inputPassword3" class="col-sm-4 col-form-label"></label>
-                          <div class="col-sm-8">
+                          <label for="inputPassword3" class="col-sm-3 col-form-label"></label>
+                          <div class="col-sm-9">
                             <button type="submit" class="btn btn-primary">Daftar</button>
                             <a href="/" class="btn btn-primary">Login</a>
                           </div>

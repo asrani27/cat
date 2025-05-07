@@ -26,6 +26,9 @@ ADMIN
                         <tr>
                             <th>#</th>
                             <th>Nama Formasi</th>
+                            <th>Penempatan</th>
+                            <th>Jkel</th>
+                            <th>Syarat Pendidikan</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -37,6 +40,9 @@ ADMIN
                         <tr style="font-size:11px; font-family:Arial, Helvetica, sans-serif">
                             <td>{{$no++}}</td>
                             <td>{{$item->nama}}</td>
+                            <td>{{$item->penempatan}}</td>
+                            <td>{{$item->jkel == null ? 'P/L' : $item->jkel}}</td>
+                            <td>{{$item->pendidikan}}</td>
                             <td>
 
                                 <form action="/superadmin/kategori/{{$item->id}}" method="post">

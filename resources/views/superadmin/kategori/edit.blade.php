@@ -27,6 +27,38 @@ EDIT
                                         value="{{$data->nama}}">
                                 </div>
                             </div>
+
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Syarat Pendidikan</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="pendidikan"
+                                        value="{{$data->pendidikan}}" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Penempatan</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="penempatan"
+                                        value="{{$data->penempatan}}" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Jenis Kelamin</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="jkel">
+                                        <option value="">-</option>
+                                        <option value="L" {{$data->jkel == 'L' ? 'selected':''}} >Laki-Laki</option>
+                                        <option value="P" {{$data->jkel == 'P' ? 'selected':''}}>Perempuan</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"></label>
+                                <div class="col-sm-10">
+                                    <small>*kosongkan jika boleh keduanya</small>
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"></label>
                                 <div class="col-sm-10">

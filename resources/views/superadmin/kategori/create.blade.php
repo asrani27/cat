@@ -27,6 +27,34 @@ TAMBAH
                             </div>
 
                             <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Syarat Pendidikan</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="pendidikan" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Penempatan</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="penempatan" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Jenis Kelamin</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="jkel">
+                                        <option value="">-</option>
+                                        <option value="L">Laki-Laki</option>
+                                        <option value="P">Perempuan</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"></label>
+                                <div class="col-sm-10">
+                                    <small>*kosongkan jika boleh keduanya</small>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"></label>
                                 <div class="col-sm-10">
                                     <button type="submit"
