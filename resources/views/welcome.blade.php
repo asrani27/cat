@@ -251,8 +251,7 @@
       {{-- <div class="float-right d-none d-sm-inline">
         CAT
       </div> --}}
-      <strong>Copyright &copy; 2021 <a href="https://asrandev.com">Rekrutmen 2022
-          Diskominfotik</a>.</strong>
+      <strong>Developed By Diskominfotik</strong>
     </footer>
   </div>
   <!-- ./wrapper -->
