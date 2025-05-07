@@ -55,6 +55,7 @@ ADMIN
                                 B. {!!$item->pil_b!!} <br />
                                 C. {!!$item->pil_c!!} <br />
                                 D. {!!$item->pil_d!!} <br />
+                                E. {!!$item->pil_e!!} <br />
 
                             </td>
                             <td>{{$item->kunci}}</td>
