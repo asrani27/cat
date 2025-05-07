@@ -29,10 +29,17 @@
           </ul>
         </div>
 
-        <h1>BER DO'A LAH SEBELUM MEMULAI UJIAN</h1>
+        @if (Auth::user()->status == NULL)
+
+        @elseif(Auth::user()->status == 'LULUS')
+
+        <h1>ANDA LULUS, SILAHKAN KLIK TOMBOL MULAI UJIAN</h1>
         <strong>MULAI {{\Carbon\Carbon::parse($mulai)->format('d M Y H:i')}} WITA<br /> SELESAI
           {{\Carbon\Carbon::parse($selesai)->format('d M Y H:i')}} WITA</strong> <br />
         <a href="/peserta/mulai" class="btn btn-primary btn-lg"><i class="fas fa-edit"></i> MULAI UJIAN</a><br />
+        @else
+        <h1>MOHON MAAF, ANDA TIDAK LULUS BERKAS ADMINISTRASI</h1>
+        @endif
       </div>
     </div>
   </div>
