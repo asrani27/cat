@@ -15,7 +15,7 @@
         <div style="text-align: justify">
           <ul>
             <li>
-              <strong style="color:red">Bagi peserta yang belum mengupload berkas dengan lengkap belum bisa mengikuti
+              <strong>Bagi peserta yang belum mengupload berkas dengan lengkap belum bisa mengikuti
                 ujian. silahkan lengkapi dulu</strong>
             </li>
             <li>
