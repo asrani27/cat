@@ -202,7 +202,7 @@
                         <div class="form-group row">
                           <label for="inputEmail3" class="col-sm-3 col-form-label">Formasi Yang Dilamar</label>
                           <div class="col-sm-9">
-                            <select class="form-control">
+                            <select class="form-control" name="kategori_id">
                               <option value="">-</option>
                               @foreach ($formasi as $item)
                               <option value="{{$item->id}}">{{$item->nama}} - {{$item->penempatan}}

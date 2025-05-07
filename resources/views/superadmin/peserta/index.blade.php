@@ -35,6 +35,7 @@ ADMIN
                     <thead>
                         <tr>
                             <th>#</th>
+                            <th>FORMASI</th>
                             <th>NIK (username login)</th>
                             <th>Nama</th>
                             <th>Telp</th>

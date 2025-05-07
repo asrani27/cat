@@ -15,7 +15,10 @@ class Peserta extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class, 'kategori_id');
+    }
     public function jawaban()
     {
         return $this->hasMany(Jawaban::class, 'peserta_id');
