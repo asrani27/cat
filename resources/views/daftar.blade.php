@@ -178,8 +178,6 @@
       <!-- Main content -->
       <div class="content">
         <div class="container">
-          <br />
-          <br />
           <form action="/daftar" method="post">
             @csrf
             <div class="row">
