@@ -72,10 +72,14 @@ ADMIN
                             <td>
 
                                 <form action="/superadmin/peserta/{{$item->id}}" method="post">
+                                    <a href="/superadmin/peserta/{{$item->id}}/verify" class="btn btn-xs btn-info"><i
+                                            class="fas fa-check"></i> Verify</a>
+                                    @csrf
                                     <a href="/superadmin/peserta/{{$item->id}}/edit" class="btn btn-xs btn-success"><i
                                             class="fas fa-edit"></i> Edit</a>
                                     @csrf
                                     @method('delete')
+
                                     <button type="submit" class="btn btn-xs btn-danger"
                                         onclick="return confirm('yakin DI Hapus?');"><i class="fas fa-trash"></i>
                                         Delete</button>
