@@ -80,9 +80,9 @@ class ImportSoal extends Command
         Soal::where('jenis', 'TEKNISI ELEKTRO')->delete();
         Excel::import(new SoalElektro, $elektro);
 
-        $umum = public_path('soal/UMUM.xlsx');
-        Soal::where('jenis', 'UMUM')->delete();
-        Excel::import(new SoalUmum, $umum);
+        // $umum = public_path('soal/UMUM.xlsx');
+        // Soal::where('jenis', 'UMUM')->delete();
+        // Excel::import(new SoalUmum, $umum);
         $this->info('Import selesai');
     }
 }
