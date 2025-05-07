@@ -54,6 +54,7 @@ ADMIN
                         @foreach ($data as $key => $item)
                         <tr style="font-size:11px; font-family:Arial, Helvetica, sans-serif">
                             <td>{{$no++}}</td>
+                            <td>{{$item->kategori == null ? '' ; $item->kategori->nama}}</td>
                             <td>{{$item->nik}}</td>
                             <td>{{$item->nama}}</td>
                             <td>{{$item->telp}}</td>
