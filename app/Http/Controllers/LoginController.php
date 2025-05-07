@@ -39,7 +39,7 @@ class LoginController extends Controller
         $today = Carbon::now()->format('Y-m-d');
         $start = '2025-05-19';
         if ($today < $start) {
-            toastr()->success('Pendaftaran Di Bukan Pada Tanggal 19 Mei 2025');
+            toastr()->error('Pendaftaran Di Bukan Pada Tanggal 19 Mei 2025');
             return back();
         } else {
 
