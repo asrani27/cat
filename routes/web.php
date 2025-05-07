@@ -72,6 +72,7 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
         Route::post('gantipass', [HomeController::class, 'resetpass']);
         Route::get('peserta/{id}/akun', [PesertaController::class, 'akun']);
         Route::get('peserta/{id}/pass', [PesertaController::class, 'pass']);
+        Route::get('peserta/{id}/verify', [PesertaController::class, 'akun']);
         Route::resource('peserta', PesertaController::class);
         Route::resource('waktu', WaktuController::class);
         Route::resource('kategori', KategoriController::class);
