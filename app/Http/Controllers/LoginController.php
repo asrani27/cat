@@ -56,6 +56,7 @@ class LoginController extends Controller
                 $peserta->jurusan = $req->jurusan;
                 $peserta->user_id = $user->id;
                 $peserta->telp = $req->telp;
+                $peserta->kategori_id = $req->kategori_id;
                 $peserta->save();
 
                 toastr()->success('Berhasil Di Simpan');
