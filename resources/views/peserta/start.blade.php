@@ -11,7 +11,7 @@
   <div class="col-md-12">
     <div class="card card-primary">
       <div class="card-body text-center">
-        <h3>Prosedur dan informasi pelaksanaan ujian online (Tahap I)</h3><br />
+        <h3>Prosedur dan informasi pelaksanaan ujian online</h3><br />
         <div style="text-align: justify">
           <ul>
             <li>
@@ -19,28 +19,13 @@
                 ujian. silahkan lengkapi dulu</strong>
             </li>
             <li>
-              Ujian dilaksanakan tanggal 6 februari 2022 pada pukul 09.00 WITA secara online dengan 2 sesi yaitu :
+              Setelah Berkas di upload, akan di verifikasi oleh admin, harap menunggu hasil verifikasi pada tanggal :
+              ...
             </li>
             <li>
-              Sesi pertama dilakukan pada dengan menggunakan metode pilihan ganda dengan jumlah soal sebanyak 50 soal
-              yang dapat dikerjakan dalam rentang waktu 1 jam (09.00 WITA – 10.00 WITA).
+              Bagi yang lulus verifikasi berkas dapat mengikut ujian online, dengan mengklik tombol start di bawah ini
             </li>
-            <li>
-              Sesi kedua akan dilaksanakan langsung setelah anda melakukan submit pada sesi ujian pertama
-            </li>
-            <li>
-              Sesi kedua berbentuk tes koding dikerjakan dirumah masing-masing, soal silahkan di download pada halaman
-              sesi2 dan di kumpul paling lambat pada tanggal 7 Februari 2022 pukul 09.00 WITA pada kolom yang
-              disediakan.
-            </li>
-            {{-- <li>
-              Bagi peserta yang tidak melakukan submit pada ujian sesi I (pilihan ganda), maka tidak akan dapat
-              melakukan proses ujian sesi 2 (essay) pada tahap I ini
-            </li> --}}
-            <li>
-              Bahasa pemrograman yang disarankan pada ujian sesi 2 (essay) adalah PHP/Javascript. Boleh menggunakan
-              framework ataupun native
-            </li>
+
           </ul>
         </div>
 
