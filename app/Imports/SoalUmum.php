@@ -33,6 +33,7 @@ class SoalUmum implements ToModel, WithStartRow
             Soal::insert($param);
         }
     }
+
     public function drawings()
     {
         $drawings = [];
