@@ -187,6 +187,7 @@
               </div>
 
               <div class="col-lg-6">
+                <h3>Jadwal Pendaftaran dimulai tanggal : 19 Mei 2025 s/d 21 Mei 2025</h3>
                 <div class="card card-widget widget-user">
                   <!-- Add the bg color to the header using any of the bg-* classes -->
                   <div class="widget-user-header text-white"

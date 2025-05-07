@@ -16,11 +16,11 @@
           <ul>
             <li>
               <strong>Bagi peserta yang belum mengupload berkas dengan lengkap belum bisa mengikuti
-                ujian. silahkan lengkapi dulu</strong>
+                ujian. silahkan lengkapi dulu. Untuk berkas wajib di compress menjadi .ZIP</strong>
             </li>
             <li>
               Setelah Berkas di upload, akan di verifikasi oleh admin, harap menunggu hasil verifikasi pada tanggal :
-              ...
+              28 Mei 2025
             </li>
             <li>
               Bagi yang lulus verifikasi berkas dapat mengikut ujian online, dengan mengklik tombol start di bawah ini
