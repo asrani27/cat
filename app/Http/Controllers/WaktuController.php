@@ -10,7 +10,7 @@ class WaktuController extends Controller
 {
     public function index()
     {
-        $data = Waktu::first();
+        $data = Waktu::find(1);
         $data->tanggal_mulai = Carbon::parse($data->tanggal_mulai)->format('Y-m-d\TH:i');
         $data->tanggal_selesai = Carbon::parse($data->tanggal_selesai)->format('Y-m-d\TH:i');
         //dd($data);
