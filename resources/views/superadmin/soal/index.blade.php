@@ -2,6 +2,10 @@
 
 @push('css')
 <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+<!-- DataTables -->
+<link rel="stylesheet" href="/theme/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="/theme/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 @endpush
 @section('title')
 ADMIN
@@ -16,25 +20,17 @@ ADMIN
             <div class="card-header">
                 <h3 class="card-title">Data Soal</h3>
                 <div class="card-tools">
-                    <form method="get" action="/superadmin/soal/search">
-                        <div class="input-group input-group-sm" style="width: 250px;">
-                            <input type="text" name="search" class="form-control float-right" value="{{old('search')}}"
-                                placeholder="Nama / NIK">
 
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
             <!-- /.card-header -->
-            <div class="card-body table-responsive p-0">
-                <table class="table table-hover text-nowrap table-sm">
+            <div class="card-body table-responsive">
+                <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Kategori Soal</th>
+                            <th>Formasi</th>
+                            <th>Jenis</th>
                             <th>Pertanyaan</th>
                             <th>Pilihan Ganda</th>
                             <th>Kunci Jawaban</th>
@@ -47,8 +43,9 @@ ADMIN
                     <tbody>
                         @foreach ($data as $key => $item)
                         <tr style="font-size:11px; font-family:Arial, Helvetica, sans-serif">
-                            <td>{{$data->firstItem() + $key}}</td>
-                            <td>{{$item->kategori == null ? '-': $item->kategori->nama}}</td>
+                            <td>{{1 + $key}}</td>
+                            <td>{{$item->formasi}}</td>
+                            <td>{{$item->jenis}}</td>
                             <td>{!!$item->pertanyaan!!}</td>
                             <td>
                                 A. {!!$item->pil_a!!} <br />
@@ -79,11 +76,34 @@ ADMIN
             </div>
             <!-- /.card-body -->
         </div>
-        {{$data->links()}}
+        {{-- {{$data->links()}} --}}
     </div>
 </div>
 
 @endsection
 
 @push('js')
+
+<!-- DataTables -->
+<script src="/theme/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/theme/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="/theme/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/theme/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script>
+    $(function () {
+      $("#example1").DataTable({
+        "responsive": true,
+        "autoWidth": false,
+      });
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
+    });
+</script>
 @endpush
