@@ -19,7 +19,8 @@ class SoalJaringan implements ToModel, WithStartRow
     }
     public function model(array $row)
     {
-        $param['jenis'] = 'JARINGAN KOMPUTER';
+        $param['jenis'] = 'TEKNIS';
+        $param['formasi'] = 'JARINGAN KOMPUTER';
         $param['pertanyaan'] = $row[1];
         $param['pil_a'] = $row[2];
         $param['pil_b'] = $row[3];

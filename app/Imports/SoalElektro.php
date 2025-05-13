@@ -19,7 +19,8 @@ class SoalElektro implements ToModel, WithStartRow
     }
     public function model(array $row)
     {
-        $param['jenis'] = 'TEKNISI ELEKTRO';
+        $param['jenis'] = 'TEKNIS';
+        $param['formasi'] = 'TEKNISI ELEKTRO';
         $param['pertanyaan'] = $row[1];
         $param['pil_a'] = $row[2];
         $param['pil_b'] = $row[3];

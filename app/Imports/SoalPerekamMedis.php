@@ -19,7 +19,8 @@ class SoalPerekamMedis implements ToModel, WithStartRow
     }
     public function model(array $row)
     {
-        $param['jenis'] = 'PEREKAM MEDIS';
+        $param['jenis'] = 'TEKNIS';
+        $param['formasi'] = 'PEREKAM MEDIS';
         $param['pertanyaan'] = $row[1];
         $param['pil_a'] = $row[2];
         $param['pil_b'] = $row[3];

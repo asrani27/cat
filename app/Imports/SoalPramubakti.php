@@ -3,15 +3,15 @@
 namespace App\Imports;
 
 use App\Models\Soal;
+use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 
-class SoalPranataLab implements ToModel, WithStartRow
+class SoalPramubakti implements ToModel, WithStartRow
 {
     /**
-     * @param array $row
-     *
-     * @return \Illuminate\Database\Eloquent\Model|null
+     * @param Collection $collection
      */
     public function startRow(): int
     {
@@ -20,7 +20,7 @@ class SoalPranataLab implements ToModel, WithStartRow
     public function model(array $row)
     {
         $param['jenis'] = 'TEKNIS';
-        $param['formasi'] = 'PRANATA LAB';
+        $param['formasi'] = 'PEMULASARAN';
         $param['pertanyaan'] = $row[1];
         $param['pil_a'] = $row[2];
         $param['pil_b'] = $row[3];
