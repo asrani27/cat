@@ -22,14 +22,18 @@ EDIT
                         <div class="card-body">
 
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Kategori</label>
+                                <label class="col-sm-2 col-form-label">Formasi</label>
                                 <div class="col-sm-10">
-                                    <select name="kategori_id" class="form-control">
-                                        @foreach ($kategori as $item)
-                                        <option value="{{$item->id}}" {{$data->kategori_id == $item->id ?
-                                            'selected':''}}>{{$item->nama}}</option>
-                                        @endforeach
-                                    </select>
+
+                                    <input type="text" class="form-control" value="{{$data->formasi}}" readonly>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Jenis</label>
+                                <div class="col-sm-10">
+
+                                    <input type="text" class="form-control" value="{{$data->jenis}}" readonly>
                                 </div>
                             </div>
 
