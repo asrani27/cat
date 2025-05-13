@@ -68,7 +68,12 @@ EDIT
                                     <textarea id="summernoted" name="pil_d">{!!$data->pil_d!!}</textarea>
                                 </div>
                             </div>
-
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Pilihan E</label>
+                                <div class="col-sm-10">
+                                    <textarea id="summernotee" name="pil_e">{!!$data->pil_e!!}</textarea>
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Kunci Jawaban</label>
                                 <div class="col-sm-10">
@@ -106,6 +111,7 @@ EDIT
         $('#summernoteb').summernote();
         $('#summernotec').summernote();
         $('#summernoted').summernote();
+        $('#summernotee').summernote();
     });
 </script>
 
