@@ -44,6 +44,15 @@
         </li>
 
         <li class="nav-item">
+            <a href="/superadmin/pendaftaran"
+                class="nav-link {{ Request::is('superadmin/pendaftaran*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-clock"></i>
+                <p>
+                    Waktu Pendaftaran
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
             <a href="/superadmin/gantipass" class="nav-link {{ Request::is('superadmin/gantipass*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-key"></i>
                 <p>

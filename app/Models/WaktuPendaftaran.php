@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class WaktuPendaftaran extends Model
 {
     use HasFactory;
+    protected $table = 'waktu_pendaftaran';
+    protected $guarded = ['id'];
+    public $timestamps = false;
 }
