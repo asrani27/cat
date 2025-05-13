@@ -8,6 +8,7 @@ use App\Models\User;
 use GuzzleHttp\Client;
 use App\Models\Peserta;
 use App\Models\Kategori;
+use App\Models\WaktuPendaftaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -37,9 +38,9 @@ class LoginController extends Controller
     public function simpanDaftar(Request $req)
     {
         $today = Carbon::now()->format('Y-m-d');
-        $start = '2025-05-19';
+        $start = WaktuPendaftaran::first()->mulai;
         if ($today < $start) {
-            toastr()->error('Pendaftaran Di Buka Pada Tanggal 19 Mei 2025');
+            toastr()->error('Pendaftaran Di Buka Pada Tanggal' . Carbon::parse($start)->translatedFormat('d F Y'));
             return back();
         } else {
 
