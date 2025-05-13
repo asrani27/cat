@@ -24,7 +24,7 @@ class HomeController extends Controller
     {
         $peserta    = $this->datapeserta()->count();
         $soal       = $this->soal()->count();
-        $kategori   = Kategori::get()->count();
+        $kategori   = Kategori::distinct('nama')->count('nama');
         $durasi     = Waktu::first()->durasi;
 
         $yangupload = Peserta::where('file', '!=', null)->get()->count();

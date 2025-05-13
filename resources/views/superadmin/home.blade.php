@@ -69,7 +69,7 @@
       <div class="inner">
         <h3>{{$kategori}}</h3>
 
-        <p><strong>KATEGORI</strong></p>
+        <p><strong>FORMASI</strong></p>
       </div>
       <div class="icon">
         <i class="fas fa-list"></i>
