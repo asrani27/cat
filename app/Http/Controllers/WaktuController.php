@@ -4,10 +4,29 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Waktu;
+use App\Models\WaktuPendaftaran;
 use Illuminate\Http\Request;
 
 class WaktuController extends Controller
 {
+
+
+    public function pendaftaran()
+    {
+        $data = WaktuPendaftaran::first();
+        //dd($data);
+        return view('superadmin.pendaftaran.index', compact('data'));
+    }
+
+    public function UpdatePendaftaran(Request $request)
+    {
+        $attr = $request->all();
+
+        WaktuPendaftaran::first()->update($attr);
+
+        toastr()->success('Sukses Di Update');
+        return redirect('/superadmin/pendaftaran');
+    }
     public function index()
     {
         $data = Waktu::find(1);
