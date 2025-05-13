@@ -54,15 +54,15 @@ class ImportSoal extends Command
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $ELEKTROMEDIS = public_path('soal/ELEKTROMEDIS.xlsx');
-        Soal::where('formasi', 'ELEKTROMEDIS')->delete();
+        Soal::where('formasi', 'TEKNIK ELEKTROMEDIS')->delete();
         Excel::import(new SoalElektromedis, $ELEKTROMEDIS);
 
         $gasmedis = public_path('soal/GAS MEDIS.xlsx');
-        Soal::where('formasi', 'GAS MEDIS')->delete();
+        Soal::where('formasi', 'TEKNISI GAS MEDIS')->delete();
         Excel::import(new SoalGasMedis, $gasmedis);
 
         $jaringan = public_path('soal/JARINGAN KOMPUTER.xlsx');
-        Soal::where('formasi', 'JARINGAN KOMPUTER')->delete();
+        Soal::where('formasi', 'TEKNISI JARINGAN')->delete();
         Excel::import(new SoalJaringan, $jaringan);
 
         $perawat = public_path('soal/PERAWAT.xlsx');
@@ -90,7 +90,7 @@ class ImportSoal extends Command
         Excel::import(new SoalElektro, $elektro);
 
         $administrasi_umum = public_path('soal/TEKNIS2.xlsx');
-        Soal::where('formasi', 'ADMINISTRASI UMUM')->delete();
+        Soal::where('formasi', 'PENGADMINISTRASI UMUM')->delete();
         Excel::import(new SoalPengadminitrasiUmum, $administrasi_umum);
 
         $binatu = public_path('soal/TEKNIS2.xlsx');
@@ -98,7 +98,7 @@ class ImportSoal extends Command
         Excel::import(new SoalBinatu, $binatu);
 
         $pemulasaran = public_path('soal/TEKNIS2.xlsx');
-        Soal::where('formasi', 'PEMULASARAN')->delete();
+        Soal::where('formasi', 'PEMULASARAN JENAZAH')->delete();
         Excel::import(new SoalPemulasaran, $pemulasaran);
 
         $pramubakti = public_path('soal/TEKNIS2.xlsx');

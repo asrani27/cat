@@ -75,7 +75,32 @@ class UjianController extends Controller
             $soal       = Soal::find($id);
             $next       = $this->next($id);
 
-
+            if (Auth::user()->peserta->kategori->nama == 'PENGADMINISTRASI UMUM') {
+                $formasi = 'ADMINISTRASI UMUM';
+            } elseif (Auth::user()->peserta->kategori->nama == 'PEMULASARAN JENAZAH') {
+                $formasi = 'PEMULASARAN';
+            } else {
+                $formasi = Auth::user()->peserta->kategori->nama;
+            }
+            $listSoalUmum = Soal::where('jenis', 'UMUM')->map(function ($item) use ($peserta) {
+                $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();
+                if ($check == null) {
+                    $item->dijawab = false;
+                } else {
+                    $item->dijawab = $check->jawaban;
+                }
+                return $item;
+            })->values();
+            $listSoalTeknis = Soal::where('formasi', $formasi)->map(function ($item) use ($peserta) {
+                $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();
+                if ($check == null) {
+                    $item->dijawab = false;
+                } else {
+                    $item->dijawab = $check->jawaban;
+                }
+                return $item;
+            })->values();
+            dd($listSoalUmum, $listSoalTeknis);
             $listSoal   = Soal::get()->map(function ($item) use ($peserta) {
                 $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();
                 if ($check == null) {
@@ -92,6 +117,7 @@ class UjianController extends Controller
 
             return view('peserta.home', compact('jmlsoal', 'jam', 'waktu', 'peserta', 'tgl_mulai', 'tgl_selesai', 'listSoal', 'soal', 'next', 'dijawab', 'jmlbelumjawab'));
         } else {
+
             $random     = 'random' . substr($peserta->telp, -1);
 
             if ($peserta->selesai_ujian == 1) {
@@ -110,8 +136,34 @@ class UjianController extends Controller
                     $waktu      = Waktu::first()->durasi;
                     $soal       = Soal::find($id);
                     $next       = $this->next($id);
+                    if (Auth::user()->peserta->kategori->nama == 'PENGADMINISTRASI UMUM') {
+                        $formasi = 'ADMINISTRASI UMUM';
+                    } elseif (Auth::user()->peserta->kategori->nama == 'PEMULASARAN JENAZAH') {
+                        $formasi = 'PEMULASARAN';
+                    } else {
+                        $formasi = Auth::user()->peserta->kategori->nama;
+                    }
 
+                    $listSoalUmum = Soal::where('jenis', 'UMUM')->get()->map(function ($item) use ($peserta) {
+                        $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();
+                        if ($check == null) {
+                            $item->dijawab = false;
+                        } else {
+                            $item->dijawab = $check->jawaban;
+                        }
+                        return $item;
+                    })->values();
 
+                    $listSoalTeknis = Soal::where('formasi', $formasi)->get()->map(function ($item) use ($peserta) {
+                        $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();
+                        if ($check == null) {
+                            $item->dijawab = false;
+                        } else {
+                            $item->dijawab = $check->jawaban;
+                        }
+                        return $item;
+                    })->values();
+                    dd($listSoalUmum, $listSoalTeknis, $formasi);
                     $listSoal   = Soal::get()->map(function ($item) use ($peserta) {
                         $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();
                         if ($check == null) {
