@@ -163,16 +163,17 @@ class UjianController extends Controller
                         }
                         return $item;
                     })->values();
-                    dd($listSoalUmum, $listSoalTeknis, $formasi);
-                    $listSoal   = Soal::get()->map(function ($item) use ($peserta) {
-                        $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();
-                        if ($check == null) {
-                            $item->dijawab = false;
-                        } else {
-                            $item->dijawab = $check->jawaban;
-                        }
-                        return $item;
-                    })->values();
+                    $listSoal = $listSoalUmum->concat($listSoalTeknis);
+                    // dd($listSoalUmum, $listSoalTeknis, $listSoal);
+                    // $listSoal   = Soal::get()->map(function ($item) use ($peserta) {
+                    //     $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();
+                    //     if ($check == null) {
+                    //         $item->dijawab = false;
+                    //     } else {
+                    //         $item->dijawab = $check->jawaban;
+                    //     }
+                    //     return $item;
+                    // })->values();
 
                     $jmlbelumjawab = $listSoal->where('dijawab', false)->count();
 
