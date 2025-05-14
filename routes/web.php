@@ -73,6 +73,7 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
         Route::get('peserta/{id}/akun', [PesertaController::class, 'akun']);
         Route::get('peserta/{id}/pass', [PesertaController::class, 'pass']);
         Route::get('peserta/{id}/verify', [PesertaController::class, 'verify']);
+        Route::post('peserta/{id}/verify', [PesertaController::class, 'updateStatus']);
         Route::get('pendaftaran', [WaktuController::class, 'pendaftaran']);
         Route::post('pendaftaran', [WaktuController::class, 'UpdatePendaftaran']);
         Route::resource('peserta', PesertaController::class);

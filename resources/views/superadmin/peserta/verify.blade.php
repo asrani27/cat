@@ -14,7 +14,6 @@ VERIFIKASI BERKAS
             Kembali</a><br /><br />
         <form method="post" action="/superadmin/peserta/{{$data->id}}/verify">
             @csrf
-            @method('PUT')
             <div class="row">
                 <div class="col-lg-12 col-12">
                     <div class="card">
