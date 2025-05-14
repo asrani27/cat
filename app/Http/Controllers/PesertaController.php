@@ -55,11 +55,12 @@ class PesertaController extends Controller
 
         return view('superadmin.peserta.edit', compact('data'));
     }
-    public function updateStatus(Request $req)
+    public function updateStatus(Request $req, $id)
     {
         $data = Peserta::find($id);
         $data->status = $req->status;
         $data->save();
+        toastr()->success('Sukses Di Update');
         return back();
     }
     public function verify($id)
