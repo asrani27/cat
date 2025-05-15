@@ -55,7 +55,22 @@ class UjianController extends Controller
 
     public function next($id)
     {
-        return Soal::where('id', '>', $id)->first() == null ? Soal::first()->id : Soal::where('id', '>', $id)->first()->id;
+
+        $nomor_acak = json_decode(Auth::user()->peserta->soal_acak);
+        $current_index = array_search($id, $nomor_acak);
+
+        $next_soal = null;
+        if ($current_index !== false) {
+            $next_index = $current_index + 1;
+
+            if (isset($nomor_acak[$next_index])) {
+                $next_soal = $nomor_acak[$next_index];
+            } else {
+                // Jika sudah di soal terakhir, kembali ke soal pertama
+                $next_soal = $nomor_acak[0];
+            }
+        }
+        return $next_soal;
     }
 
     public function soal($id)
@@ -74,7 +89,6 @@ class UjianController extends Controller
             $waktu      = Waktu::first()->durasi;
             $soal       = Soal::find($id);
             $next       = $this->next($id);
-
             if (Auth::user()->peserta->kategori->nama == 'PENGADMINISTRASI UMUM') {
                 $formasi = 'ADMINISTRASI UMUM';
             } elseif (Auth::user()->peserta->kategori->nama == 'PEMULASARAN JENAZAH') {
@@ -100,7 +114,7 @@ class UjianController extends Controller
                 }
                 return $item;
             })->values();
-            
+
             $listSoal = $listSoalUmum->concat($listSoalTeknis);
             // $listSoal   = Soal::get()->map(function ($item) use ($peserta) {
             //     $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();
@@ -133,15 +147,16 @@ class UjianController extends Controller
                 $check     = Carbon::now()->between($mulai, $selesai);
                 if ($check) {
 
-                    if (Auth::user()->peserta->kategori->nama == 'PENGADMINISTRASI UMUM') {
-                        $formasi = 'ADMINISTRASI UMUM';
-                    } elseif (Auth::user()->peserta->kategori->nama == 'PEMULASARAN JENAZAH') {
-                        $formasi = 'PEMULASARAN';
-                    } else {
-                        $formasi = Auth::user()->peserta->kategori->nama;
+                    $nomor_acak = json_decode($peserta->soal_acak);
+                    if (!in_array($id, $nomor_acak)) {
+                        toastr()->error('ID tersebut bukan soal untuk anda');
+                        return back();
                     }
+                    $daftarsoal = Soal::whereIn('id', $nomor_acak)->get();
 
-                    $listSoalUmum = Soal::where('jenis', 'UMUM')->get()->map(function ($item) use ($peserta) {
+                    $listSoal = $daftarsoal->sortBy(function ($item) use ($nomor_acak) {
+                        return array_search($item->id, $nomor_acak);
+                    })->values()->map(function ($item) use ($peserta) {
                         $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();
                         if ($check == null) {
                             $item->dijawab = false;
@@ -149,24 +164,29 @@ class UjianController extends Controller
                             $item->dijawab = $check->jawaban;
                         }
                         return $item;
-                    })->values();
+                    });
 
-                    $listSoalTeknis = Soal::where('formasi', $formasi)->get()->map(function ($item) use ($peserta) {
-                        $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();
-                        if ($check == null) {
-                            $item->dijawab = false;
-                        } else {
-                            $item->dijawab = $check->jawaban;
-                        }
-                        return $item;
-                    })->values();
-                    $listSoal = $listSoalUmum->concat($listSoalTeknis);
+
                     $jmlsoal    = $listSoal->count();
                     $jam        = Carbon::now()->format('H:i');
                     $waktu      = Waktu::first()->durasi;
 
-                    $soal       = Soal::find($listSoal->first()->id);
-                    $next       = $this->next($listSoal->first()->id);
+                    $soal       = Soal::find($id);
+
+                    $current_index = array_search($id, $nomor_acak);
+
+                    $next = null;
+                    if ($current_index !== false) {
+                        $next_index = $current_index + 1;
+
+                        if (isset($nomor_acak[$next_index])) {
+                            $next = $nomor_acak[$next_index];
+                        } else {
+                            // Jika sudah di soal terakhir, kembali ke soal pertama
+                            $next = $nomor_acak[0];
+                        }
+                    }
+                    //$next       = $this->next($listSoal->first()->id);
                     // dd($listSoalUmum, $listSoalTeknis, $listSoal);
                     // $listSoal   = Soal::get()->map(function ($item) use ($peserta) {
                     //     $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();

@@ -25,76 +25,15 @@
           <img class="img-circle"
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/2048px-User_icon_2.svg.png"
             alt="User Image">
-          <span class="username"><a href="#">{{Auth::user()->name}}</a></span>
-          <span class="description"><strong>SELAMAT DATANG DI APLIKASI COMPUTER ASSISTED TEST (CAT)</strong></span>
+          <span class="username"><a href="#">{{$formasi->nama}}</a></span>
+          <span class="description"><strong>{{$formasi->penempatan}}</strong></span>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 <div class="row">
-  <div class="col-lg-3 col-6">
-    <!-- small box -->
-    <div class="small-box bg-info">
-      <div class="inner">
-        <h3>{{$peserta}}</h3>
-
-        <p><strong>PESERTA, YG UPLOAD ({{$yangupload}})</strong></p>
-      </div>
-      <div class="icon">
-        <i class="fas fa-users"></i>
-      </div>
-      <a href="/superadmin/peserta" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-    </div>
-  </div>
-  <!-- ./col -->
-  <div class="col-lg-3 col-6">
-    <!-- small box -->
-    <div class="small-box bg-success">
-      <div class="inner">
-        <h3>{{$soal}}</h3>
-
-        <p><strong>JUMLAH SOAL</strong></p>
-      </div>
-      <div class="icon">
-        <i class="fas fa-list"></i>
-      </div>
-      <a href="/superadmin/soal" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-    </div>
-  </div>
-  <!-- ./col -->
-  <div class="col-lg-3 col-6">
-    <!-- small box -->
-    <div class="small-box bg-warning">
-      <div class="inner">
-        <h3>{{$kategori}}</h3>
-
-        <p><strong>FORMASI</strong></p>
-      </div>
-      <div class="icon">
-        <i class="fas fa-list"></i>
-      </div>
-      <a href="/superadmin/kategori" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-    </div>
-  </div>
-  <!-- ./col -->
-  <div class="col-lg-3 col-6">
-    <!-- small box -->
-    <div class="small-box bg-danger">
-      <div class="inner">
-        <h3>{{$durasi}} Menit</h3>
-
-        <p><strong>WAKTU</strong></p>
-      </div>
-      <div class="icon">
-        <i class="fas fa-clock"></i>
-      </div>
-      <a href="/superadmin/waktu" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-    </div>
-  </div>
-  <!-- ./col -->
-</div>
-{{-- <div class="row">
   <div class="col-lg-12">
     <div class="card">
       <div class="card-header">
@@ -145,27 +84,9 @@
       </div>
     </div>
   </div>
-</div> --}}
-
-<div class="row">
-  @foreach ($formasi as $key=> $item)
-
-  <div class="col-lg-6 col-6">
-    <a href="/superadmin/formasi/{{$item->id}}">
-      <div class="info-box mb-3 bg-success">
-        <span class="info-box-icon"><i class="fa fa-users"></i></span>
-
-        <div class="info-box-content">
-          <span class="info-box-text"><strong>{{$item->nama}}</strong></span>
-          <small>{{$item->penempatan}}</small>
-          <span class="info-box-number">{{$item->peserta->count()}} Peserta</span>
-        </div>
-        <!-- /.info-box-content -->
-      </div>
-    </a>
-  </div>
-  @endforeach
 </div>
+
+
 @endsection
 
 @push('js')

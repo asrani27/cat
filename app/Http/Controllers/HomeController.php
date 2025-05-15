@@ -46,9 +46,36 @@ class HomeController extends Controller
             return $item;
         })->sortByDesc('benar');
 
-        return view('superadmin.home', compact('peserta', 'soal', 'kategori', 'durasi', 'data', 'yangupload'));
+        $formasi = Kategori::get();
+        return view('superadmin.home', compact('peserta', 'soal', 'kategori', 'durasi', 'data', 'yangupload', 'formasi'));
     }
 
+    public function formasi($id)
+    {
+        $datasoal = Soal::where('formasi', Kategori::find($id)->nama)->get();
+
+        $soal       = $datasoal->count();
+        $kategori   = Kategori::distinct('nama')->count('nama');
+        $durasi     = Waktu::first()->durasi;
+        $data = Kategori::find($id)->peserta->map(function ($item) use ($datasoal) {
+            $jawaban = Jawaban::where('peserta_id', $item->id)->get();
+            $item->dijawab = $jawaban->count();
+            $item->benar = Jawaban::where('peserta_id', $item->id)
+                ->get()->map(function ($item2) {
+                    if ($item2->jawaban == $item2->soal->kunci) {
+                        $item2->benar = 'Y';
+                    } else {
+                        $item2->benar = 'T';
+                    }
+                    return $item2;
+                })->where('benar', 'Y')->count();
+
+            return $item;
+        })->sortByDesc('benar');
+
+        $formasi = Kategori::find($id);
+        return view('superadmin.formasi', compact('data', 'formasi', 'soal'));
+    }
     public function gantipass()
     {
         return view('superadmin.gantipass.index');
@@ -79,11 +106,18 @@ class HomeController extends Controller
     {
         $peserta    = Auth::user()->peserta;
 
-        $jmlsoal    = $this->soal()->count();
+        $jmlsoal    = count(json_decode($peserta->soal_acak));
         $jam        = Carbon::now()->format('H:i');
         $waktu      = Waktu::first()->durasi;
 
-        $listSoal   = $this->soal()->map(function ($item) use ($peserta) {
+        $nomor_acak = json_decode($peserta->soal_acak);
+        $soal = Soal::whereIn('id', $nomor_acak)->get();
+
+        $soal = $soal->sortBy(function ($item) use ($nomor_acak) {
+            return array_search($item->id, $nomor_acak);
+        })->values();
+
+        $listSoal   = $soal->map(function ($item) use ($peserta) {
             $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();
             if ($check == null) {
                 $item->dijawab = false;
@@ -124,8 +158,8 @@ class HomeController extends Controller
                 toastr()->error('Berkas Belum Di upload');
                 return view('peserta.start', compact('jmlsoal', 'jam', 'waktu', 'peserta', 'jmlbelumjawab', 'mulai', 'selesai'));
             } else {
-                $soalPertama = Soal::first()->id;
-                return redirect('/peserta/ujian/soal/' . $soalPertama);
+
+                return redirect('/peserta/ujian/soal/' . $soal->first()->id);
             }
         }
     }

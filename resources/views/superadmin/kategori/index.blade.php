@@ -38,7 +38,7 @@ ADMIN
                     <tbody>
                         @foreach ($data as $key => $item)
                         <tr style="font-size:11px; font-family:Arial, Helvetica, sans-serif">
-                            <td>{{$no++}}</td>
+                            <td>{{$data->firstItem() + $key}}</td>
                             <td>{{$item->nama}}</td>
                             <td>{{$item->penempatan}}</td>
                             <td>{{$item->jkel == null ? 'P/L' : $item->jkel}}</td>

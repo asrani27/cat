@@ -17,4 +17,8 @@ class Kategori extends Model
     {
         return $this->hasMany(Soal::class, 'kategori_id');
     }
+    public function peserta()
+    {
+        return $this->hasMany(Peserta::class, 'kategori_id');
+    }
 }

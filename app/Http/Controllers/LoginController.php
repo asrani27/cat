@@ -57,7 +57,6 @@ class LoginController extends Controller
 
                     $user->roles()->attach($role);
 
-
                     $formasi = Kategori::find($req->kategori_id)->nama;
 
                     $listSoalUmum = Soal::where('jenis', 'UMUM')->get();

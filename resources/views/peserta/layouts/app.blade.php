@@ -60,7 +60,7 @@
               <div class="info-box">
                 <div class="info-box-content text-center">
                   <span class="info-box-text">NIK</span>
-                  <span class="info-box-number">{{myProfil()->nik}}</span>
+                  <span class="info-box-number">{{$peserta->nik}}</span>
                 </div>
                 <!-- /.info-box-content -->
               </div>
@@ -147,31 +147,34 @@
                   </div>
                   <div class="card-body">
                     <div class="form-group row">
-                      <label for="inputEmail3" class="col-sm-4 col-form-label">Nama PTS/PTN</label>
+                      <label for="inputEmail3" class="col-sm-4 col-form-label">Nama Sekolah/PTS/PTN</label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" name="kampus" placeholder="Perguruan Tinggi" required>
+                        <input type="text" class="form-control" name="kampus" value="{{old('kampus')}}"
+                          placeholder="Sekolah/PTS/PTN" required>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="inputEmail3" class="col-sm-4 col-form-label">Nama Jurusan</label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" name="jurusan" placeholder="Jurusan" required>
+                        <input type="text" class="form-control" name="jurusan" value="{{old('jurusan')}}"
+                          placeholder="Jurusan" required>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="inputEmail3" class="col-sm-4 col-form-label">Tahun Lulus</label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" name="tahun_lulus" placeholder="tahun lulus" required>
+                        <input type="text" class="form-control" name="tahun_lulus" value="{{old('tahun_lulus')}}"
+                          placeholder="tahun lulus" required>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="inputEmail3" class="col-sm-4 col-form-label">Tanggal Lahir</label>
                       <div class="col-sm-8">
-                        <input type="date" class="form-control" name="tgl" required>
+                        <input type="date" class="form-control" name="tgl" value="{{old('tgl')}}" required>
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="inputEmail3" class="col-sm-4 col-form-label">Berkas File (Zip/Rar) maks 8MB</label>
+                      <label for="inputEmail3" class="col-sm-4 col-form-label">Berkas File (PDF) maks 8MB</label>
                       <div class="col-sm-8">
                         <input type="file" class="form-control" name="file" required>
                       </div>

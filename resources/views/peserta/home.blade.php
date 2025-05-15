@@ -52,7 +52,7 @@
             <div class="custom-control custom-radio">
               <input class="custom-control-input" type="radio" value="E" id="customRadio5" name="jawaban"
                 {{($dijawab==null ? '' : $dijawab->jawaban) == "E" ? 'checked' : null}}>
-              <label for="customRadio4" class="custom-control-label">{!!$soal->pil_e!!}</label>
+              <label for="customRadio5" class="custom-control-label">{!!$soal->pil_e!!}</label>
             </div>
           </div>
           <button type="submit" class="btn btn-sm btn-info">Simpan Dan Lanjutkan</button>

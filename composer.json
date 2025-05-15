@@ -27,15 +27,13 @@
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.3.3"
     },
-    "autoload": {
+    "autoload": { 
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        },
-        "files": [
-            "app/Helpers/Fungsiku.php"
-        ]
+        }
+       
     },
     "autoload-dev": {
         "psr-4": {
