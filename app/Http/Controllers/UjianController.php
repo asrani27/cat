@@ -100,7 +100,7 @@ class UjianController extends Controller
                 }
                 return $item;
             })->values();
-            //dd($listSoalUmum, $listSoalTeknis);
+            
             $listSoal = $listSoalUmum->concat($listSoalTeknis);
             // $listSoal   = Soal::get()->map(function ($item) use ($peserta) {
             //     $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();
@@ -111,7 +111,7 @@ class UjianController extends Controller
             //     }
             //     return $item;
             // })->values();
-
+            //dd($listSoal);
             $jmlbelumjawab = $listSoal->where('dijawab', false)->count();
 
             $dijawab    = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $id)->first();
@@ -132,11 +132,7 @@ class UjianController extends Controller
                 $selesai   = $tgl_selesai;
                 $check     = Carbon::now()->between($mulai, $selesai);
                 if ($check) {
-                    $jmlsoal    = $this->soalUjian()->count();
-                    $jam        = Carbon::now()->format('H:i');
-                    $waktu      = Waktu::first()->durasi;
-                    $soal       = Soal::find($id);
-                    $next       = $this->next($id);
+
                     if (Auth::user()->peserta->kategori->nama == 'PENGADMINISTRASI UMUM') {
                         $formasi = 'ADMINISTRASI UMUM';
                     } elseif (Auth::user()->peserta->kategori->nama == 'PEMULASARAN JENAZAH') {
@@ -165,6 +161,12 @@ class UjianController extends Controller
                         return $item;
                     })->values();
                     $listSoal = $listSoalUmum->concat($listSoalTeknis);
+                    $jmlsoal    = $listSoal->count();
+                    $jam        = Carbon::now()->format('H:i');
+                    $waktu      = Waktu::first()->durasi;
+
+                    $soal       = Soal::find($listSoal->first()->id);
+                    $next       = $this->next($listSoal->first()->id);
                     // dd($listSoalUmum, $listSoalTeknis, $listSoal);
                     // $listSoal   = Soal::get()->map(function ($item) use ($peserta) {
                     //     $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();

@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Role;
+use App\Models\Soal;
 use App\Models\User;
 use GuzzleHttp\Client;
 use App\Models\Peserta;
 use App\Models\Kategori;
-use App\Models\WaktuPendaftaran;
 use Illuminate\Http\Request;
+use App\Models\WaktuPendaftaran;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -56,16 +57,29 @@ class LoginController extends Controller
 
                     $user->roles()->attach($role);
 
+
+                    $formasi = Kategori::find($req->kategori_id)->nama;
+
+                    $listSoalUmum = Soal::where('jenis', 'UMUM')->get();
+                    $listSoalTeknis = Soal::where('formasi', $formasi)->get();
+
+                    $listSoal = $listSoalUmum->concat($listSoalTeknis);
+
+                    // Ambil ID, acak, lalu ubah ke array
+                    $acakId = $listSoal->pluck('id')->shuffle()->values()->all();
+
+                    // Ubah ke JSON
+                    $jsonId = json_encode($acakId);
+
                     $peserta = new Peserta;
                     $peserta->nik = $req->nik;
                     $peserta->nama = $req->nama;
                     $peserta->email = $req->email;
-                    // $peserta->kampus = $req->kampus;
-                    // $peserta->tahun_lulus = $req->tahun_lulus;
-                    // $peserta->jurusan = $req->jurusan;
                     $peserta->user_id = $user->id;
                     $peserta->telp = $req->telp;
                     $peserta->kategori_id = $req->kategori_id;
+                    $peserta->soal_acak = $jsonId;
+
                     $peserta->save();
 
                     toastr()->success('Berhasil Di Simpan');
