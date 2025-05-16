@@ -92,9 +92,15 @@ class PesertaController extends Controller
 
     public function destroy($id)
     {
-        Peserta::find($id)->delete();
-        toastr()->success('Sukses Di Hapus');
-        return back();
+        try {
+            Peserta::find($id)->user->delete();
+            Peserta::find($id)->delete();
+            toastr()->success('Sukses Di Hapus');
+            return back();
+        } catch (\Exception $e) {
+            toastr()->error('Gagal Di Hapus');
+            return back();
+        }
     }
 
     public function akun($id)
