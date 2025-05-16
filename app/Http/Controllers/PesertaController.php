@@ -217,11 +217,11 @@ class PesertaController extends Controller
             return redirect('/home/peserta');
         } else {
             $validator = Validator::make($req->all(), [
-                'file' => 'mimes:zip,rar|max:10000'
+                'file' => 'mimes:pdf|max:8000'
             ]);
 
             if ($validator->fails()) {
-                toastr()->error('File Harus Berupa zip/rar dan Maks 10MB');
+                toastr()->error('File Harus Berupa pdf dan Maks 8MB');
                 return back();
             }
 
