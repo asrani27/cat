@@ -71,6 +71,7 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
         Route::get('formasi/{id}', [HomeController::class, 'formasi']);
         Route::get('gantipass', [HomeController::class, 'gantipass']);
         Route::post('gantipass', [HomeController::class, 'resetpass']);
+        Route::get('peserta/search', [PesertaController::class, 'search']);
         Route::get('peserta/{id}/akun', [PesertaController::class, 'akun']);
         Route::get('peserta/{id}/pass', [PesertaController::class, 'pass']);
         Route::get('peserta/{id}/verify', [PesertaController::class, 'verify']);

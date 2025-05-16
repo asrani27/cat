@@ -90,6 +90,12 @@ class PesertaController extends Controller
         return redirect('/superadmin/peserta');
     }
 
+    public function search()
+    {
+        $keyword = request()->get('search');
+        $data = Peserta::where('nik', '%' . $keyword . '%')->orWhere('nama', '%' . $keyword . '%')->paginate(10);
+        return view('superadmin.peserta.index', compact('data'));
+    }
     public function destroy($id)
     {
         try {
