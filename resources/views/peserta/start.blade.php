@@ -28,7 +28,10 @@
 
           </ul>
           <center>
-            <h1>SILAHKAN KLIK TOMBOL MULAI UJIAN</h1>
+            <h1>SETELAH MASUK WAKTU UJIAN, HALAMAN AKAN MASUK KE SOAL UJIAN, NAMUN JIKA HALAMAN TIDAK BERUBAH SILAHKAN
+              KLIK
+              TOMBOL
+              MULAI UJIAN</h1>
             <strong>MULAI {{\Carbon\Carbon::parse($mulai)->format('d M Y H:i')}} WITA<br /> SELESAI
               {{\Carbon\Carbon::parse($selesai)->format('d M Y H:i')}} WITA</strong> <br />
             <a href="/peserta/mulai" class="btn btn-primary btn-lg"><i class="fas fa-edit"></i> MULAI UJIAN</a><br />
