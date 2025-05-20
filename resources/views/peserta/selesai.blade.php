@@ -38,7 +38,7 @@
             <td style="border: 1px solid black"><strong>Alasan Sanggah</strong>
               <form method="post" action="/home/peserta/sanggah">
                 @csrf
-                <textarea rows='4' class="form-control"></textarea>
+                <textarea rows='4' class="form-control" name="isi"></textarea>
                 <button type="submit" class="btn btn-xs btn-danger"
                   onclick="return confirm('Sudah yakin ingin mengajukan sanggah?');">Ajukan Sanggahan</button>
               </form>

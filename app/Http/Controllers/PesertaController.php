@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Waktu;
 use App\Models\Jawaban;
 use App\Models\Peserta;
+use App\Models\Sanggah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -50,7 +51,16 @@ class PesertaController extends Controller
     }
     public function sanggah(Request $req)
     {
-        
+        $check = Sanggah::where('peserta_id', Auth::user()->peserta->id)->first();
+        if ($check == null) {
+            $n = new Sanggah();
+            $n->isi = $req->isi;
+            $n->save();
+            toastr()->success('Berhasil Di Ajukan');
+        } else {
+            toastr()->error('Sudah melakukkan sanggah');
+        }
+        return back();
     }
     public function edit($id)
     {
