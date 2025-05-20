@@ -50,7 +50,7 @@ class PesertaController extends Controller
     }
     public function sanggah(Request $req)
     {
-       
+        
     }
     public function edit($id)
     {
