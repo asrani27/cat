@@ -34,14 +34,20 @@
             <td style="border: 1px solid black">Verifikasi Berkas Lamaran</td>
             <td style="border: 1px solid black">{{Auth::user()->peserta->status_berkas}}<br />
               ({{Auth::user()->peserta->keterangan_berkas}})<br />
+
             </td>
-            <td style="border: 1px solid black"><strong>Alasan Sanggah</strong>
+            <td style="border: 1px solid black"><strong>Alasan Sanggah :</strong>
+              @if (Auth::user()->peserta->sanggah->count() == 0)
+
               <form method="post" action="/home/peserta/sanggah">
                 @csrf
-                <textarea rows='4' class="form-control" name="isi"></textarea>
+                <textarea rows='2' class="form-control" name="isi"></textarea>
                 <button type="submit" class="btn btn-xs btn-danger"
                   onclick="return confirm('Sudah yakin ingin mengajukan sanggah?');">Ajukan Sanggahan</button>
               </form>
+              @else
+              <br />{{Auth::user()->peserta->sanggah->first()->isi}}
+              @endif
             </td>
           </tr>
           <tr>

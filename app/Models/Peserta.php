@@ -23,4 +23,8 @@ class Peserta extends Model
     {
         return $this->hasMany(Jawaban::class, 'peserta_id');
     }
+    public function sanggah()
+    {
+        return $this->hasMany(Sanggah::class, 'peserta_id');
+    }
 }

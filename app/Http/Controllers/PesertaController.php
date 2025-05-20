@@ -54,6 +54,7 @@ class PesertaController extends Controller
         $check = Sanggah::where('peserta_id', Auth::user()->peserta->id)->first();
         if ($check == null) {
             $n = new Sanggah();
+            $n->peserta_id = Auth::user()->peserta->id;
             $n->isi = $req->isi;
             $n->save();
             toastr()->success('Berhasil Di Ajukan');
