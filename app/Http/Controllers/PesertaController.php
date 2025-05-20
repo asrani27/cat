@@ -48,7 +48,10 @@ class PesertaController extends Controller
     {
         //
     }
-
+    public function sanggah(Request $req)
+    {
+       
+    }
     public function edit($id)
     {
         $data = Peserta::find($id);
@@ -58,7 +61,12 @@ class PesertaController extends Controller
     public function updateStatus(Request $req, $id)
     {
         $data = Peserta::find($id);
-        $data->status = $req->status;
+        $data->status_ujian = $req->status_ujian;
+        $data->keterangan_ujian = $req->keterangan_ujian;
+        $data->status_berkas = $req->status_berkas;
+        $data->keterangan_berkas = $req->keterangan_berkas;
+        $data->status_wawancara = $req->status_wawancara;
+        $data->keterangan_wawancara = $req->keterangan_wawancara;
         $data->save();
         toastr()->success('Sukses Di Update');
         return back();

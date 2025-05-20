@@ -45,7 +45,6 @@ ADMIN
                             <th>Email</th>
                             <th>File</th>
                             <th>Status</th>
-                            <th>Keterangan</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -71,8 +70,11 @@ ADMIN
                                 <a href="/storage/peserta/{{$item->file}}">Download</a>
                                 @endif
                             </td>
-                            <td>{{$item->status}}</td>
-                            <td>{{$item->keterangan}}</td>
+                            <td>
+                                Ujian : {{$item->status_ujian}} ({{$item->keterangan_ujian}})<br />
+                                Berkas : {{$item->status_berkas}} ({{$item->keterangan_berkas}}) <br />
+                                Wawancara : {{$item->status_wawancara}} ({{$item->keterangan_wawancara}}) <br />
+                            </td>
                             <td>
 
                                 <form action="/superadmin/peserta/{{$item->id}}" method="post">

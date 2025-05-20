@@ -19,13 +19,13 @@ VERIFIKASI BERKAS
                     <div class="card">
                         <div class="card-body">
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">STATUS</label>
+                                <label class="col-sm-2 col-form-label">STATUS UJIAN</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" name="status" required>
+                                    <select class="form-control" name="status_ujian">
                                         <option value="">-</option>
-                                        <option value="LULUS" {{$data->status == 'LULUS' ? 'selected':''}}>LULUS
+                                        <option value="LULUS" {{$data->status_ujian == 'LULUS' ? 'selected':''}}>LULUS
                                         </option>
-                                        <option value="TIDAK LULUS" {{$data->status == 'TIDAK LULUS' ?
+                                        <option value="TIDAK LULUS" {{$data->status_ujian == 'TIDAK LULUS' ?
                                             'selected':''}}>TIDAK
                                             LULUS</option>
                                     </select>
@@ -33,13 +33,58 @@ VERIFIKASI BERKAS
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Keterangan</label>
+                                <label class="col-sm-2 col-form-label">Keterangan Ujian</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="keterangan" required
-                                        value="{{$data->keterangan}}">
+                                    <input type="text" class="form-control" name="keterangan_ujian"
+                                        value="{{$data->keterangan_ujian}}">
                                 </div>
                             </div>
 
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">STATUS BERKAS</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="status_berkas">
+                                        <option value="">-</option>
+                                        <option value="LULUS" {{$data->status_berkas == 'LULUS' ? 'selected':''}}>LULUS
+                                        </option>
+                                        <option value="TIDAK LULUS" {{$data->status_berkas == 'TIDAK LULUS' ?
+                                            'selected':''}}>TIDAK
+                                            LULUS</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Keterangan Berkas</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="keterangan_berkas"
+                                        value="{{$data->keterangan_berkas}}">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">STATUS WAWANCARA</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="status_wawancara">
+                                        <option value="">-</option>
+                                        <option value="LULUS" {{$data->status_wawancara == 'LULUS' ?
+                                            'selected':''}}>LULUS
+                                        </option>
+                                        <option value="TIDAK LULUS" {{$data->status_wawancara == 'TIDAK LULUS' ?
+                                            'selected':''}}>TIDAK
+                                            LULUS</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Keterangan Wawancara</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="keterangan_wawancara"
+                                        value="{{$data->keterangan_wawancara}}">
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"></label>
                                 <div class="col-sm-10">
