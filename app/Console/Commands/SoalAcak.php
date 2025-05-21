@@ -6,6 +6,7 @@ use App\Models\Soal;
 use App\Models\Peserta;
 use App\Models\Kategori;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 class SoalAcak extends Command
 {
@@ -40,6 +41,10 @@ class SoalAcak extends Command
      */
     public function handle()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::table('jawaban')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
         $peserta = Peserta::get();
         foreach ($peserta as $key => $item) {
             $formasi = str_replace("\r", '', Kategori::find($item->kategori_id)->nama);
