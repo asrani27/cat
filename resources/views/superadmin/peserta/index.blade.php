@@ -74,6 +74,10 @@ ADMIN
                                 Ujian : {{$item->status_ujian}} ({{$item->keterangan_ujian}})<br />
                                 Berkas : {{$item->status_berkas}} ({{$item->keterangan_berkas}}) <br />
                                 Wawancara : {{$item->status_wawancara}} ({{$item->keterangan_wawancara}}) <br />
+                                <hr>
+                                @if ($item->sanggah != 0)
+                                Sanggah : {{$item->sanggah->first()->isi}}
+                                @endif
                             </td>
                             <td>
 
