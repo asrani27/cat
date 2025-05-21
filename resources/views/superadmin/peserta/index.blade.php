@@ -73,10 +73,10 @@ ADMIN
                             <td>
                                 Ujian : {{$item->status_ujian}} ({{$item->keterangan_ujian}})<br />
                                 Berkas : {{$item->status_berkas}} ({{$item->keterangan_berkas}}) <br />
-                                Wawancara : {{$item->status_wawancara}} ({{$item->keterangan_wawancara}}) <br />
+                                Wawancara : {{$item->status_wawancara}} ({{$item->keterangan_wawancara}})
                                 <hr>
                                 @if ($item->sanggah->count() != 0)
-                                Sanggah : {{$item->sanggah->first()->isi}}
+                                <span class="text-red"> Sanggah : {{$item->sanggah->first()->isi}}</span>
                                 @endif
                             </td>
                             <td>
