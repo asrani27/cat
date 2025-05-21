@@ -75,7 +75,7 @@ ADMIN
                                 Berkas : {{$item->status_berkas}} ({{$item->keterangan_berkas}}) <br />
                                 Wawancara : {{$item->status_wawancara}} ({{$item->keterangan_wawancara}}) <br />
                                 <hr>
-                                @if ($item->sanggah != 0)
+                                @if ($item->sanggah->count() != 0)
                                 Sanggah : {{$item->sanggah->first()->isi}}
                                 @endif
                             </td>
