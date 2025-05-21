@@ -59,10 +59,18 @@ class LoginController extends Controller
 
                     $formasi = Kategori::find($req->kategori_id)->nama;
 
-                    $listSoalUmum = Soal::where('jenis', 'UMUM')->get();
-                    $listSoalTeknis = Soal::where('formasi', $formasi)->get();
+                    if ($formasi == 'PERAWAT') {
+                        $listSoalTeknis = Soal::where('formasi', 'PERAWAT')->get();
+                        $listSoal = $listSoalTeknis;
+                    } elseif ($formasi == 'TEKNISI GAS MEDIS') {
+                        $listSoalUmum = Soal::where('jenis', 'UMUM')->take(40)->get();
+                        $listSoalTeknis = Soal::where('formasi', $formasi)->get();
+                    } else {
+                        $listSoalUmum = Soal::where('jenis', 'UMUM')->get();
+                        $listSoalTeknis = Soal::where('formasi', $formasi)->get();
+                        $listSoal = $listSoalUmum->concat($listSoalTeknis);
+                    }
 
-                    $listSoal = $listSoalUmum->concat($listSoalTeknis);
 
                     // Ambil ID, acak, lalu ubah ke array
                     $acakId = $listSoal->pluck('id')->shuffle()->values()->all();
