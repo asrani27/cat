@@ -42,7 +42,7 @@ class SoalAcak extends Command
     {
         $peserta = Peserta::get();
         foreach ($peserta as $key => $item) {
-            $formasi = Kategori::find($item->kategori_id)->nama;
+            $formasi = str_replace("\r", '', Kategori::find($item->kategori_id)->nama);
             if ($formasi == 'PERAWAT') {
                 $listSoalTeknis = Soal::where('formasi', 'PERAWAT')->get();
                 $listSoal = $listSoalTeknis;

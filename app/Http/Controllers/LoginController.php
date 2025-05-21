@@ -49,15 +49,8 @@ class LoginController extends Controller
             if ($req->password == $req->confimation_password) {
 
                 if (User::where('username', $req->nik)->first() == null) {
-                    $user = new User;
-                    $user->name = $req->nama;
-                    $user->username = $req->nik;
-                    $user->password = bcrypt($req->password);
-                    $user->save();
 
-                    $user->roles()->attach($role);
-
-                    $formasi = Kategori::find($req->kategori_id)->nama;
+                    $formasi = str_replace("\r", '', Kategori::find($req->kategori_id)->nama);
 
                     if ($formasi == 'PERAWAT') {
                         $listSoalTeknis = Soal::where('formasi', 'PERAWAT')->get();
@@ -65,18 +58,26 @@ class LoginController extends Controller
                     } elseif ($formasi == 'TEKNISI GAS MEDIS') {
                         $listSoalUmum = Soal::where('jenis', 'UMUM')->take(40)->get();
                         $listSoalTeknis = Soal::where('formasi', $formasi)->get();
+                        $listSoal = $listSoalUmum->concat($listSoalTeknis);
                     } else {
                         $listSoalUmum = Soal::where('jenis', 'UMUM')->get();
                         $listSoalTeknis = Soal::where('formasi', $formasi)->get();
                         $listSoal = $listSoalUmum->concat($listSoalTeknis);
                     }
 
-
                     // Ambil ID, acak, lalu ubah ke array
                     $acakId = $listSoal->pluck('id')->shuffle()->values()->all();
 
                     // Ubah ke JSON
                     $jsonId = json_encode($acakId);
+
+                    $user = new User;
+                    $user->name = $req->nama;
+                    $user->username = $req->nik;
+                    $user->password = bcrypt($req->password);
+                    $user->save();
+
+                    $user->roles()->attach($role);
 
                     $peserta = new Peserta;
                     $peserta->nik = $req->nik;

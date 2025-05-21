@@ -36,7 +36,9 @@
               ({{Auth::user()->peserta->keterangan_berkas}})<br />
 
             </td>
-            <td style="border: 1px solid black"><strong>Alasan Sanggah :</strong>
+            <td style="border: 1px solid black">
+              @if (Auth::user()->peserta->status_berkas == 'TIDAK LULUS')
+              <strong>Alasan Sanggah :</strong>
               @if (Auth::user()->peserta->sanggah->count() == 0)
 
               <form method="post" action="/home/peserta/sanggah">
@@ -47,6 +49,7 @@
               </form>
               @else
               <br />{{Auth::user()->peserta->sanggah->first()->isi}}
+              @endif
               @endif
             </td>
           </tr>

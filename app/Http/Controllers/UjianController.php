@@ -84,48 +84,34 @@ class UjianController extends Controller
         $mulai     = $tgl_mulai;
         $selesai   = $tgl_selesai;
         if ($peserta->test == 1) {
-            $jmlsoal    = $this->soalUjian()->count();
+
             $jam        = Carbon::now()->format('H:i');
             $waktu      = Waktu::first()->durasi;
             $soal       = Soal::find($id);
             $next       = $this->next($id);
-            if (Auth::user()->peserta->kategori->nama == 'PENGADMINISTRASI UMUM') {
-                $formasi = 'ADMINISTRASI UMUM';
-            } elseif (Auth::user()->peserta->kategori->nama == 'PEMULASARAN JENAZAH') {
-                $formasi = 'PEMULASARAN';
-            } else {
-                $formasi = Auth::user()->peserta->kategori->nama;
-            }
-            $listSoalUmum = Soal::where('jenis', 'UMUM')->map(function ($item) use ($peserta) {
-                $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();
-                if ($check == null) {
-                    $item->dijawab = false;
-                } else {
-                    $item->dijawab = $check->jawaban;
-                }
-                return $item;
-            })->values();
-            $listSoalTeknis = Soal::where('formasi', $formasi)->map(function ($item) use ($peserta) {
-                $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();
-                if ($check == null) {
-                    $item->dijawab = false;
-                } else {
-                    $item->dijawab = $check->jawaban;
-                }
-                return $item;
-            })->values();
 
-            $listSoal = $listSoalUmum->concat($listSoalTeknis);
-            // $listSoal   = Soal::get()->map(function ($item) use ($peserta) {
-            //     $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();
-            //     if ($check == null) {
-            //         $item->dijawab = false;
-            //     } else {
-            //         $item->dijawab = $check->jawaban;
-            //     }
-            //     return $item;
-            // })->values();
-            //dd($listSoal);
+            $nomor_acak = json_decode($peserta->soal_acak);
+
+            if (!in_array($id, $nomor_acak)) {
+                toastr()->error('ID tersebut bukan soal untuk anda');
+                return back();
+            }
+            $daftarsoal = Soal::whereIn('id', $nomor_acak)->get();
+
+            $listSoal = $daftarsoal->sortBy(function ($item) use ($nomor_acak) {
+                return array_search($item->id, $nomor_acak);
+            })->values()->map(function ($item) use ($peserta) {
+                $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();
+                if ($check == null) {
+                    $item->dijawab = false;
+                } else {
+                    $item->dijawab = $check->jawaban;
+                }
+                return $item;
+            });
+
+
+            $jmlsoal    = $listSoal->count();
             $jmlbelumjawab = $listSoal->where('dijawab', false)->count();
 
             $dijawab    = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $id)->first();
@@ -145,9 +131,11 @@ class UjianController extends Controller
                 $mulai     = $tgl_mulai;
                 $selesai   = $tgl_selesai;
                 $check     = Carbon::now()->between($mulai, $selesai);
+
                 if ($check) {
 
                     $nomor_acak = json_decode($peserta->soal_acak);
+
                     if (!in_array($id, $nomor_acak)) {
                         toastr()->error('ID tersebut bukan soal untuk anda');
                         return back();
@@ -186,17 +174,6 @@ class UjianController extends Controller
                             $next = $nomor_acak[0];
                         }
                     }
-                    //$next       = $this->next($listSoal->first()->id);
-                    // dd($listSoalUmum, $listSoalTeknis, $listSoal);
-                    // $listSoal   = Soal::get()->map(function ($item) use ($peserta) {
-                    //     $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();
-                    //     if ($check == null) {
-                    //         $item->dijawab = false;
-                    //     } else {
-                    //         $item->dijawab = $check->jawaban;
-                    //     }
-                    //     return $item;
-                    // })->values();
 
                     $jmlbelumjawab = $listSoal->where('dijawab', false)->count();
 
