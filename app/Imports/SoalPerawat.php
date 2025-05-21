@@ -5,8 +5,9 @@ namespace App\Imports;
 use App\Models\Soal;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
+use Maatwebsite\Excel\Concerns\WithCalculatedFormulas;
 
-class SoalPerawat implements ToModel, WithStartRow
+class SoalPerawat implements ToModel, WithStartRow, WithCalculatedFormulas
 {
     /**
      * @param array $row
@@ -15,7 +16,7 @@ class SoalPerawat implements ToModel, WithStartRow
      */
     public function startRow(): int
     {
-        return 4; // Mulai dari baris ke-3
+        return 3; // Mulai dari baris ke-3
     }
     public function model(array $row)
     {
@@ -27,7 +28,7 @@ class SoalPerawat implements ToModel, WithStartRow
         $param['pil_c'] = $row[4];
         $param['pil_d'] = $row[5];
         $param['pil_e'] = $row[6];
-        $param['kunci'] = $row[7];
+        $param['kunci'] = $row[8];
 
         if ($param['pertanyaan'] == null) {
         } else {
