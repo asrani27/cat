@@ -20,7 +20,7 @@ class SoalPemulasaran implements ToModel, WithStartRow
     public function model(array $row)
     {
         $param['jenis'] = 'TEKNIS';
-        $param['formasi'] = 'PEMULASARAN';
+        $param['formasi'] = 'PEMULASARAN JENAZAH';
         $param['pertanyaan'] = $row[1];
         $param['pil_a'] = $row[2];
         $param['pil_b'] = $row[3];
