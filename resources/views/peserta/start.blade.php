@@ -16,7 +16,7 @@
           <ul>
             <li>
               <strong>Bagi peserta yang belum mengupload berkas dengan lengkap belum bisa mengikuti
-                ujian. silahkan lengkapi dulu. Untuk berkas wajib di compress menjadi .ZIP</strong>
+                ujian. silahkan lengkapi dulu. Untuk berkas wajib digabung menjadi satu dan dalam bentuk PDF</strong>
             </li>
             <li>
               Setelah Berkas di upload, akan di verifikasi oleh admin, harap menunggu hasil verifikasi pada tanggal :
