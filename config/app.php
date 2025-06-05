@@ -113,7 +113,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
-        
+
     ],
 
 ];

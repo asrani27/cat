@@ -69,6 +69,8 @@ Route::post('/daftar', [LoginController::class, 'simpanDaftar']);
 Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
     Route::prefix('superadmin')->group(function () {
         Route::get('formasi/{id}', [HomeController::class, 'formasi']);
+        Route::get('hotline', [HomeController::class, 'hotline']);
+        Route::post('hotline', [HomeController::class, 'updateHotline']);
         Route::get('gantipass', [HomeController::class, 'gantipass']);
         Route::post('gantipass', [HomeController::class, 'resetpass']);
         Route::get('peserta/search', [PesertaController::class, 'search']);

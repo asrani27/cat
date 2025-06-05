@@ -2,12 +2,14 @@
 
 namespace App\Helpers;
 
-function myProfil()
-{
-    return 'asu';
-}
+use App\Models\Hotline;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-function bangke()
+class Helper
 {
-    return 'asdasd';
+    public function hotline()
+    {
+        return Hotline::first()->nomor;
+    }
 }

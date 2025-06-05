@@ -10,6 +10,7 @@ use App\Models\Jawaban;
 use App\Models\Peserta;
 use App\Models\Kategori;
 use App\Models\BenarSalah;
+use App\Models\Hotline;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -80,7 +81,17 @@ class HomeController extends Controller
     {
         return view('superadmin.gantipass.index');
     }
-
+    public function hotline()
+    {
+        $data = Hotline::first();
+        return view('superadmin.hotline.index', compact('data'));
+    }
+    public function updateHotline(Request $req)
+    {
+        Hotline::first()->update(['nomor' => $req->nomor]);
+        toastr()->success('Berhasil Di Ubah');
+        return back();
+    }
     public function resetpass(Request $req)
     {
         if ($req->password1 == $req->password2) {

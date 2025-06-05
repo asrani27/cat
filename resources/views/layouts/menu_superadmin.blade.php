@@ -53,6 +53,14 @@
             </a>
         </li>
         <li class="nav-item">
+            <a href="/superadmin/hotline" class="nav-link {{ Request::is('superadmin/hotline*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-phone"></i>
+                <p>
+                    Hotline
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
             <a href="/superadmin/gantipass" class="nav-link {{ Request::is('superadmin/gantipass*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-key"></i>
                 <p>

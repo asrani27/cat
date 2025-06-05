@@ -14,7 +14,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        foreach (glob(app_path() . '/Helpers/*.php') as $helpersfilename) //tambahan
+        {
+            require_once($helpersfilename);
+        }
     }
 
     /**
