@@ -1,16 +1,9 @@
 @extends('layouts.app')
 
 @push('css')
-
-<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-  integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-  crossorigin="" />
-<style>
-  #mapid {
-    height: 380px;
-  }
-</style>
+<!-- DataTables -->
+<link rel="stylesheet" href="/theme/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="/theme/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 @endpush
 @section('title')
 <strong>CAT</strong>
@@ -40,21 +33,17 @@
         DATA HASIL UJIAN PESERTA
       </div>
       <div class="card-body">
-        <div class=" table-responsive">
-          <table class="table table-hover table-striped table-bordered text-nowrap table-sm">
+        <div class="table-responsive">
+          <table id="example1" class="table table-hover table-striped table-bordered text-nowrap table-sm">
             <thead>
               <tr style="font-size:11px; font-family:Arial, Helvetica, sans-serif" class="bg-gradient-primary">
                 <th class="text-center">#</th>
-                <th>NIK</th>
-                <th class="text-center">Nama</th>
-                <th class="text-center">Kampus</th>
-                <th class="text-center">Telp</th>
-                <th class="text-center">Git</th>
-                <th class="text-center">Jumlah Soal</th>
-                <th class="text-center">Di Jawab</th>
-                <th class="text-center">Belum Jawab</th>
-                <th class="text-center">Benar</th>
-                <th class="text-center">Salah</th>
+                <th>NIK / NAMA / TELP</th>
+                <th class="text-center">Detail Soal</th>
+                <th class="text-center">Pendidikan</th>
+                <th class="text-center">File</th>
+                <th class="text-center">Status</th>
+                <th class="text-center">Aksi</th>
 
               </tr>
             </thead>
@@ -66,16 +55,62 @@
               @foreach ($data as $item)
               <tr style="font-size:11px; font-family:Arial, Helvetica, sans-serif">
                 <td>{{$no++}}</td>
-                <td>{{$item->nik}}</td>
-                <td>{{$item->nama}}</td>
-                <td style="width: 20%">{{$item->kampus}}</td>
-                <td>{{$item->telp}}</td>
-                <td><a href="{{$item->github}}" target="_blank">{{$item->github}}</a></td>
-                <td class="text-center">{{$soal}}</td>
-                <td class="text-center">{{$item->dijawab}}</td>
-                <td class="text-center">{{$soal - $item->dijawab}}</td>
-                <td class="text-center">{{$item->benar}}</td>
-                <td class="text-center">{{$soal - $item->benar}}</td>
+                <td>{{$item->nik}} <br />{{$item->nama}}</br>{{$item->telp}}</td>
+                <td class="text-left">
+                  Jumlah : {{$soal}} <br />
+                  Di Jawab : {{$item->dijawab}} <br />
+                  Belum Di Jawab : {{$soal - $item->dijawab}} <br />
+                  Benar : {{$item->benar}} <br />
+                  Salah : {{$soal - $item->benar}}
+
+                </td>
+                <td class="text-left">
+                  Sekolah/PTA : {{$item->kampus}} <br />
+                  Jurusan : {{$item->jurusan}} <br />
+                  Tahun Lulus : {{$item->tahun_lulus}} <br />
+                  Email : {{$item->email}}</td>
+                <td>
+                  @if ($item->file == null)
+
+                  @else
+                  <a href="/storage/peserta/{{$item->file}}">Download</a>
+                  @endif
+                </td>
+                <td>
+                  Ujian : {{$item->status_ujian}} ({{$item->keterangan_ujian}})<br />
+                  Berkas : {{$item->status_berkas}} ({{$item->keterangan_berkas}}) <br />
+                  Wawancara : {{$item->status_wawancara}} ({{$item->keterangan_wawancara}})
+                  <br>
+                  @if ($item->sanggah->count() != 0)
+                  <b><span class="text-red"> Sanggah : {{$item->sanggah->first()->isi}}</span></b>
+                  @endif
+                </td>
+                <td>
+
+                  <form action="/superadmin/peserta/{{$item->id}}" method="post">
+                    <a href="/superadmin/formasi/{{$formasi->id}}/peserta/{{$item->id}}/verify"
+                      class="btn btn-xs btn-info"><i class="fas fa-check"></i> Verify</a>
+                    @csrf
+                    <a href="/superadmin/formasi/{{$formasi->id}}/peserta/{{$item->id}}/edit"
+                      class="btn btn-xs btn-success"><i class="fas fa-edit"></i> Edit</a>
+                    @csrf
+
+
+                    {{-- <button type="submit" class="btn btn-xs btn-danger"
+                      onclick="return confirm('yakin DI Hapus?');"><i class="fas fa-trash"></i>
+                      Delete</button> --}}
+
+                    @if ($item->user == null)
+
+                    <a href="/superadmin/formasi/{{$formasi->id}}/peserta/{{$item->id}}/akun"
+                      class="btn btn-xs btn-warning"><i class="fas fa-key"></i> Buat Akun</a>
+                    @else
+                    <a href="/superadmin/formasi/{{$formasi->id}}/peserta/{{$item->id}}/pass"
+                      class="btn btn-xs btn-secondary"><i class="fas fa-key"></i> Reset Pass</a>
+                    @endif
+                  </form>
+
+                </td>
               </tr>
               @endforeach
             </tbody>
@@ -91,4 +126,27 @@
 
 @push('js')
 
+<!-- DataTables -->
+<script src="/theme/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/theme/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="/theme/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/theme/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true,
+      "autoWidth": false,
+    });
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
 @endpush

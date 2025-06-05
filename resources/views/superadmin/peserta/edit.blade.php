@@ -10,11 +10,10 @@ EDIT
 <br />
 <div class="row">
     <div class="col-12">
-        <a href="/superadmin/peserta" class="btn btn-sm btn-secondary"><i class="fas fa-arrow-left"></i>
+        <a href="/superadmin/formasi/{{$formasi_id}}" class="btn btn-sm btn-secondary"><i class="fas fa-arrow-left"></i>
             Kembali</a><br /><br />
-        <form method="post" action="/superadmin/peserta/{{$data->id}}">
+        <form method="post" action="/superadmin/formasi/{{$formasi_id}}/peserta/{{$data->id}}/edit">
             @csrf
-            @method('PUT')
             <div class="row">
                 <div class="col-lg-12 col-12">
                     <div class="card">
@@ -46,7 +45,7 @@ EDIT
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Tanggal Lahir</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="tgl" value="{{$data->tgl}}" required>
+                                    <input type="date" class="form-control" name="tgl" value="{{$data->tgl}}" required>
                                 </div>
                             </div>
 

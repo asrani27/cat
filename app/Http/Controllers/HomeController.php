@@ -3,16 +3,19 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\Role;
 use App\Models\Soal;
+use App\Models\User;
 use App\Models\Waktu;
 use GuzzleHttp\Client;
+use App\Models\Hotline;
 use App\Models\Jawaban;
 use App\Models\Peserta;
 use App\Models\Kategori;
 use App\Models\BenarSalah;
-use App\Models\Hotline;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
@@ -76,6 +79,80 @@ class HomeController extends Controller
 
         $formasi = Kategori::find($id);
         return view('superadmin.formasi', compact('data', 'formasi', 'soal'));
+    }
+
+    public function editPeserta($formasi_id, $id)
+    {
+        $data = Peserta::find($id);
+
+        return view('superadmin.peserta.edit', compact('data', 'formasi_id'));
+    }
+    public function updatePeserta(Request $request, $formasi_id, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'nik' =>  'unique:peserta,nik,' . $id,
+        ]);
+
+        if ($validator->fails()) {
+            $request->flash();
+            toastr()->error('NIK sudah ada');
+            return back();
+        }
+
+        $attr = $request->all();
+
+        Peserta::find($id)->update($attr);
+
+        toastr()->success('Sukses Di Update');
+        return redirect('/superadmin/formasi/' . $formasi_id);
+    }
+    public function akun($formasi_id, $id)
+    {
+        $role = Role::where('name', 'peserta')->first();
+        //Create User Peserta
+        $peserta = Peserta::find($id);
+        $n = new User;
+        $n->name = $peserta->nama;
+        $n->username = $peserta->nik;
+        $n->password = bcrypt($peserta->tgl);
+        $n->save();
+
+        $n->roles()->attach($role);
+
+        $peserta->update(['user_id' => $n->id]);
+
+        toastr()->success('Akun sukses di buat, Password : ' . $peserta->telp);
+        return back();
+    }
+
+    public function pass($formasi_id, $id)
+    {
+        $u = Peserta::find($id)->user;
+        $u->password = bcrypt('112233');
+        $u->save();
+
+        toastr()->success('Password Baru : 112233');
+        return back();
+    }
+    public function verify($formasi_id, $id)
+    {
+        $data = Peserta::find($id);
+
+        return view('superadmin.peserta.verify', compact('data', 'formasi_id'));
+    }
+
+    public function updateStatus(Request $req, $formasi_id, $id)
+    {
+        $data = Peserta::find($id);
+        $data->status_ujian = $req->status_ujian;
+        $data->keterangan_ujian = $req->keterangan_ujian;
+        $data->status_berkas = $req->status_berkas;
+        $data->keterangan_berkas = $req->keterangan_berkas;
+        $data->status_wawancara = $req->status_wawancara;
+        $data->keterangan_wawancara = $req->keterangan_wawancara;
+        $data->save();
+        toastr()->success('Sukses Di Update');
+        return back();
     }
     public function gantipass()
     {
