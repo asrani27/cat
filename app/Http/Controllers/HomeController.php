@@ -56,12 +56,27 @@ class HomeController extends Controller
 
     public function formasi($id)
     {
-        $datasoal = Soal::where('formasi', Kategori::find($id)->nama)->get();
+        $formasi = str_replace("\r", '', Kategori::find($id)->nama);
 
-        $soal       = $datasoal->count();
-        $kategori   = Kategori::distinct('nama')->count('nama');
-        $durasi     = Waktu::first()->durasi;
-        $data = Kategori::find($id)->peserta->map(function ($item) use ($datasoal) {
+        if ($formasi == 'PERAWAT') {
+            $listSoalTeknis = Soal::where('formasi', 'PERAWAT')->get();
+            $soal = $listSoalTeknis;
+        } elseif ($formasi == 'TEKNISI GAS MEDIS') {
+            $listSoalUmum = Soal::where('jenis', 'UMUM')->take(40)->get();
+            $listSoalTeknis = Soal::where('formasi', $formasi)->get();
+            $soal = $listSoalUmum->concat($listSoalTeknis);
+        } else {
+            $listSoalUmum = Soal::where('jenis', 'UMUM')->get();
+            $listSoalTeknis = Soal::where('formasi', $formasi)->get();
+            $soal = $listSoalUmum->concat($listSoalTeknis);
+        }
+
+
+        $jmlSoal = $soal->count();
+        // dd($jmlSoal, $soal);
+        // $kategori   = Kategori::distinct('nama')->count('nama');
+        // $durasi     = Waktu::first()->durasi;
+        $data = Kategori::find($id)->peserta->map(function ($item) {
             $jawaban = Jawaban::where('peserta_id', $item->id)->get();
             $item->dijawab = $jawaban->count();
             $item->benar = Jawaban::where('peserta_id', $item->id)
@@ -78,7 +93,7 @@ class HomeController extends Controller
         })->sortByDesc('benar');
 
         $formasi = Kategori::find($id);
-        return view('superadmin.formasi', compact('data', 'formasi', 'soal'));
+        return view('superadmin.formasi', compact('data', 'formasi', 'jmlSoal'));
     }
 
     public function editPeserta($formasi_id, $id)

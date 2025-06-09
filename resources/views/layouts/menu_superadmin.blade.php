@@ -8,14 +8,14 @@
                 </p>
             </a>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a href="/superadmin/peserta" class="nav-link {{ Request::is('superadmin/peserta*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-users"></i>
                 <p>
                     Peserta
                 </p>
             </a>
-        </li>
+        </li> --}}
 
         <li class="nav-item">
             <a href="/superadmin/kategori" class="nav-link {{ Request::is('superadmin/kategori*') ? 'active' : '' }}">

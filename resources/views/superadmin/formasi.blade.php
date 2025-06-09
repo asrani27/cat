@@ -57,11 +57,11 @@
                 <td>{{$no++}}</td>
                 <td>{{$item->nik}} <br />{{$item->nama}}</br>{{$item->telp}}</td>
                 <td class="text-left">
-                  Jumlah : {{$soal}} <br />
+                  Jumlah : {{$jmlSoal}} <br />
                   Di Jawab : {{$item->dijawab}} <br />
-                  Belum Di Jawab : {{$soal - $item->dijawab}} <br />
+                  Belum Di Jawab : {{$jmlSoal - $item->dijawab}} <br />
                   Benar : {{$item->benar}} <br />
-                  Salah : {{$soal - $item->benar}}
+                  Salah : {{$jmlSoal - $item->benar}}
 
                 </td>
                 <td class="text-left">
