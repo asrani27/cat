@@ -9,6 +9,9 @@
         <th>BELUM DIJAWAB</th>
         <th>BENAR</th>
         <th>SALAH</th>
+        <th>STATUS UJIAN</th>
+        <th>STATUS BERKAS</th>
+        <th>STATUS WAWANCARA</th>
         {{-- <th class="text-center">Detail Soal</th>
         <th class="text-center">Pendidikan</th>
         <th class="text-center">Status</th> --}}
@@ -24,6 +27,9 @@
         <td> {{$jmlSoal - $item->dijawab}}</td>
         <td>{{$item->benar}}</td>
         <td>{{$jmlSoal - $item->benar}}</td>
+        <td>{{$status_ujian}}</td>
+        <td>{{$status_berkas}}</td>
+        <td>{{$status_wawancara}}</td>
         {{-- <td class="text-left">
             Jumlah : {{$jmlSoal}} <br />
             Di Jawab : {{$item->dijawab}} <br />
