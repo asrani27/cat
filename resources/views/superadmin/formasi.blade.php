@@ -31,6 +31,7 @@
     <div class="card">
       <div class="card-header">
         DATA HASIL UJIAN PESERTA
+        <a href="/superadmin/formasi/{{$formasi->id}}/excel" class="btn btn-primary btn-sm">Export Excel</a>
       </div>
       <div class="card-body">
         <div class="table-responsive">

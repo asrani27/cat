@@ -14,7 +14,9 @@ use App\Models\Peserta;
 use App\Models\Kategori;
 use App\Models\BenarSalah;
 use Illuminate\Http\Request;
+use App\Exports\PendaftarExport;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
@@ -54,6 +56,11 @@ class HomeController extends Controller
         return view('superadmin.home', compact('peserta', 'soal', 'kategori', 'durasi', 'data', 'yangupload', 'formasi'));
     }
 
+    public function excel($id)
+    {
+        $filename = Kategori::find($id)->nama . '.xlsx';
+        return Excel::download(new PendaftarExport($id), $filename);
+    }
     public function formasi($id)
     {
         $formasi = str_replace("\r", '', Kategori::find($id)->nama);
@@ -73,9 +80,6 @@ class HomeController extends Controller
 
 
         $jmlSoal = $soal->count();
-        // dd($jmlSoal, $soal);
-        // $kategori   = Kategori::distinct('nama')->count('nama');
-        // $durasi     = Waktu::first()->durasi;
         $data = Kategori::find($id)->peserta->map(function ($item) {
             $jawaban = Jawaban::where('peserta_id', $item->id)->get();
             $item->dijawab = $jawaban->count();
