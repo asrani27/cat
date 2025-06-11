@@ -27,9 +27,9 @@
         <td> {{$jmlSoal - $item->dijawab}}</td>
         <td>{{$item->benar}}</td>
         <td>{{$jmlSoal - $item->benar}}</td>
-        <td>{{$status_ujian}}</td>
-        <td>{{$status_berkas}}</td>
-        <td>{{$status_wawancara}}</td>
+        <td>{{$item->status_ujian}}</td>
+        <td>{{$item->status_berkas}}</td>
+        <td>{{$item->status_wawancara}}</td>
         {{-- <td class="text-left">
             Jumlah : {{$jmlSoal}} <br />
             Di Jawab : {{$item->dijawab}} <br />
