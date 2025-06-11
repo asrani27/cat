@@ -97,9 +97,9 @@
                     @csrf
 
 
-                    {{-- <button type="submit" class="btn btn-xs btn-danger"
-                      onclick="return confirm('yakin DI Hapus?');"><i class="fas fa-trash"></i>
-                      Delete</button> --}}
+                    <button type="submit" class="btn btn-xs btn-danger" onclick="return confirm('yakin DI Hapus?');"><i
+                        class="fas fa-trash"></i>
+                      Delete</button>
 
                     @if ($item->user == null)
 
