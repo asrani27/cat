@@ -70,6 +70,7 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
     Route::prefix('superadmin')->group(function () {
         Route::get('formasi/{id}', [HomeController::class, 'formasi']);
         Route::get('formasi/{id}/excel', [HomeController::class, 'excel']);
+        Route::get('formasi/{id_formasi}/peserta/{id}/delete', [HomeController::class, 'delete']);
         Route::get('formasi/{id_formasi}/peserta/{id}/verify', [HomeController::class, 'verify']);
         Route::post('formasi/{id_formasi}/peserta/{id}/verify', [HomeController::class, 'updateStatus']);
         Route::get('formasi/{id_formasi}/peserta/{id}/edit', [HomeController::class, 'editPeserta']);

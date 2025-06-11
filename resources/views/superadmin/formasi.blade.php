@@ -97,9 +97,10 @@
                     @csrf
 
 
-                    <button type="submit" class="btn btn-xs btn-danger" onclick="return confirm('yakin DI Hapus?');"><i
+                    <a href="/superadmin/formasi/{{$formasi->id}}/peserta/{{$item->id}}/delete"
+                      class="btn btn-xs btn-danger" onclick="return confirm('yakin DI Hapus?');"><i
                         class="fas fa-trash"></i>
-                      Delete</button>
+                      Delete</a>
 
                     @if ($item->user == null)
 

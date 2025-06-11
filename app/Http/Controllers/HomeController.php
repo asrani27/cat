@@ -56,6 +56,18 @@ class HomeController extends Controller
         return view('superadmin.home', compact('peserta', 'soal', 'kategori', 'durasi', 'data', 'yangupload', 'formasi'));
     }
 
+    public function delete($id_formasi, $id)
+    {
+        try {
+            Peserta::find($id)->user->delete();
+            Peserta::find($id)->delete();
+            toastr()->success('Sukses Di Hapus');
+            return back();
+        } catch (\Exception $e) {
+            toastr()->error('Gagal Di Hapus');
+            return back();
+        }
+    }
     public function excel($id)
     {
         $filename = Kategori::find($id)->nama . '.xlsx';
