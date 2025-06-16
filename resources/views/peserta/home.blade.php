@@ -1,7 +1,15 @@
 @extends('peserta.layouts.app')
 
 @push('css')
-
+<style>
+  /* Mencegah seleksi teks */
+  .no-copy {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+</style>
 @endpush
 
 @section('content')
@@ -23,8 +31,11 @@
         <h3 class="card-title">Selamat Menjawab</h3>
       </div>
       <div class="card-body">
+        <div class="no-copy" oncopy="return false" oncut="return false" onpaste="return false"
+          oncontextmenu="return false">
+          {!!$soal->pertanyaan!!}
+        </div>
 
-        {!!$soal->pertanyaan!!}
         <form method="post" action="/simpanjawaban">
           @csrf
           <input type="hidden" name="soal_id" value="{{$soal->id}}">
@@ -105,5 +116,15 @@
 @endsection
 
 @push('js')
-
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('copy', function (e) {
+            e.preventDefault();
+            alert('Copy tidak diizinkan!');
+        });
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+    });
+</script>
 @endpush
