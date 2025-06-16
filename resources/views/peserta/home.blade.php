@@ -40,27 +40,32 @@
           @csrf
           <input type="hidden" name="soal_id" value="{{$soal->id}}">
           <div class="form-group">
-            <div class="custom-control custom-radio">
+            <div class="custom-control custom-radio" class="no-copy" oncopy="return false" oncut="return false"
+              onpaste="return false" oncontextmenu="return false">
               <input class="custom-control-input" type="radio" value="A" id="customRadio1" name="jawaban"
                 {{($dijawab==null ? '' : $dijawab->jawaban) == "A" ? 'checked' : null}}>
               <label for="customRadio1" class="custom-control-label">{!!$soal->pil_a!!}</label>
             </div>
-            <div class="custom-control custom-radio">
+            <div class="custom-control custom-radio" class="no-copy" oncopy="return false" oncut="return false"
+              onpaste="return false" oncontextmenu="return false">
               <input class="custom-control-input" type="radio" value="B" id="customRadio2" name="jawaban"
                 {{($dijawab==null ? '' : $dijawab->jawaban) == "B" ? 'checked' : null}}>
               <label for="customRadio2" class="custom-control-label">{!!$soal->pil_b!!}</label>
             </div>
-            <div class="custom-control custom-radio">
+            <div class="custom-control custom-radio" class="no-copy" oncopy="return false" oncut="return false"
+              onpaste="return false" oncontextmenu="return false">
               <input class="custom-control-input" type="radio" value="C" id="customRadio3" name="jawaban"
                 {{($dijawab==null ? '' : $dijawab->jawaban) == "C" ? 'checked' : null}}>
               <label for="customRadio3" class="custom-control-label">{!!$soal->pil_c!!}</label>
             </div>
-            <div class="custom-control custom-radio">
+            <div class="custom-control custom-radio" class="no-copy" oncopy="return false" oncut="return false"
+              onpaste="return false" oncontextmenu="return false">
               <input class="custom-control-input" type="radio" value="D" id="customRadio4" name="jawaban"
                 {{($dijawab==null ? '' : $dijawab->jawaban) == "D" ? 'checked' : null}}>
               <label for="customRadio4" class="custom-control-label">{!!$soal->pil_d!!}</label>
             </div>
-            <div class="custom-control custom-radio">
+            <div class="custom-control custom-radio" class="no-copy" oncopy="return false" oncut="return false"
+              onpaste="return false" oncontextmenu="return false">
               <input class="custom-control-input" type="radio" value="E" id="customRadio5" name="jawaban"
                 {{($dijawab==null ? '' : $dijawab->jawaban) == "E" ? 'checked' : null}}>
               <label for="customRadio5" class="custom-control-label">{!!$soal->pil_e!!}</label>
