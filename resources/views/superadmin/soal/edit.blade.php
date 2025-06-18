@@ -86,7 +86,7 @@ EDIT
                                         <option value="B" {{$data->kunci == "B" ? 'selected':''}}>B</option>
                                         <option value="C" {{$data->kunci == "C" ? 'selected':''}}>C</option>
                                         <option value="D" {{$data->kunci == "D" ? 'selected':''}}>D</option>
-                                        <option value="D" {{$data->kunci == "E" ? 'selected':''}}>E</option>
+                                        <option value="E" {{$data->kunci == "E" ? 'selected':''}}>E</option>
                                     </select>
                                 </div>
                             </div>
