@@ -13,25 +13,18 @@
       <div class="card-body text-center">
         <h3>Prosedur dan informasi pelaksanaan ujian online</h3><br />
         <div style="text-align: justify">
-          <ul>
-            <li>
-              <strong>Bagi peserta yang belum mengupload berkas dengan lengkap belum bisa mengikuti
-                ujian. silahkan lengkapi dulu. Untuk berkas wajib digabung menjadi satu dan dalam bentuk PDF</strong>
-            </li>
-            <li>
-              Setelah Berkas di upload, akan di verifikasi oleh admin, harap menunggu hasil verifikasi pada tanggal :
-              28 Mei 2025
-            </li>
-            <li>
-              Bagi yang lulus verifikasi berkas dapat mengikut ujian online, dengan mengklik tombol start di bawah ini
-            </li>
 
-          </ul>
+          1.⁠ ⁠Berkas wajib digabung menjadi satu dalam bentuk pdf dan diupload sampai dengan tanggal 3 Juli 2025 Pukul
+          23.59<br />
+          2.⁠ ⁠⁠Peserta yang tidak mengupload berkas sampai tanggal 3 Juli 2025 tidak bisa mengikuti ujian<br />
+          3.⁠ ⁠⁠Ujian akan dilaksanakan pada tanggal 07Juli 2025 pukul 09.00 -10.00 WITA<br />
+          4.⁠ ⁠⁠Peserta yang telah mengupload berkas dapat mengikuti ujian dengan mengklik tombol mulai ujian dibawah
+          ini<br />
           <center>
-            <h1>SETELAH MASUK WAKTU UJIAN, HALAMAN AKAN MASUK KE SOAL UJIAN, NAMUN JIKA HALAMAN TIDAK BERUBAH SILAHKAN
+            <h2>SETELAH MASUK WAKTU UJIAN, HALAMAN AKAN MASUK KE SOAL UJIAN, NAMUN JIKA HALAMAN TIDAK BERUBAH SILAHKAN
               KLIK
               TOMBOL
-              MULAI UJIAN</h1>
+              MULAI UJIAN</h2>
             <strong>MULAI {{\Carbon\Carbon::parse($mulai)->format('d M Y H:i')}} WITA<br /> SELESAI
               {{\Carbon\Carbon::parse($selesai)->format('d M Y H:i')}} WITA</strong> <br />
             <a href="/peserta/mulai" class="btn btn-primary btn-lg"><i class="fas fa-edit"></i> MULAI UJIAN</a><br />
