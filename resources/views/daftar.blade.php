@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="/theme/plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="/theme/dist/css/adminlte.min.css">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   @toastr_css
 </head>
 
@@ -137,7 +139,7 @@
       <!-- Main content -->
       <div class="content">
         <div class="container">
-          <form action="/daftar" method="post">
+          <form action="/daftar" method="post" id="myForm">
             @csrf
             <div class="row">
 
@@ -218,6 +220,7 @@
                               placeholder="konfirmasi password" required>
                           </div>
                         </div>
+
                         <div class="form-group row">
                           <label for="inputEmail3" class="col-sm-3 col-form-label">Catatan :</label>
                           <div class="col-sm-9">
@@ -225,7 +228,13 @@
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="inputPassword3" class="col-sm-3 col-form-label"></label>
+                          <label class="col-sm-3 col-form-label"></label>
+                          <div class="col-sm-9">
+                            <div class="cf-turnstile" data-sitekey="{{ config('services.turnstile_site_key') }}"></div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label"></label>
                           <div class="col-sm-9">
                             <button type="submit" class="btn btn-primary">Daftar</button> <br />
                             <a href="/">Ke Halaman Login</a>
@@ -264,6 +273,16 @@
   <script src="/theme/plugins/jquery/jquery.min.js"></script>
   <script src="/theme/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="/theme/dist/js/adminlte.min.js"></script>
+  <script>
+    document.getElementById('myForm').addEventListener('submit', function(e) {
+    const token = document.querySelector('input[name="cf-turnstile-response"]')?.value;
+    
+    if (!token) {
+        e.preventDefault();
+        alert('Harap centang captcha terlebih dahulu.');
+    }
+});
+  </script>
   @toastr_js
   @toastr_render
   <script>

@@ -27,7 +27,7 @@ class LoginController extends Controller
             'response' => $req->input('cf-turnstile-response'),
             'remoteip' => $req->ip(),
         ]);
-        dd($response->json(), config('services.turnstile_site_key'), config('services.turnstile_secret_key'));
+
         if (!($response->json()['success'] ?? false)) {
             toastr()->error('checklist captcha');
             return back();
@@ -54,6 +54,22 @@ class LoginController extends Controller
 
     public function simpanDaftar(Request $req)
     {
+        $req->validate([
+            'cf-turnstile-response' => 'required',
+        ]);
+
+        $response = Http::asForm()->post('https://challenges.cloudflare.com/turnstile/v0/siteverify', [
+            'secret' => config('services.turnstile_secret_key'),
+            'response' => $req->input('cf-turnstile-response'),
+            'remoteip' => $req->ip(),
+        ]);
+
+        if (!($response->json()['success'] ?? false)) {
+            toastr()->error('checklist captcha');
+            return back();
+        }
+
+
         $today = Carbon::now()->format('Y-m-d');
         $start = WaktuPendaftaran::first()->mulai;
         if ($today < $start) {
