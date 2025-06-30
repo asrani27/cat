@@ -75,6 +75,8 @@
                                                 value="{{$peserta->tahun_lulus}}" placeholder="tahun lulus" required>
                                         </div>
                                     </div>
+                                    @if ($peserta->file != null)
+
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-4 col-form-label">Berkas File PDF
                                             (Maks 8MB) lebih kecil lebih baik</label>
@@ -97,15 +99,8 @@
                                                 </b>
                                             </div>
                                         </div>
-                                        {{-- <div class="col-sm-8">
-                                            <input type="file" id="file" class="form-control" name="file">
-                                            <b>
-                                                File Anda : <a href="/file-peserta/{{ $peserta->file}}" target="_blank">
-                                                    {{
-                                                    $peserta->file}}</a>
-                                            </b>
-                                        </div> --}}
                                     </div>
+                                    @endif
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-4 col-form-label"></label>
                                         <div class="col-sm-8">

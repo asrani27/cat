@@ -213,6 +213,7 @@
                           tunggu sampai selesai...</span>
                       </div>
 
+
                     </div>
                   </div>
                 </div>
@@ -305,7 +306,7 @@
                   alert('Upload gagal!');
               }
           } catch (e) {
-              alert(e);
+              alert('Terjadi kesalahan saat upload!');
               console.error(e);
           }
 
