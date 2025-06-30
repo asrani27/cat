@@ -180,7 +180,7 @@
       <!-- Main content -->
       <div class="content">
         <div class="container">
-          <form action="/login" method="post">
+          <form action="/login" method="post" id="myForm">
             @csrf
             <div class="row">
               <div class="col-lg-3">
@@ -272,6 +272,16 @@
   <script src="/theme/plugins/jquery/jquery.min.js"></script>
   <script src="/theme/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="/theme/dist/js/adminlte.min.js"></script>
+  <script>
+    document.getElementById('myForm').addEventListener('submit', function(e) {
+    const token = document.querySelector('input[name="cf-turnstile-response"]')?.value;
+    
+    if (!token) {
+        e.preventDefault();
+        alert('Harap centang captcha terlebih dahulu.');
+    }
+});
+  </script>
   @toastr_js
   @toastr_render
 </body>

@@ -23,11 +23,11 @@ class LoginController extends Controller
         ]);
 
         $response = Http::asForm()->post('https://challenges.cloudflare.com/turnstile/v0/siteverify', [
-            'secret' => config('services.turnstile_site_key'),
+            'secret' => config('services.turnstile_secret_key'),
             'response' => $req->input('cf-turnstile-response'),
             'remoteip' => $req->ip(),
         ]);
-        dd($response->json(), config('services.turnstile_site_key'));
+        dd($response->json(), config('services.turnstile_site_key'), config('services.turnstile_secret_key'));
         if (!($response->json()['success'] ?? false)) {
             toastr()->error('checklist captcha');
             return back();
