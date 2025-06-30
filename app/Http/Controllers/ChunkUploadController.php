@@ -48,12 +48,12 @@ class ChunkUploadController extends Controller
 
             // Upload ke MinIO setelah file lengkap
             $file = new \Illuminate\Http\File($finalPath);
-            Storage::disk('minio')->putFileAs('peserta', $file, $resumableFilename);
+            Storage::disk('minio')->putFileAs('peserta', $file, $finalFilename);
             unlink($finalPath);
 
             return response()->json(['done' => true]);
         }
-
+        Auth::user()->peserta->update(['file' => $finalFilename]);
         return response()->json(['chunkReceived' => true]);
     }
 }

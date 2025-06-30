@@ -250,7 +250,7 @@
             query: {
                 _token: document.querySelector('meta[name="csrf-token"]').content
             },
-            chunkSize: 1 * 1024 * 1024, // 1MB
+            chunkSize: 1 * 512 * 512, // 1MB
             simultaneousUploads: 1,
             testChunks: false,
         });
