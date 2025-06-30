@@ -83,6 +83,7 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
         Route::post('gantipass', [HomeController::class, 'resetpass']);
         Route::get('peserta/search', [PesertaController::class, 'search']);
         Route::get('peserta/{id}/akun', [PesertaController::class, 'akun']);
+        Route::get('/file-peserta/{filename}', [PesertaController::class, 'download']);
         Route::get('peserta/{id}/pass', [PesertaController::class, 'pass']);
         Route::get('peserta/{id}/verify', [PesertaController::class, 'verify']);
         Route::post('peserta/{id}/verify', [PesertaController::class, 'updateStatus']);
