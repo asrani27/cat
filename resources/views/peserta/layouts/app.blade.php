@@ -129,6 +129,7 @@
               <div class="card">
                 <div class="card-header">
                   Data Berkas telah di upload,
+                  <a href="/home/peserta" class="btn btn-sm btn-secondary">Home</a>
                   <a href="/home/peserta/gantipass" class="btn btn-sm btn-info">Ganti Password</a>
                   <a href="/home/peserta/lihatdata" class="btn btn-sm btn-primary">Lihat Data Peserta</a>
                   <a href="https://wa.me/{{app()->make(\App\Helpers\Helper::class)->hotline()}}" target="_blank"
@@ -146,8 +147,9 @@
                 <div class="card">
                   <div class="card-header">
                     Harap Isi Dan Upload Berkas Anda
-                    <a href="/home/peserta/gantipass" class="btn btn-sm btn-info">Ganti Password</a> <a
-                      href="/home/peserta/lihatdata" class="btn btn-sm btn-primary">Lihat Data Peserta</a>
+                    <a href="/home/peserta" class="btn btn-sm btn-secondary">Home</a>
+                    <a href="/home/peserta/gantipass" class="btn btn-sm btn-info">Ganti Password</a>
+                    <a href="/home/peserta/lihatdata" class="btn btn-sm btn-primary">Lihat Data Peserta</a>
                     <a href="https://wa.me/{{app()->make(\App\Helpers\Helper::class)->hotline()}}" target="_blank"
                       class="btn btn-sm btn-danger"> <i class="fa fa-phone"></i> Hotline
                       ({{ app()->make(\App\Helpers\Helper::class)->hotline() }})</a>
