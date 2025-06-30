@@ -229,6 +229,15 @@
   <script src="/theme/dist/js/adminlte.min.js"></script>
   @toastr_js
   @toastr_render
+  <script>
+    document.getElementById('file').addEventListener('change', function () {
+    const maxSize = 8 * 1024 * 1024; // 8 MB
+    if (this.files[0].size > maxSize) {
+        alert('Ukuran file terlalu besar! Maksimal 8 MB.');
+        this.value = ''; // Reset input
+    }
+});
+  </script>
 </body>
 
 </html>
