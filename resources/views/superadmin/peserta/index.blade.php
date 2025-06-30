@@ -67,7 +67,7 @@ ADMIN
                                 @if ($item->file == null)
 
                                 @else
-                                <a href="/storage/peserta/{{$item->file}}">Download</a>
+                                <a href="/file-peserta/{{$item->file}}">Download</a>
                                 @endif
                             </td>
                             <td>
