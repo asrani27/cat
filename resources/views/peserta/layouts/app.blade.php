@@ -189,6 +189,10 @@
                         <input type="file" class="form-control" id="file" name="file" required>
                       </div>
                     </div>
+                    <h2>Upload File (Chunked with Resumable.js)</h2>
+                    <input type="file" id="fileInput" />
+                    <div id="progress"></div>
+
                     <div class="form-group row">
                       <label for="inputEmail3" class="col-sm-4 col-form-label"></label>
                       <div class="col-sm-8">
@@ -237,6 +241,41 @@
         this.value = ''; // Reset input
     }
 });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/resumablejs/resumable.js"></script>
+  <script>
+    const r = new Resumable({
+            target: "{{ route('upload.chunk') }}",
+            query: {
+                _token: document.querySelector('meta[name="csrf-token"]').content
+            },
+            chunkSize: 1 * 1024 * 1024, // 1MB
+            simultaneousUploads: 1,
+            testChunks: false,
+        });
+
+        r.assignBrowse(document.getElementById('fileInput'));
+
+        r.on('fileAdded', function (file) {
+            r.upload();
+        });
+
+        r.on('fileProgress', function (file) {
+            const progress = Math.floor(file.progress() * 100);
+            document.getElementById('progress').innerText = 'Progress: ' + progress + '%';
+        });
+
+        r.on('fileSuccess', function (file, message) {
+            const res = JSON.parse(message);
+            if (res.done) {
+                alert('Upload selesai!');
+            }
+        });
+
+        r.on('fileError', function (file, message) {
+            alert('Upload gagal!');
+            console.log(message);
+        });
   </script>
 </body>
 

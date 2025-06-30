@@ -10,6 +10,7 @@ use App\Http\Controllers\UjianController;
 use App\Http\Controllers\WaktuController;
 use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\ChunkUploadController;
 
 // Route::get('/testapi', [HomeController::class, 'testapi']);
 // Route::post('/testapi', [HomeController::class, 'gettoken']);
@@ -111,6 +112,8 @@ Route::group(['middleware' => ['auth', 'role:peserta']], function () {
     Route::get('/file-peserta/{filename}', [PesertaController::class, 'download']);
     Route::post('simpanjawaban', [UjianController::class, 'simpan']);
     Route::get('selesaiujian', [UjianController::class, 'selesai']);
+
+    Route::post('/upload-chunk', [ChunkUploadController::class, 'upload'])->name('upload.chunk');
 });
 
 
