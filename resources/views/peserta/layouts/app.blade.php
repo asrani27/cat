@@ -212,7 +212,7 @@
                         <span id="uploadingText" class="text-muted ml-2" style="display: none;">Sedang mengupload,
                           tunggu sampai selesai...</span>
                       </div>
-                     
+
                     </div>
                   </div>
                 </div>
@@ -305,7 +305,7 @@
                   alert('Upload gagal!');
               }
           } catch (e) {
-              alert('Terjadi kesalahan saat upload!');
+              alert(e);
               console.error(e);
           }
 
