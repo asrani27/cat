@@ -79,7 +79,7 @@
                                         <label for="inputEmail3" class="col-sm-4 col-form-label">Berkas File PDF
                                             (Maks 8MB) lebih kecil lebih baik</label>
                                         <div class="col-sm-8">
-                                            <input type="file" class="form-control" name="file">
+                                            <input type="file" id="file" class="form-control" name="file">
                                             <b>
                                                 FILE : <a href="/file-peserta/{{ $peserta->file}}" target="_blank">
                                                     {{
@@ -111,5 +111,13 @@
 @endsection
 
 @push('js')
-
+<script>
+    document.getElementById('file').addEventListener('change', function () {
+    const maxSize = 8 * 1024 * 1024; // 8 MB
+    if (this.files[0].size > maxSize) {
+        alert('Ukuran file terlalu besar! Maksimal 8 MB.');
+        this.value = ''; // Reset input
+    }
+});
+</script>
 @endpush
