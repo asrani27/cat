@@ -171,8 +171,13 @@ class PesertaController extends Controller
         }
 
         if ($req->hasFile('file')) {
-            $filename = $req->file->getClientOriginalName();
-            $filename = date('d-m-Y-') . rand(1, 9999) . $filename;
+            $nik = Auth::user()->peserta->nik;
+            $nama = Auth::user()->peserta->nama;
+            $ext = $req->file->getClientOriginalExtension();
+
+            $filename = $nik . '_' . preg_replace('/\s+/', '_', $nama) . '.' . $ext;
+
+            dd($filename);
             $req->file->storeAs('/public/peserta', $filename);
             $attr['file'] = $filename;
         } else {
