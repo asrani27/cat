@@ -207,13 +207,14 @@
                         <div class="form-group row">
                           <label for="inputEmail4" class="col-sm-3 col-form-label">Password</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" name="password" placeholder="password" required>
+                            <input type="text" class="form-control" name="password" minlength="8" placeholder="password"
+                              required>
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="inputEmail4" class="col-sm-3 col-form-label">Masukkan Password Lagi</label>
                           <div class="col-sm-9">
-                            <input type="text" class="form-control" name="confimation_password"
+                            <input type="text" class="form-control" minlength="8" name="confimation_password"
                               placeholder="konfirmasi password" required>
                           </div>
                         </div>
