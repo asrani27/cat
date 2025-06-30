@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ChunkUploadController extends Controller
@@ -25,7 +26,15 @@ class ChunkUploadController extends Controller
         $totalChunks = (int) $request->resumableTotalChunks;
         $chunks = glob($tempDir . '/*');
         if (count($chunks) == $totalChunks) {
-            $finalPath = storage_path('app/final/' . $resumableFilename);
+            $ext = pathinfo($resumableFilename, PATHINFO_EXTENSION);
+
+            $nik = Auth::user()->peserta->nik;
+            $nama = Auth::user()->peserta->nama;
+
+            $finalFilename = $nik . '_' . preg_replace('/\s+/', '_', $nama) . '.' . $ext;
+
+            $finalPath = storage_path("app/final/{$finalFilename}");
+            //$finalPath = storage_path('app/final/' . $resumableFilename);
             $out = fopen($finalPath, 'ab');
             for ($i = 1; $i <= $totalChunks; $i++) {
                 $chunkFile = $tempDir . '/' . $i;
