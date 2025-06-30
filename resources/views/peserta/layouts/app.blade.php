@@ -123,16 +123,13 @@
             <!-- /.col -->
           </div>
 
-          @if ($peserta->file != null)
-
           <div class="row">
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
-                  Data Berkas telah di upload,
                   <a href="/home/peserta" class="btn btn-sm btn-secondary">Home</a>
+                  <a href="/home/peserta/lihatdata" class="btn btn-sm btn-primary">Update Data Peserta</a>
                   <a href="/home/peserta/gantipass" class="btn btn-sm btn-info">Ganti Password</a>
-                  <a href="/home/peserta/lihatdata" class="btn btn-sm btn-primary">Lihat Data Peserta</a>
                   <a href="https://wa.me/{{app()->make(\App\Helpers\Helper::class)->hotline()}}" target="_blank"
                     class="btn btn-sm btn-danger"> <i class="fa fa-phone"></i> Hotline
                     ({{ app()->make(\App\Helpers\Helper::class)->hotline() }})</a>
@@ -140,21 +137,14 @@
               </div>
             </div>
           </div>
-          @else
+
+
+          @if ($peserta->kampus == null)
           <form method="post" action="/home/peserta/upload" enctype="multipart/form-data">
             @csrf
             <div class="row">
               <div class="col-12">
                 <div class="card">
-                  <div class="card-header">
-                    Harap Isi Dan Upload Berkas Anda
-                    <a href="/home/peserta" class="btn btn-sm btn-secondary">Home</a>
-                    <a href="/home/peserta/gantipass" class="btn btn-sm btn-info">Ganti Password</a>
-                    <a href="/home/peserta/lihatdata" class="btn btn-sm btn-primary">Lihat Data Peserta</a>
-                    <a href="https://wa.me/{{app()->make(\App\Helpers\Helper::class)->hotline()}}" target="_blank"
-                      class="btn btn-sm btn-danger"> <i class="fa fa-phone"></i> Hotline
-                      ({{ app()->make(\App\Helpers\Helper::class)->hotline() }})</a>
-                  </div>
                   <div class="card-body">
                     <div class="form-group row">
                       <label for="inputEmail3" class="col-sm-4 col-form-label">Nama Sekolah/PTS/PTN</label>
@@ -183,16 +173,6 @@
                         <input type="date" class="form-control" name="tgl" value="{{old('tgl')}}" required>
                       </div>
                     </div>
-                    <div class="form-group row">
-                      <label for="inputEmail3" class="col-sm-4 col-form-label">Berkas File (PDF) maks 8MB, lebih kecil
-                        lebih baik</label>
-                      <div class="col-sm-8">
-                        <input type="file" class="form-control" id="file" name="file" required>
-                      </div>
-                    </div>
-                    <h2>Upload File (Chunked with Resumable.js)</h2>
-                    <input type="file" id="fileInput" />
-                    <div id="progress"></div>
 
                     <div class="form-group row">
                       <label for="inputEmail3" class="col-sm-4 col-form-label"></label>
@@ -200,6 +180,11 @@
                         <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
                       </div>
                     </div>
+
+
+
+
+
                   </div>
                   <!-- /.info-box -->
                 </div>
@@ -207,6 +192,33 @@
               <!-- /.col -->
             </div>
           </form>
+          @endif
+
+          @if ($peserta->file == null)
+
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-4 col-form-label">Berkas File (PDF) maks 8MB, lebih kecil
+                      lebih baik</label>
+                    <div class="col-sm-8">
+                      <input type="file" id="fileInput" />
+                      <div id="progress">
+                        <span id="progressText">Progress: 0%</span>
+                        <i id="loadingIcon" class="fa fa-spinner fa-spin text-primary ml-2" style="display: none;"></i>
+
+                        <span id="uploadingText" class="text-muted ml-2" style="display: none;">Sedang mengupload,
+                          tunggu sampai selesai...</span>
+                      </div>
+                     
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           @endif
 
           @yield('content')
@@ -245,6 +257,7 @@
   </script>
   <script src="https://cdn.jsdelivr.net/npm/resumablejs/resumable.js"></script>
   <script>
+    const MAX_FILE_SIZE = 8 * 1024 * 1024;
     const r = new Resumable({
             target: "{{ route('upload.chunk') }}",
             query: {
@@ -258,25 +271,49 @@
         r.assignBrowse(document.getElementById('fileInput'));
 
         r.on('fileAdded', function (file) {
+            if (file.size > MAX_FILE_SIZE) {
+                alert('Ukuran file maksimal 8 MB!');
+                return;
+            }
+            document.getElementById('loadingIcon').style.display = 'inline-block';
+            document.getElementById('uploadingText').style.display = 'inline-block';
             r.upload();
         });
 
         r.on('fileProgress', function (file) {
             const progress = Math.floor(file.progress() * 100);
-            document.getElementById('progress').innerText = 'Progress: ' + progress + '%';
+            document.getElementById('progressText').innerText = 'Progress: ' + progress + '%';
         });
 
         r.on('fileSuccess', function (file, message) {
             const res = JSON.parse(message);
             if (res.done) {
-                alert('Upload selesai!');
+                
+                document.getElementById('loadingIcon').style.display = 'none';
+                document.getElementById('uploadingText').style.display = 'none';
+                location.reload();  
+                alert('Berhasil Di Upload');
             }
         });
 
-        r.on('fileError', function (file, message) {
-            alert('Upload gagal!');
-            console.log(message);
-        });
+       r.on('fileError', function (file, message) {
+          try {
+              const res = JSON.parse(message);
+              if (res.message) {
+                  alert(res.message); // ← tampilkan pesan dari server
+              } else {
+                  alert('Upload gagal!');
+              }
+          } catch (e) {
+              alert('Terjadi kesalahan saat upload!');
+              console.error(e);
+          }
+
+          // Sembunyikan loading
+          document.getElementById('loadingIcon').style.display = 'none';
+          document.getElementById('uploadingText').style.display = 'none';
+      });
+
   </script>
 </body>
 

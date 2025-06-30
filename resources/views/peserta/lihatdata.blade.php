@@ -79,13 +79,32 @@
                                         <label for="inputEmail3" class="col-sm-4 col-form-label">Berkas File PDF
                                             (Maks 8MB) lebih kecil lebih baik</label>
                                         <div class="col-sm-8">
+                                            <input type="file" class="form-control" id="fileInput" />
+                                            <div id="progress" style="text-align: left">
+                                                <span id="progressText">Progress: 0%</span>
+                                                <i id="loadingIcon" class="fa fa-spinner fa-spin text-primary ml-2"
+                                                    style="display: none;"></i>
+
+                                                <span id="uploadingText" class="text-muted ml-2"
+                                                    style="display: none;">Sedang mengupload,
+                                                    tunggu sampai selesai...</span>
+                                            </div>
+                                            <div style="text-align: left">
+
+                                                <b>
+                                                    File Anda :<a href="/file-peserta/{{ $peserta->file}}"
+                                                        target="_blank"> <i class="fa fa-download"></i> Download </a>
+                                                </b>
+                                            </div>
+                                        </div>
+                                        {{-- <div class="col-sm-8">
                                             <input type="file" id="file" class="form-control" name="file">
                                             <b>
-                                                FILE : <a href="/file-peserta/{{ $peserta->file}}" target="_blank">
+                                                File Anda : <a href="/file-peserta/{{ $peserta->file}}" target="_blank">
                                                     {{
                                                     $peserta->file}}</a>
                                             </b>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-4 col-form-label"></label>
@@ -111,13 +130,74 @@
 @endsection
 
 @push('js')
+
 <script>
     document.getElementById('file').addEventListener('change', function () {
-    const maxSize = 8 * 1000 * 1000; // 8 MB
+     const maxSize = 8 * 1000 * 1000; // 8 MB
     if (this.files[0].size > maxSize) {
         alert('Ukuran file terlalu besar! kurangi lagi size nya.');
         this.value = ''; // Reset input
     }
 });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/resumablejs/resumable.js"></script>
+<script>
+    const MAX_FILE_SIZE = 8 * 1024 * 1024;
+    const r = new Resumable({
+            target: "{{ route('upload.chunk') }}",
+            query: {
+                _token: document.querySelector('meta[name="csrf-token"]').content
+            },
+            chunkSize: 1 * 512 * 512, // 1MB
+            simultaneousUploads: 1,
+            testChunks: false,
+        });
+
+        r.assignBrowse(document.getElementById('fileInput'));
+
+        r.on('fileAdded', function (file) {
+            if (file.size > MAX_FILE_SIZE) {
+                alert('Ukuran file maksimal 8 MB!');
+                return;
+            }
+            document.getElementById('loadingIcon').style.display = 'inline-block';
+            document.getElementById('uploadingText').style.display = 'inline-block';
+            r.upload();
+        });
+
+        r.on('fileProgress', function (file) {
+            const progress = Math.floor(file.progress() * 100);
+            document.getElementById('progressText').innerText = 'Progress: ' + progress + '%';
+        });
+
+        r.on('fileSuccess', function (file, message) {
+            const res = JSON.parse(message);
+            if (res.done) {
+                
+                document.getElementById('loadingIcon').style.display = 'none';
+                document.getElementById('uploadingText').style.display = 'none';
+                location.reload();  
+                alert('Berhasil Di Upload');
+            }
+        });
+
+       r.on('fileError', function (file, message) {
+          try {
+              const res = JSON.parse(message);
+              if (res.message) {
+                  alert(res.message); // ← tampilkan pesan dari server
+              } else {
+                  alert('Upload gagal!');
+              }
+          } catch (e) {
+              alert('Terjadi kesalahan saat upload!');
+              console.error(e);
+          }
+
+          // Sembunyikan loading
+          document.getElementById('loadingIcon').style.display = 'none';
+          document.getElementById('uploadingText').style.display = 'none';
+      });
+
 </script>
 @endpush

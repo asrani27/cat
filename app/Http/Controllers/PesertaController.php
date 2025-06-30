@@ -182,6 +182,7 @@ class PesertaController extends Controller
             $attr['file'] = $filename;
         } else {
             $attr['file'] = null;
+            $filename = null;
         }
 
         Auth::user()->peserta->update([
@@ -225,6 +226,7 @@ class PesertaController extends Controller
 
     public function uploadlagi(Request $req)
     {
+
         if ($req->file == null) {
             //simpan tanpa file
             Auth::user()->peserta->update([

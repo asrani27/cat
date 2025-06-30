@@ -13,7 +13,15 @@ class ChunkUploadController extends Controller
         $resumableIdentifier = $request->resumableIdentifier;
         $resumableFilename = $request->resumableFilename;
         $resumableChunkNumber = $request->resumableChunkNumber;
-
+        // Validasi hanya PDF
+        $ext = strtolower(pathinfo($resumableFilename, PATHINFO_EXTENSION));
+        if ($ext !== 'pdf') {
+            return response()->json([
+                'error' => true,
+                'message' => 'Hanya file PDF yang diperbolehkan.'
+            ], 400);
+        }
+        
         $tempDir = storage_path('app/chunks/' . $resumableIdentifier);
         if (!is_dir($tempDir)) {
             mkdir($tempDir, 0777, true);
