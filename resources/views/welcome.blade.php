@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="/theme/plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="/theme/dist/css/adminlte.min.css">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   @toastr_css
 </head>
 
@@ -215,6 +217,12 @@
                           <div class="col-sm-8">
                             <input type="password" class="form-control" id="inputPassword3" name="password"
                               placeholder="Password" value="{{old('password')}}">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="inputPassword3" class="col-sm-4 col-form-label"></label>
+                          <div class="col-sm-8">
+                            <div class="cf-turnstile" data-sitekey="{{ config('services.turnstile_site_key') }}"></div>
                           </div>
                         </div>
                         <div class="form-group row">

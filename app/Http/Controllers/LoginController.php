@@ -12,11 +12,27 @@ use App\Models\Kategori;
 use Illuminate\Http\Request;
 use App\Models\WaktuPendaftaran;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class LoginController extends Controller
 {
     public function login(Request $req)
     {
+        $req->validate([
+            'cf-turnstile-response' => 'required',
+        ]);
+
+        $response = Http::asForm()->post('https://challenges.cloudflare.com/turnstile/v0/siteverify', [
+            'secret' => config('services.turnstile_site_key'),
+            'response' => $req->input('cf-turnstile-response'),
+            'remoteip' => $req->ip(),
+        ]);
+        dd($response->json(), config('services.turnstile_site_key'));
+        if (!($response->json()['success'] ?? false)) {
+            toastr()->error('checklist captcha');
+            return back();
+        }
+
         if (Auth::attempt(['username' => $req->username, 'password' => $req->password], true)) {
             if (Auth::user()->hasRole('superadmin')) {
                 return redirect('/home/superadmin');

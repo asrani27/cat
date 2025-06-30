@@ -13,6 +13,8 @@ return [
     | a conventional file to locate the various service credentials.
     |
     */
+    'turnstile_site_key' => env('TURNSTILE_SITE_KEY'),
+    'turnstile_secret_key' => env('TURNSTILE_SECRET_KEY'),
 
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
