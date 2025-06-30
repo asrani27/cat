@@ -273,7 +273,7 @@ class PesertaController extends Controller
                 'file' => $filename,
             ]);
             toastr()->success('Data Berhasil Diupdate');
-            return redirect('/home/peserta');
+            return redirect('/home/peserta/lihatdata');
         }
     }
 
