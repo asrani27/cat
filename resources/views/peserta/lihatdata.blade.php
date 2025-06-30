@@ -113,9 +113,9 @@
 @push('js')
 <script>
     document.getElementById('file').addEventListener('change', function () {
-    const maxSize = 8 * 1024 * 1024; // 8 MB
+    const maxSize = 8 * 1000 * 1000; // 8 MB
     if (this.files[0].size > maxSize) {
-        alert('Ukuran file terlalu besar! Maksimal 8 MB.');
+        alert('Ukuran file terlalu besar! kurangi lagi size nya.');
         this.value = ''; // Reset input
     }
 });
