@@ -12,6 +12,7 @@ use App\Models\Peserta;
 use App\Models\Sanggah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class PesertaController extends Controller
@@ -177,8 +178,7 @@ class PesertaController extends Controller
 
             $filename = $nik . '_' . preg_replace('/\s+/', '_', $nama) . '.' . $ext;
 
-            dd($filename);
-            $req->file->storeAs('/public/peserta', $filename);
+            Storage::disk('minio')->putFileAs('peserta', $req->file('file'), $filename);
             $attr['file'] = $filename;
         } else {
             $attr['file'] = null;
@@ -250,9 +250,13 @@ class PesertaController extends Controller
             }
 
             if ($req->hasFile('file')) {
-                $filename = $req->file->getClientOriginalName();
-                $filename = date('d-m-Y-') . rand(1, 9999) . $filename;
-                $req->file->storeAs('/public/peserta', $filename);
+                $nik = Auth::user()->peserta->nik;
+                $nama = Auth::user()->peserta->nama;
+                $ext = $req->file->getClientOriginalExtension();
+
+                $filename = $nik . '_' . preg_replace('/\s+/', '_', $nama) . '.' . $ext;
+
+                Storage::disk('minio')->putFileAs('peserta', $req->file('file'), $filename);
             }
 
             Auth::user()->peserta->update([
