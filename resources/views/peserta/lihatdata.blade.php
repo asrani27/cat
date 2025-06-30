@@ -81,7 +81,7 @@
                                         <div class="col-sm-8">
                                             <input type="file" class="form-control" name="file">
                                             <b>
-                                                FILE : <a href="/storage/peserta/{{ $peserta->file}}" target="_blank">
+                                                FILE : <a href="/file-peserta/{{ $peserta->file}}" target="_blank">
                                                     {{
                                                     $peserta->file}}</a>
                                             </b>

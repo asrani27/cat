@@ -275,6 +275,25 @@ class PesertaController extends Controller
         }
     }
 
+    public function download($filename)
+    {
+        $path = 'peserta/' . $filename;
+
+        if (!Storage::disk('minio')->exists($path)) {
+            abort(404);
+        }
+
+        $stream = Storage::disk('minio')->readStream($path);
+        $mime = Storage::disk('minio')->mimeType($path);
+
+        return response()->stream(function () use ($stream) {
+            fpassthru($stream);
+        }, 200, [
+            'Content-Type' => $mime,
+            'Content-Disposition' => 'attachment; filename="' . $filename . '"',
+        ]);
+    }
+
     public function gantipass()
     {
         $peserta = Auth::user()->peserta;
