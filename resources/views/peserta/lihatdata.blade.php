@@ -26,6 +26,74 @@
                                                 readonly>
                                         </div>
                                     </div>
+
+                                    @if (\Carbon\Carbon::now()->format('Y-m-d') >
+                                    \App\Models\WaktuPendaftaran::first()->sampai)
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Nama Peserta</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="nama"
+                                                value="{{$peserta->nama}}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Tanggal Lahir</label>
+                                        <div class="col-sm-8">
+                                            <input type="date" class="form-control" name="tgl" value="{{$peserta->tgl}}"
+                                                readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Telp</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="telp"
+                                                value="{{$peserta->telp}}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Email</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="email"
+                                                value="{{$peserta->email}}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Nama PTS/PTN</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="kampus"
+                                                value="{{$peserta->kampus}}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Nama Jurusan</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="jurusan"
+                                                value="{{$peserta->jurusan}}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Tahun Lulus</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="tahun_lulus"
+                                                value="{{$peserta->tahun_lulus}}" placeholder="tahun lulus" readonly>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Berkas File PDF
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <div style="text-align: left">
+
+                                                <b>
+                                                    File Anda :<a href="/file-peserta/{{ $peserta->file}}"
+                                                        target="_blank"> <i class="fa fa-download"></i> Download </a>
+                                                </b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @else
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-4 col-form-label">Nama Peserta</label>
                                         <div class="col-sm-8">
@@ -101,11 +169,18 @@
                                         </div>
                                     </div>
                                     @endif
+                                    @endif
+
+
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-4 col-form-label"></label>
                                         <div class="col-sm-8">
+                                            @if (\Carbon\Carbon::now()->format('Y-m-d') >
+                                            \App\Models\WaktuPendaftaran::first()->sampai)
+                                            @else
                                             <button type="submit"
                                                 class="btn btn-sm btn-block btn-primary">UPDATE</button>
+                                            @endif
                                             <a href="/home/peserta" class="btn btn-sm btn-block btn-secondary">Kembali
                                                 Ke Beranda</a>
                                         </div>
