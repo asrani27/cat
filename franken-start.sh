@@ -1,3 +1,3 @@
 #!/bin/bash
-/usr/bin/php artisan octane:frankenphp --caddyfile Caddyfile --workers 5 --max-requests 1000 > /dev/null &
+/usr/bin/php artisan octane:frankenphp --caddyfile Caddyfile --max-requests 0 > /dev/null &
 echo "Service berjalan..."
