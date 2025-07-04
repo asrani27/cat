@@ -128,7 +128,7 @@
               <div class="card">
                 <div class="card-header">
                   <a href="/home/peserta" class="btn btn-sm btn-secondary">Home</a>
-                  <a href="/home/peserta/lihatdata" class="btn btn-sm btn-primary">Update Data Peserta</a>
+                  <a href="/home/peserta/lihatdata" class="btn btn-sm btn-primary">Data Peserta</a>
                   <a href="/home/peserta/gantipass" class="btn btn-sm btn-info">Ganti Password</a>
                   <a href="https://wa.me/{{app()->make(\App\Helpers\Helper::class)->hotline()}}" target="_blank"
                     class="btn btn-sm btn-danger"> <i class="fa fa-phone"></i> Hotline
@@ -194,8 +194,12 @@
           </form>
           @endif
 
-          @if ($peserta->file == null)
+          @if(\Carbon\Carbon::now()->format('Y-m-d') > \App\Models\WaktuPendaftaran::first()->sampai)
 
+
+          @else
+
+          @if ($peserta->file == null)
           <div class="row">
             <div class="col-12">
               <div class="card">
@@ -220,6 +224,7 @@
               </div>
             </div>
           </div>
+          @endif
           @endif
 
           @yield('content')

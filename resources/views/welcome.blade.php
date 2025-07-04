@@ -229,7 +229,12 @@
                           <label for="inputPassword3" class="col-sm-4 col-form-label"></label>
                           <div class="col-sm-8">
                             <button type="submit" class="btn btn-primary">Login</button>
+                            @if(\Carbon\Carbon::now()->format('Y-m-d') > \App\Models\WaktuPendaftaran::first()->sampai)
+
+                            @else
+
                             <a href="/daftar" class="btn btn-primary">Daftar</a>
+                            @endif
                             {{-- <a href="#" class="btn btn-primary">Jadwal Pendaftaran Belum Dimulai</a> --}}
                           </div>
                         </div>

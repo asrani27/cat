@@ -48,8 +48,13 @@ class LoginController extends Controller
 
     public function daftar()
     {
-        $formasi = Kategori::get();
-        return view('daftar', compact('formasi'));
+        if (\Carbon\Carbon::now()->format('Y-m-d') > \App\Models\WaktuPendaftaran::first()->sampai) {
+            toastr()->error('Waktu Pendaftaran Telah Berakhir');
+            return back();
+        } else {
+            $formasi = Kategori::get();
+            return view('daftar', compact('formasi'));
+        }
     }
 
     public function simpanDaftar(Request $req)
