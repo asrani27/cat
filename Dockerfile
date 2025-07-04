@@ -13,7 +13,8 @@ RUN install-php-extensions \
         pcntl \
         gd \
         intl \
-        zip
+        zip \
+        opcache
 
 # Copy the PHP files of your project in the public directory
 #COPY . /app/public
