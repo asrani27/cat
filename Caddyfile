@@ -3,7 +3,8 @@
 }
 
 # The domain name of your server
-cat-1.banjarmasinkota.go.id {
+# cat-1.banjarmasinkota.go.id {
+localhost {
         # Set the webroot to the public/ directory
         root public/
         # Enable compression (optional)
