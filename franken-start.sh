@@ -1,3 +1,3 @@
 #!/bin/bash
-/usr/local/bin/frankenphp artisan octane:frankenphp --caddyfile Caddyfile  --max-requests 0 > /dev/null &
+/usr/bin/php artisan octane:frankenphp --workers=$(nproc) > /dev/null &
 echo "Service berjalan..."
