@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-  @toastr_css
+  <!-- @toastr_css -->
 </head>
 
 <body class="hold-transition layout-top-nav">
@@ -280,15 +280,15 @@
   <script>
     document.getElementById('myForm').addEventListener('submit', function(e) {
     const token = document.querySelector('input[name="cf-turnstile-response"]')?.value;
-    
+
     if (!token) {
         e.preventDefault();
         alert('Harap centang captcha terlebih dahulu.');
     }
 });
   </script>
-  @toastr_js
-  @toastr_render
+  <!-- @toastr_js
+  @toastr_render -->
 </body>
 
 </html>

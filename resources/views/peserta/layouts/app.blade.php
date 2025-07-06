@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="/theme/plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="/theme/dist/css/adminlte.min.css">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  @toastr_css
+  <!-- @toastr_css -->
 </head>
 
 <body class="hold-transition layout-top-nav">
@@ -250,8 +250,8 @@
   <script src="/theme/plugins/jquery/jquery.min.js"></script>
   <script src="/theme/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="/theme/dist/js/adminlte.min.js"></script>
-  @toastr_js
-  @toastr_render
+  <!-- @toastr_js
+  @toastr_render -->
   <script>
     document.getElementById('file').addEventListener('change', function () {
      const maxSize = 8 * 1000 * 1000; // 8 MB
@@ -294,10 +294,10 @@
         r.on('fileSuccess', function (file, message) {
             const res = JSON.parse(message);
             if (res.done) {
-                
+
                 document.getElementById('loadingIcon').style.display = 'none';
                 document.getElementById('uploadingText').style.display = 'none';
-                location.reload();  
+                location.reload();
                 alert('Berhasil Di Upload');
             }
         });
