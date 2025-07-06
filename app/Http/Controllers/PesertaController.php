@@ -228,35 +228,6 @@ class PesertaController extends Controller
         });
 
         $jmlbelumjawab = $listSoal->where('dijawab', false)->count();
-
-        //hitung skor Benar
-        // $skor = Jawaban::where('peserta_id', $peserta->id)
-        //     ->get()->map(function ($item2) {
-        //         if ($item2->jawaban == $item2->soal->kunci) {
-        //             $item2->benar = 'Y';
-        //         } else {
-        //             $item2->benar = 'T';
-        //         }
-        //         return $item2;
-        //     })->where('benar', 'Y')->count();
-
-        // $peserta = Auth::user()->peserta;
-
-
-        // $jmlsoal    = $this->soal()->count();
-        // $jam        = Carbon::now()->format('H:i');
-        // $waktu      = Waktu::first()->durasi;
-
-        // $listSoal   = $this->soal()->map(function ($item) use ($peserta) {
-        //     $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();
-        //     if ($check == null) {
-        //         $item->dijawab = false;
-        //     } else {
-        //         $item->dijawab = $check->jawaban;
-        //     }
-        //     return $item;
-        // });
-        // $jmlbelumjawab = $listSoal->where('dijawab', false)->count();
         return view('peserta.lihatdata', compact('peserta', 'waktu', 'jam', 'jmlsoal', 'listSoal', 'jmlbelumjawab'));
     }
 

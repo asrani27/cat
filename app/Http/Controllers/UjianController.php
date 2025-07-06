@@ -29,19 +29,28 @@ class UjianController extends Controller
         $tgl_mulai = Waktu::first()->tanggal_mulai;
         $tgl_selesai = Waktu::first()->tanggal_selesai;
         $peserta    = $this->peserta();
+
+        $nomor_acak = json_decode($peserta->soal_acak);
+        $soal = Soal::whereIn('id', $nomor_acak)->get();
+
+        $soal = $soal->sortBy(function ($item) use ($nomor_acak) {
+            return array_search($item->id, $nomor_acak);
+        })->values();
+
+
         if ($peserta->test == 1) {
-            $soalPertama = Soal::first()->id;
+            $soalPertama = $soal->first()->id;
             return redirect('/peserta/ujian/soal/' . $soalPertama);
         } else {
             if ($now <= $tgl_mulai) {
-                toastr()->error('Ujian Belum dimulai');
+                toastr()->info('Ujian Belum dimulai');
                 return back();
             } else {
                 if ($peserta->file == null) {
-                    toastr()->error('Harap Upload Berkas Anda');
+                    toastr()->info('Harap Upload Berkas Anda');
                     return back();
                 } else {
-                    $soalPertama = Soal::first()->id;
+                    $soalPertama = $soal->first()->id;
                     return redirect('/peserta/ujian/soal/' . $soalPertama);
                 }
             }
@@ -78,15 +87,16 @@ class UjianController extends Controller
         $peserta    = $this->peserta();
 
         $now = Carbon::now();
-        $tgl_mulai = Waktu::first()->tanggal_mulai;
-        $tgl_selesai = Waktu::first()->tanggal_selesai;
+        $waktu = Waktu::first();
+        $tgl_mulai = $waktu->tanggal_mulai;
+        $tgl_selesai = $waktu->tanggal_selesai;
 
         $mulai     = $tgl_mulai;
         $selesai   = $tgl_selesai;
         if ($peserta->test == 1) {
 
             $jam        = Carbon::now()->format('H:i');
-            $waktu      = Waktu::first()->durasi;
+            $waktu      = $waktu->durasi;
             $soal       = Soal::find($id);
             $next       = $this->next($id);
 
@@ -116,7 +126,7 @@ class UjianController extends Controller
 
             $dijawab    = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $id)->first();
 
-            return view('peserta.home', compact('jmlsoal', 'jam', 'waktu', 'peserta', 'tgl_mulai', 'tgl_selesai', 'listSoal', 'soal', 'next', 'dijawab', 'jmlbelumjawab'));
+            return view('peserta.home', compact('jam', 'waktu', 'peserta', 'tgl_mulai', 'tgl_selesai', 'listSoal', 'soal', 'next', 'dijawab', 'jmlsoal', 'jmlbelumjawab'));
         } else {
 
             $random     = 'random' . substr($peserta->telp, -1);
@@ -125,8 +135,8 @@ class UjianController extends Controller
                 return redirect('home/peserta');
             } else {
                 $now = Carbon::now();
-                $tgl_mulai = Waktu::first()->tanggal_mulai;
-                $tgl_selesai = Waktu::first()->tanggal_selesai;
+                $tgl_mulai = $waktu->tanggal_mulai;
+                $tgl_selesai = $waktu->tanggal_selesai;
 
                 $mulai     = $tgl_mulai;
                 $selesai   = $tgl_selesai;
@@ -142,22 +152,36 @@ class UjianController extends Controller
                     }
                     $daftarsoal = Soal::whereIn('id', $nomor_acak)->get();
 
-                    $listSoal = $daftarsoal->sortBy(function ($item) use ($nomor_acak) {
+                    // Ambil semua jawaban peserta dalam satu query, dan buat keyed by soal_id
+                    $jawabanPeserta = Jawaban::where('peserta_id', $peserta->id)->get()->keyBy('soal_id');
+
+                    // Urutkan $daftarsoal berdasarkan $nomor_acak
+                    $sortedSoal = $daftarsoal->sortBy(function ($item) use ($nomor_acak) {
                         return array_search($item->id, $nomor_acak);
-                    })->values()->map(function ($item) use ($peserta) {
-                        $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();
-                        if ($check == null) {
-                            $item->dijawab = false;
-                        } else {
-                            $item->dijawab = $check->jawaban;
-                        }
+                    })->values();
+
+                    // Mapping soal dengan jawaban
+                    $listSoal = $sortedSoal->map(function ($item) use ($jawabanPeserta) {
+                        $item->dijawab = $jawabanPeserta[$item->id]->jawaban ?? false;
                         return $item;
                     });
 
+                    // $listSoal = $daftarsoal->sortBy(function ($item) use ($nomor_acak) {
+                    //     return array_search($item->id, $nomor_acak);
+                    // })->values()->map(function ($item) use ($peserta) {
+                    //     $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();
+                    //     if ($check == null) {
+                    //         $item->dijawab = false;
+                    //     } else {
+                    //         $item->dijawab = $check->jawaban;
+                    //     }
+                    //     return $item;
+                    // });
 
-                    $jmlsoal    = $listSoal->count();
+
+                    // $jmlsoal    = $listSoal->count();
                     $jam        = Carbon::now()->format('H:i');
-                    $waktu      = Waktu::first()->durasi;
+                    $waktu      = $waktu->durasi;
 
                     $soal       = Soal::find($id);
 
@@ -175,11 +199,11 @@ class UjianController extends Controller
                         }
                     }
 
-                    $jmlbelumjawab = $listSoal->where('dijawab', false)->count();
+                    // $jmlbelumjawab = $listSoal->where('dijawab', false)->count();
 
                     $dijawab    = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $id)->first();
 
-                    return view('peserta.home', compact('jmlsoal', 'jam', 'waktu', 'peserta', 'tgl_mulai', 'tgl_selesai', 'listSoal', 'soal', 'next', 'dijawab', 'jmlbelumjawab'));
+                    return view('peserta.home', compact('jam', 'waktu', 'peserta', 'tgl_mulai', 'tgl_selesai', 'listSoal', 'soal', 'next', 'dijawab'));
                 } else {
                     return redirect('/home/peserta');
                 }

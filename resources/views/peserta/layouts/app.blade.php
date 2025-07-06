@@ -94,7 +94,7 @@
               <div class="info-box">
                 <div class="info-box-content text-center">
                   <span class="info-box-text">JUMLAH SOAL</span>
-                  <span class="info-box-number">{{$jmlsoal}}</span>
+                  <span class="info-box-number">60</span>
                 </div>
                 <!-- /.info-box-content -->
               </div>
@@ -103,8 +103,11 @@
             <div class="col-md-2 col-sm-6 col-12">
               <div class="info-box">
                 <div class="info-box-content text-center">
-                  <span class="info-box-text text-success">SUDAH DI JAWAB</span>
-                  <span class="info-box-number text-success">{{$jmlsoal - $jmlbelumjawab}}</span>
+                  <span class="info-box-text text-success">SUDAH DI JAWAB</span> <span
+                    class="info-box-number text-success">
+
+                    {{60 - $listSoal->where('dijawab', false)->count()}}</span>
+                  {{-- <span class="info-box-number text-success">{{$jmlsoal - $jmlbelumjawab}}</span> --}}
                 </div>
                 <!-- /.info-box-content -->
               </div>
@@ -114,7 +117,10 @@
               <div class="info-box">
                 <div class="info-box-content text-center">
                   <span class="info-box-text text-danger">BELUM DI JAWAB</span>
-                  <span class="info-box-number text-danger">{{$jmlbelumjawab}}</span>
+                  <span class="info-box-number text-danger">
+
+                    {{$listSoal->where('dijawab', false)->count()}}</span>
+
                 </div>
                 <!-- /.info-box-content -->
               </div>

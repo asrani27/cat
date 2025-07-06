@@ -187,10 +187,8 @@
               </div>
 
               <div class="col-lg-6">
-                <h4 class="text-center">Jadwal Pendaftaran dimulai tanggal : <br />
-                  {{\Carbon\Carbon::parse(\App\Models\WaktuPendaftaran::first()->mulai)->translatedFormat('d F Y')}}
-                  s/d
-                  {{\Carbon\Carbon::parse(\App\Models\WaktuPendaftaran::first()->sampai)->translatedFormat('d F Y')}}
+                <h4 class="text-center"><br /><br /><br />
+                  JANGAN LUPA BERDOA
                 </h4>
                 <div class="card card-widget widget-user">
                   <!-- Add the bg color to the header using any of the bg-* classes -->
@@ -229,12 +227,8 @@
                           <label for="inputPassword3" class="col-sm-4 col-form-label"></label>
                           <div class="col-sm-8">
                             <button type="submit" class="btn btn-primary">Login</button>
-                            @if(\Carbon\Carbon::now()->format('Y-m-d') > \App\Models\WaktuPendaftaran::first()->sampai)
 
-                            @else
 
-                            <a href="/daftar" class="btn btn-primary">Daftar</a>
-                            @endif
                             {{-- <a href="#" class="btn btn-primary">Jadwal Pendaftaran Belum Dimulai</a> --}}
                           </div>
                         </div>

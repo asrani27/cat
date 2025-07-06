@@ -224,10 +224,10 @@ class HomeController extends Controller
     public function peserta()
     {
         $peserta    = Auth::user()->peserta;
-
+        $waktu2      = Waktu::first();
         $jmlsoal    = count(json_decode($peserta->soal_acak));
         $jam        = Carbon::now()->format('H:i');
-        $waktu      = Waktu::first()->durasi;
+        $waktu      = $waktu2->durasi;
 
         $nomor_acak = json_decode($peserta->soal_acak);
         $soal = Soal::whereIn('id', $nomor_acak)->get();
@@ -236,46 +236,52 @@ class HomeController extends Controller
             return array_search($item->id, $nomor_acak);
         })->values();
 
-        $listSoal   = $soal->map(function ($item) use ($peserta) {
-            $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();
-            if ($check == null) {
-                $item->dijawab = false;
-            } else {
-                $item->dijawab = $check->jawaban;
-            }
+        $jawabanPeserta = Jawaban::where('peserta_id', $peserta->id)->get()->keyBy('soal_id');
+
+        $listSoal = $soal->map(function ($item) use ($jawabanPeserta) {
+            $item->dijawab = $jawabanPeserta[$item->id]->jawaban ?? false;
             return $item;
         });
 
         $jmlbelumjawab = $listSoal->where('dijawab', false)->count();
 
-        //hitung skor Benar
-        $skor = Jawaban::where('peserta_id', $peserta->id)
-            ->get()->map(function ($item2) {
-                if ($item2->jawaban == $item2->soal->kunci) {
-                    $item2->benar = 'Y';
-                } else {
-                    $item2->benar = 'T';
-                }
-                return $item2;
-            })->where('benar', 'Y')->count();
 
         //check selesai ujian
         if ($peserta->selesai_ujian == 1) {
-            return view('peserta.selesai', compact('jmlsoal', 'jam', 'waktu', 'peserta', 'jmlbelumjawab', 'skor'));
+            //hitung skor Benar
+            $skor = Jawaban::where('peserta_id', $peserta->id)
+                ->whereHas('soal', function ($query) {
+                    $query->whereColumn('jawaban', 'kunci');
+                })->count();
+            // $skor = Jawaban::where('peserta_id', $peserta->id)
+            //     ->get()->map(function ($item2) {
+            //         if ($item2->jawaban == $item2->soal->kunci) {
+            //             $item2->benar = 'Y';
+            //         } else {
+            //             $item2->benar = 'T';
+            //         }
+            //         return $item2;
+            //     })->where('benar', 'Y')->count();
+            return view('peserta.selesai', compact('jmlsoal', 'jam', 'waktu', 'peserta', 'jmlbelumjawab', 'skor', 'listSoal'));
         } else {
 
-            $mulai     = Waktu::first()->tanggal_mulai;
-            $selesai   = Waktu::first()->tanggal_selesai;
+            $mulai     = $waktu2->tanggal_mulai;
+            $selesai   = $waktu2->tanggal_selesai;
             $check     = Carbon::now()->between($mulai, $selesai);
             $now       = Carbon::now();
 
-            if ($now <= Carbon::parse(Waktu::first()->tanggal_mulai)) {
-                return view('peserta.start', compact('jmlsoal', 'jam', 'waktu', 'peserta', 'jmlbelumjawab', 'mulai', 'selesai'));
-            } elseif ($now > Waktu::first()->tanggal_selesai) {
-                return view('peserta.selesai', compact('jmlsoal', 'jam', 'waktu', 'peserta', 'jmlbelumjawab', 'skor'));
+            if ($now <= Carbon::parse($waktu2->tanggal_mulai)) {
+                return view('peserta.start', compact('jmlsoal', 'jam', 'waktu', 'peserta', 'jmlbelumjawab', 'mulai', 'selesai', 'listSoal'));
+            } elseif ($now > $waktu2->tanggal_selesai) {
+                //hitung skor Benar
+                $skor = Jawaban::where('peserta_id', $peserta->id)
+                    ->whereHas('soal', function ($query) {
+                        $query->whereColumn('jawaban', 'kunci');
+                    })->count();
+                return view('peserta.selesai', compact('jmlsoal', 'jam', 'waktu', 'peserta', 'jmlbelumjawab', 'skor', 'listSoal'));
             } elseif ($peserta->file == null) {
                 toastr()->error('Berkas Belum Di upload');
-                return view('peserta.start', compact('jmlsoal', 'jam', 'waktu', 'peserta', 'jmlbelumjawab', 'mulai', 'selesai'));
+                return view('peserta.start', compact('jmlsoal', 'jam', 'waktu', 'peserta', 'jmlbelumjawab', 'mulai', 'selesai', 'listSoal'));
             } else {
 
                 return redirect('/peserta/ujian/soal/' . $soal->first()->id);
