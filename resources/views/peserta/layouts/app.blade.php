@@ -7,7 +7,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>Rekrutmen</title>
+  <title>{{config('app.name')}}</title>
 
   <link rel="stylesheet" href="/theme/plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="/theme/dist/css/adminlte.min.css">
