@@ -187,8 +187,8 @@
               </div>
 
               <div class="col-lg-6">
-                <h4 class="text-center"><br /><br /><br />
-                  JANGAN LUPA BERDOA
+                <h4 class="text-center"><br /><br />
+
                 </h4>
                 <div class="card card-widget widget-user">
                   <!-- Add the bg color to the header using any of the bg-* classes -->
@@ -204,32 +204,19 @@
                     <div class="row">
                       <div class="card-body">
                         <div class="form-group row">
-                          <label for="inputEmail3" class="col-sm-4 col-form-label">Username (NIK)</label>
-                          <div class="col-sm-8">
-                            <input type="text" class="form-control" id="inputEmail3" name="username"
-                              placeholder="username" value="{{old('username')}}">
+                          <label for="inputPassword3" class="col-sm-4 col-form-label"><img src="/theme/ujian2.png"
+                              width="80%"></label>
+                          <div class="col-sm-8 text-center">
+                            <h4>UJIAN ONLINE DILAKSANAKAN PADA TANGGAL 7 JULI 2025 <br /> JAM 09:00 - 10:00
+                              WITA</h4>
                           </div>
                         </div>
-                        <div class="form-group row">
-                          <label for="inputPassword3" class="col-sm-4 col-form-label">Password</label>
-                          <div class="col-sm-8">
-                            <input type="password" class="form-control" id="inputPassword3" name="password"
-                              placeholder="Password" value="{{old('password')}}">
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label for="inputPassword3" class="col-sm-4 col-form-label"></label>
-                          <div class="col-sm-8">
-                            <div class="cf-turnstile" data-sitekey="{{ config('services.turnstile_site_key') }}"></div>
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label for="inputPassword3" class="col-sm-4 col-form-label"></label>
-                          <div class="col-sm-8">
-                            <button type="submit" class="btn btn-primary">Login</button>
 
-
-                            {{-- <a href="#" class="btn btn-primary">Jadwal Pendaftaran Belum Dimulai</a> --}}
+                        <div class="form-group row">
+                          <label for="inputPassword3" class="col-sm-4 col-form-label">.</label>
+                          <div class="col-sm-8 text-center">
+                            <a href="/login" type="submit" class="btn btn-primary">Ke Halaman Login</a> {{-- <a href="#"
+                              class="btn btn-primary">Jadwal Pendaftaran Belum Dimulai</a> --}}
                           </div>
                         </div>
 
