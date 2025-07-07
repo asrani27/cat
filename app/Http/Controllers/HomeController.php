@@ -304,8 +304,7 @@ class HomeController extends Controller
                         $item2->benar = 'T';
                     }
                     return $item2;
-                })->where('benar', 'Y');
-
+                })->where('benar', 'Y')->count();
 
             return view('peserta.selesai', compact('jmlsoal', 'jam', 'waktu', 'peserta', 'jmlbelumjawab', 'skor', 'listSoal'));
         } else {
