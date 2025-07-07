@@ -113,7 +113,7 @@ class HomeController extends Controller
     // }
     public function formasi($id)
     {
-        $kategori = Kategori::with('peserta.jawaban.soal')->findOrFail($id);
+        $kategori = Kategori::findOrFail($id);
         $formasiNama = str_replace("\r", '', $kategori->nama);
 
         // $soal = collect();
@@ -131,7 +131,7 @@ class HomeController extends Controller
 
         // $jmlSoal = $soal->count();
         $jmlSoal = 60;
-        $data = $kategori->peserta;
+        $data = Peserta::where('kategori_id', $id)->get();
         // $data = $kategori->peserta->map(function ($peserta) {
         //     $jawaban = $peserta->jawaban;
 
