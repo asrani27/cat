@@ -12,13 +12,13 @@
         <th>STATUS UJIAN</th>
         <th>STATUS BERKAS</th>
         <th>STATUS WAWANCARA</th>
-        {{-- <th class="text-center">Detail Soal</th>
-        <th class="text-center">Pendidikan</th>
-        <th class="text-center">Status</th> --}}
     </tr>
+    @php
+    $no=1
+    @endphp
     @foreach ($data as $key => $item)
     <tr>
-        <td>{{$key+ 1}}</td>
+        <td>{{$no++}}</td>
         <td>'{{$item->nik}}</td>
         <td>{{$item->nama}}</td>
         <td>'{{$item->telp}}</td>
@@ -30,30 +30,6 @@
         <td>{{$item->status_ujian}}</td>
         <td>{{$item->status_berkas}}</td>
         <td>{{$item->status_wawancara}}</td>
-        {{-- <td class="text-left">
-            Jumlah : {{$jmlSoal}} <br />
-            Di Jawab : {{$item->dijawab}} <br />
-            Belum Di Jawab : {{$jmlSoal - $item->dijawab}} <br />
-            Benar : {{$item->benar}} <br />
-            Salah : {{$jmlSoal - $item->benar}}
-
-        </td>
-        <td class="text-left">
-            Sekolah/PTA : {{$item->kampus}} <br />
-            Jurusan : {{$item->jurusan}} <br />
-            Tahun Lulus : {{$item->tahun_lulus}} <br />
-            Email : {{$item->email}}</td>
-        <td>
-
-        <td>
-            Ujian : {{$item->status_ujian}} ({{$item->keterangan_ujian}})<br />
-            Berkas : {{$item->status_berkas}} ({{$item->keterangan_berkas}}) <br />
-            Wawancara : {{$item->status_wawancara}} ({{$item->keterangan_wawancara}})
-            <br>
-            @if ($item->sanggah->count() != 0)
-            <b><span class="text-red"> Sanggah : {{$item->sanggah->first()->isi}}</span></b>
-            @endif
-        </td> --}}
     </tr>
     @endforeach
 </table>
