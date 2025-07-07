@@ -51,20 +51,16 @@ class PendaftarExport implements FromView, ShouldAutoSize
             ->sortByDesc('benar')
             ->values();
 
-        // Ranking logic
-        $currentRank = 1;
         $prevNilai = null;
-        $rankToAssign = 1;
+        $rank = 0;
 
-        $data = $data->map(function ($peserta) use (&$currentRank, &$prevNilai, &$rankToAssign) {
+        $data = $data->map(function ($peserta) use (&$prevNilai, &$rank) {
             if ($peserta->benar !== $prevNilai) {
-                $rankToAssign = $currentRank;
+                $rank++; // hanya naik saat nilai beda
                 $prevNilai = $peserta->benar;
             }
 
-            $peserta->ranking = $rankToAssign;
-            $currentRank++;
-
+            $peserta->ranking = $rank;
             return $peserta;
         });
 
