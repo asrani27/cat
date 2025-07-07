@@ -131,21 +131,21 @@ class HomeController extends Controller
 
         // $jmlSoal = $soal->count();
         $jmlSoal = 60;
+        $data = $kategori->peserta;
+        // $data = $kategori->peserta->map(function ($peserta) {
+        //     $jawaban = $peserta->jawaban;
 
-        $data = $kategori->peserta->map(function ($peserta) {
-            $jawaban = $peserta->jawaban;
+        //     $dijawab = $jawaban->count();
 
-            $dijawab = $jawaban->count();
+        //     $benar = $jawaban->filter(function ($j) {
+        //         return $j->jawaban === optional($j->soal)->kunci;
+        //     })->count();
 
-            $benar = $jawaban->filter(function ($j) {
-                return $j->jawaban === optional($j->soal)->kunci;
-            })->count();
+        //     $peserta->dijawab = $dijawab;
+        //     $peserta->benar = $benar;
 
-            $peserta->dijawab = $dijawab;
-            $peserta->benar = $benar;
-
-            return $peserta;
-        })->sortByDesc('benar');
+        //     return $peserta;
+        // })->sortByDesc('benar');
 
         return view('superadmin.formasi', [
             'data' => $data,

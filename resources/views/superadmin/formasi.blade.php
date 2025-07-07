@@ -40,7 +40,7 @@
               <tr style="font-size:11px; font-family:Arial, Helvetica, sans-serif" class="bg-gradient-primary">
                 <th class="text-center">#</th>
                 <th>NIK / NAMA / TELP</th>
-                <th class="text-center">Detail Soal</th>
+                {{-- <th class="text-center">Detail Soal</th> --}}
                 <th class="text-center">Pendidikan</th>
                 <th class="text-center">File</th>
                 <th class="text-center">Status</th>
@@ -57,14 +57,14 @@
               <tr style="font-size:11px; font-family:Arial, Helvetica, sans-serif">
                 <td>{{$no++}}</td>
                 <td>{{$item->nik}} <br />{{$item->nama}}</br>{{$item->telp}}</td>
-                <td class="text-left">
+                {{-- <td class="text-left">
                   Jumlah : {{$jmlSoal}} <br />
                   Di Jawab : {{$item->dijawab}} <br />
                   Belum Di Jawab : {{$jmlSoal - $item->dijawab}} <br />
                   Benar : {{$item->benar}} <br />
                   Salah : {{$jmlSoal - $item->benar}}
 
-                </td>
+                </td> --}}
                 <td class="text-left">
                   Sekolah/PTA : {{$item->kampus}} <br />
                   Jurusan : {{$item->jurusan}} <br />
