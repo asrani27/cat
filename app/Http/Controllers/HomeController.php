@@ -291,19 +291,19 @@ class HomeController extends Controller
         //check selesai ujian
         if ($peserta->selesai_ujian == 1) {
             //hitung skor Benar
-            $skor = Jawaban::where('peserta_id', $peserta->id)
-                ->whereHas('soal', function ($query) {
-                    $query->whereColumn('jawaban', 'kunci');
-                })->count();
             // $skor = Jawaban::where('peserta_id', $peserta->id)
-            //     ->get()->map(function ($item2) {
-            //         if ($item2->jawaban == $item2->soal->kunci) {
-            //             $item2->benar = 'Y';
-            //         } else {
-            //             $item2->benar = 'T';
-            //         }
-            //         return $item2;
-            //     })->where('benar', 'Y')->count();
+            //     ->whereHas('soal', function ($query) {
+            //         $query->whereColumn('jawaban', 'kunci');
+            //     })->count();
+            $skor = Jawaban::where('peserta_id', $peserta->id)
+                ->get()->map(function ($item2) {
+                    if ($item2->jawaban == $item2->soal->kunci) {
+                        $item2->benar = 'Y';
+                    } else {
+                        $item2->benar = 'T';
+                    }
+                    return $item2;
+                })->where('benar', 'Y')->count();
             return view('peserta.selesai', compact('jmlsoal', 'jam', 'waktu', 'peserta', 'jmlbelumjawab', 'skor', 'listSoal'));
         } else {
 
