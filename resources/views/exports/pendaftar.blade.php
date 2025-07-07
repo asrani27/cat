@@ -1,6 +1,7 @@
 <table>
     <tr>
         <th class="text-center">#</th>
+        <th>RANKING</th>
         <th>NIK</th>
         <th>NAMA</th>
         <th>TELP</th>
@@ -19,6 +20,7 @@
     @foreach ($data as $key => $item)
     <tr>
         <td>{{$no++}}</td>
+        <td>{{ $item->ranking }}</td>
         <td>'{{$item->nik}}</td>
         <td>{{$item->nama}}</td>
         <td>'{{$item->telp}}</td>
