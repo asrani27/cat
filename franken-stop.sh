@@ -1,3 +1,3 @@
 #!/bin/bash
-/usr/local/bin/frankenphp stop > /dev/null &
+pkill -f '/usr/local/bin/frankenphp' > /dev/null &
 echo "Service diberhentikan."
