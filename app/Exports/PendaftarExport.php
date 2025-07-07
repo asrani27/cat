@@ -39,21 +39,19 @@ class PendaftarExport implements FromView, ShouldAutoSize
 
 
         $jmlSoal = $soal->count();
-        $data = Kategori::find($this->id)->peserta->map(function ($item) {
-            $jawaban = Jawaban::where('peserta_id', $item->id)->get();
-            $item->dijawab = $jawaban->count();
-            $item->benar = Jawaban::where('peserta_id', $item->id)
-                ->get()->map(function ($item2) {
-                    if ($item2->jawaban == $item2->soal->kunci) {
-                        $item2->benar = 'Y';
-                    } else {
-                        $item2->benar = 'T';
-                    }
-                    return $item2;
-                })->where('benar', 'Y')->count();
 
-            return $item;
-        })->sortByDesc('benar');
+        $data = Kategori::with(['peserta.jawaban.soal'])->findOrFail($this->id)
+            ->peserta->map(function ($peserta) {
+                $jawaban = $peserta->jawaban;
+
+                $peserta->dijawab = $jawaban->count();
+
+                $peserta->benar = $jawaban->filter(function ($jawab) {
+                    return $jawab->jawaban === optional($jawab->soal)->kunci;
+                })->count();
+
+                return $peserta;
+            })->sortByDesc('benar');
         return view('exports.pendaftar', compact('data', 'jmlSoal'));
     }
 }
