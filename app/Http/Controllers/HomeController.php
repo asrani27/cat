@@ -73,43 +73,84 @@ class HomeController extends Controller
         $filename = Kategori::find($id)->nama . '.xlsx';
         return Excel::download(new PendaftarExport($id), $filename);
     }
+    // public function formasi($id)
+    // {
+    //     $formasi = str_replace("\r", '', Kategori::find($id)->nama);
+
+    //     if ($formasi == 'PERAWAT') {
+    //         $listSoalTeknis = Soal::where('formasi', 'PERAWAT')->get();
+    //         $soal = $listSoalTeknis;
+    //     } elseif ($formasi == 'TEKNISI GAS MEDIS') {
+    //         $listSoalUmum = Soal::where('jenis', 'UMUM')->take(40)->get();
+    //         $listSoalTeknis = Soal::where('formasi', $formasi)->get();
+    //         $soal = $listSoalUmum->concat($listSoalTeknis);
+    //     } else {
+    //         $listSoalUmum = Soal::where('jenis', 'UMUM')->get();
+    //         $listSoalTeknis = Soal::where('formasi', $formasi)->get();
+    //         $soal = $listSoalUmum->concat($listSoalTeknis);
+    //     }
+
+
+    //     $jmlSoal = $soal->count();
+    //     $data = Kategori::find($id)->peserta->map(function ($item) {
+    //         $jawaban = Jawaban::where('peserta_id', $item->id)->get();
+    //         $item->dijawab = $jawaban->count();
+    //         $item->benar = Jawaban::where('peserta_id', $item->id)
+    //             ->get()->map(function ($item2) {
+    //                 if ($item2->jawaban == $item2->soal->kunci) {
+    //                     $item2->benar = 'Y';
+    //                 } else {
+    //                     $item2->benar = 'T';
+    //                 }
+    //                 return $item2;
+    //             })->where('benar', 'Y')->count();
+
+    //         return $item;
+    //     })->sortByDesc('benar');
+
+    //     $formasi = Kategori::find($id);
+    //     return view('superadmin.formasi', compact('data', 'formasi', 'jmlSoal'));
+    // }
     public function formasi($id)
     {
-        $formasi = str_replace("\r", '', Kategori::find($id)->nama);
+        $kategori = Kategori::with('peserta.jawaban.soal')->findOrFail($id);
+        $formasiNama = str_replace("\r", '', $kategori->nama);
 
-        if ($formasi == 'PERAWAT') {
-            $listSoalTeknis = Soal::where('formasi', 'PERAWAT')->get();
-            $soal = $listSoalTeknis;
-        } elseif ($formasi == 'TEKNISI GAS MEDIS') {
-            $listSoalUmum = Soal::where('jenis', 'UMUM')->take(40)->get();
-            $listSoalTeknis = Soal::where('formasi', $formasi)->get();
-            $soal = $listSoalUmum->concat($listSoalTeknis);
+        $soal = collect();
+        if ($formasiNama === 'PERAWAT') {
+            $soal = Soal::where('formasi', 'PERAWAT')->get();
         } else {
-            $listSoalUmum = Soal::where('jenis', 'UMUM')->get();
-            $listSoalTeknis = Soal::where('formasi', $formasi)->get();
-            $soal = $listSoalUmum->concat($listSoalTeknis);
+            $soalUmum = Soal::where('jenis', 'UMUM');
+            if ($formasiNama === 'TEKNISI GAS MEDIS') {
+                $soalUmum = $soalUmum->take(40);
+            }
+            $soal = $soalUmum->get()->merge(
+                Soal::where('formasi', $formasiNama)->get()
+            );
         }
 
-
         $jmlSoal = $soal->count();
-        $data = Kategori::find($id)->peserta->map(function ($item) {
-            $jawaban = Jawaban::where('peserta_id', $item->id)->get();
-            $item->dijawab = $jawaban->count();
-            $item->benar = Jawaban::where('peserta_id', $item->id)
-                ->get()->map(function ($item2) {
-                    if ($item2->jawaban == $item2->soal->kunci) {
-                        $item2->benar = 'Y';
-                    } else {
-                        $item2->benar = 'T';
-                    }
-                    return $item2;
-                })->where('benar', 'Y')->count();
 
-            return $item;
+        $data = $kategori->peserta->map(function ($peserta) {
+            $jawaban = $peserta->jawaban;
+
+            $dijawab = $jawaban->count();
+
+            $benar = $jawaban->filter(function ($j) {
+                return $j->jawaban === optional($j->soal)->kunci;
+            })->count();
+
+            $peserta->dijawab = $dijawab;
+            $peserta->benar = $benar;
+
+            return $peserta;
         })->sortByDesc('benar');
 
-        $formasi = Kategori::find($id);
-        return view('superadmin.formasi', compact('data', 'formasi', 'jmlSoal'));
+        return view('superadmin.formasi', [
+            'data' => $data,
+            'formasi' => $kategori,
+            'jmlSoal' => $jmlSoal
+        ]);
     }
 
     public function editPeserta($formasi_id, $id)
