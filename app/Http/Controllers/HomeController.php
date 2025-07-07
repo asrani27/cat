@@ -116,20 +116,21 @@ class HomeController extends Controller
         $kategori = Kategori::with('peserta.jawaban.soal')->findOrFail($id);
         $formasiNama = str_replace("\r", '', $kategori->nama);
 
-        $soal = collect();
-        if ($formasiNama === 'PERAWAT') {
-            $soal = Soal::where('formasi', 'PERAWAT')->get();
-        } else {
-            $soalUmum = Soal::where('jenis', 'UMUM');
-            if ($formasiNama === 'TEKNISI GAS MEDIS') {
-                $soalUmum = $soalUmum->take(40);
-            }
-            $soal = $soalUmum->get()->merge(
-                Soal::where('formasi', $formasiNama)->get()
-            );
-        }
+        // $soal = collect();
+        // if ($formasiNama === 'PERAWAT') {
+        //     $soal = Soal::where('formasi', 'PERAWAT')->get();
+        // } else {
+        //     $soalUmum = Soal::where('jenis', 'UMUM');
+        //     if ($formasiNama === 'TEKNISI GAS MEDIS') {
+        //         $soalUmum = $soalUmum->take(40);
+        //     }
+        //     $soal = $soalUmum->get()->merge(
+        //         Soal::where('formasi', $formasiNama)->get()
+        //     );
+        // }
 
-        $jmlSoal = $soal->count();
+        // $jmlSoal = $soal->count();
+        $jmlSoal = 60;
 
         $data = $kategori->peserta->map(function ($peserta) {
             $jawaban = $peserta->jawaban;
