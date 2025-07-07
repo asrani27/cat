@@ -286,7 +286,7 @@ class PesertaController extends Controller
 
     public function download($filename)
     {
-        $path = 'peserta/' . $filename;
+        $path = '/peserta/' . $filename;
 
         if (!Storage::disk('minio')->exists($path)) {
             abort(404);
