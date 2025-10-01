@@ -71,6 +71,7 @@
                   Tahun Lulus : {{$item->tahun_lulus}} <br />
                   Email : {{$item->email}}</td>
                 <td>
+
                   @if ($item->file == null)
 
                   @else
