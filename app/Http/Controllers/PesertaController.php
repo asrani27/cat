@@ -286,21 +286,52 @@ class PesertaController extends Controller
 
     public function download($filename)
     {
-        $path = '/peserta/' . $filename;
+        $path = 'https://minio.banjarmasinkota.go.id/asrani/peserta/' . $filename;
+        dd('dd');
+        $content = Storage::disk('minio')->get('peserta/1111111111111111_testing_terakhir.pdf');
+        dd(strlen($content));
+        // Since files are public, let's try to generate a temporary URL
+        try {
+            // Check if file exists first
+            if (!Storage::disk('minio')->exists($path)) {
+                // Try to list files to debug
+                $files = Storage::disk('minio')->files('peserta');
+                $allFiles = Storage::disk('minio')->allFiles();
 
-        if (!Storage::disk('minio')->exists($path)) {
-            abort(404);
+                return response()->json([
+                    'error' => 'File not found',
+                    'searching_for' => $path,
+                    'files_in_peserta' => $files,
+                    'all_files' => $allFiles,
+                    'bucket' => env('AWS_BUCKET'),
+                    'endpoint' => env('AWS_ENDPOINT')
+                ], 404);
+            }
+
+            // For public files, we can generate a temporary URL or stream directly
+            $url = Storage::disk('minio')->temporaryUrl($path, now()->addMinutes(5));
+
+            return redirect($url);
+        } catch (\Exception $e) {
+            // If temporary URL fails, try direct stream
+            try {
+                $stream = Storage::disk('minio')->readStream($path);
+                $mime = Storage::disk('minio')->mimeType($path);
+
+                return response()->stream(function () use ($stream) {
+                    fpassthru($stream);
+                }, 200, [
+                    'Content-Type' => $mime,
+                    'Content-Disposition' => 'attachment; filename="' . $filename . '"',
+                ]);
+            } catch (\Exception $e2) {
+                return response()->json([
+                    'error' => 'Failed to download file',
+                    'message' => $e2->getMessage(),
+                    'path' => $path
+                ], 500);
+            }
         }
-
-        $stream = Storage::disk('minio')->readStream($path);
-        $mime = Storage::disk('minio')->mimeType($path);
-
-        return response()->stream(function () use ($stream) {
-            fpassthru($stream);
-        }, 200, [
-            'Content-Type' => $mime,
-            'Content-Disposition' => 'attachment; filename="' . $filename . '"',
-        ]);
     }
 
     public function gantipass()

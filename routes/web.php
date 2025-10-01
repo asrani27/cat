@@ -67,6 +67,9 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::get('/daftar', [LoginController::class, 'daftar']);
 Route::post('/daftar', [LoginController::class, 'simpanDaftar']);
 
+// Public file download route
+Route::get('/public/file-peserta/{filename}', [PesertaController::class, 'download']);
+
 Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
     Route::prefix('superadmin')->group(function () {
         Route::get('formasi/{id}', [HomeController::class, 'formasi']);

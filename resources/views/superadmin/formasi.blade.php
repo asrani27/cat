@@ -74,7 +74,8 @@
                   @if ($item->file == null)
 
                   @else
-                  <a href="/superadmin/file-peserta/{{$item->file}}" target="_blank">Download</a>
+                  <a href="https://minio.banjarmasinkota.go.id/asrani/peserta/{{$item->file}}"
+                    target="_blank">Download</a>
                   @endif
                 </td>
                 <td>
